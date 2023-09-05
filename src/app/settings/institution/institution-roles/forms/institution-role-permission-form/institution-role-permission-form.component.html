@@ -1,0 +1,131 @@
+<!-- <div class="accordion" id="accordionExample">
+    <form (ngSubmit)="updatePermission()" #permissionForm=ngForm>
+        <ng-container *ngFor="let module of modules">
+            <div class="card mb-0">
+                <div class="card-header shadow-lg rounded row" id="headingOne">
+                    <h5 class="col-12 col-xl-6 m-0">
+                        <a class="custom-accordion-title d-block pt-2 pb-2" data-bs-toggle="collapse" href="#collapse_{{module.linkName}}" aria-expanded="true" aria-controls="collapseOne">
+                            {{module.name}} 
+                        </a>
+                    </h5>
+
+                    <div class="col-12 col-xl-6">
+
+                        <div class="form-check form-switch">
+                            <input type="checkbox" id="module_checkbox_{{module.id}}" (change)="moduleChangeCheck($event,module)" [attr.checked]="module.checked" data-switch="bool" />
+                            <label for="module_checkbox_{{module.id}}" data-on-label="Yes" data-off-label="No"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="collapse_{{module.linkName}}" class="collapse" data-bs-parent="#accordionExample">
+                    <div class="card-body shadow-lg rounded">
+                        <ng-container *ngFor="let submodule of module.cfg_sub_modules">
+                            <hr style=" border-top: 10px dashed;">
+                            <div class="row">
+                                <div class="col-12 col-xl-6">
+                                    <h6 class="text-uppercase text-body">{{submodule.name}}</h6>
+                                </div>
+
+                                <div class="col-12 col-xl-6">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input ms-auto" type="checkbox" id="submodule_checkbox_{{submodule.id}}" (change)="subModuleChangeCheck($event,submodule)" [attr.checked]="submodule.checked" data-switch="bool" />
+                                        <label for="submodule_checkbox_{{submodule.id}}" data-on-label="Yes" data-off-label="No"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <ng-container *ngFor="let action of submodule.cfg_sub_module_actions">
+                                    <div class="col-sm-6 col-md-4" *ngIf="action.sub_moduleId == submodule.id">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input ms-auto" type="checkbox" id="action_checkbox_{{action.id}}" (change)="actionChangeCheck($event,action)" [attr.checked]="action.checked">
+                                            <label class="form-check-label text-body ms-3 text-truncate mb-0" for="action_checkbox_{{action.id}}">{{action.name}}</label>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                        </ng-container>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="row">
+            <hr>
+            <div class="col-xl-4 col-lg-4 col-md-12  d-flex flex-column mx-auto"></div>
+            <div class="col-xl-4 col-lg-4 col-md-12  d-flex flex-column mx-auto">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-danger" [disabled]="!permissionForm.valid">Update Permission</button>
+                <button *ngIf="general.creating" class="btn btn-danger" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...</button>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12  d-flex flex-column mx-auto"></div>
+        </div>
+    </form>
+
+</div>
+ -->
+
+
+
+
+
+<div class="accordion" id="accordionExample">
+    <div class="card mb-0">
+        <div class="card-header" id="headingOne">
+            <h5 class="m-0">
+                <a class="custom-accordion-title d-block pt-2 pb-2" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Collapsible Group Item #1
+                </a>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="card-body">
+                ...
+            </div>
+        </div>
+    </div>
+    <div class="card mb-0">
+        <div class="card-header" id="headingTwo">
+            <h5 class="m-0">
+                <a class="custom-accordion-title collapsed d-block pt-2 pb-2" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Collapsible Group Item #2
+                </a>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="card-body">
+                ...
+            </div>
+        </div>
+    </div>
+    <div class="card mb-0">
+        <div class="card-header" id="headingThree">
+            <h5 class="m-0">
+                <a class="custom-accordion-title collapsed d-block pt-2 pb-2" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Collapsible Group Item #3
+                </a>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="card-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <hr>
+    <div class="col-xl-4 col-lg-4 col-md-12  d-flex flex-column mx-auto"></div>
+    <div class="col-xl-4 col-lg-4 col-md-12  d-flex flex-column mx-auto"></div>
+    <div class="col-xl-4 col-lg-4 col-md-12  d-flex flex-column mx-auto">
+        <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary">Update Permission</button>
+        <!-- <button *ngIf="general.bfrcreating" type="submit" class="btn btn-danger" [disabled]="!permissionForm.valid">Update Permission</button> -->
+        <button *ngIf="general.creating" class="btn btn-outline-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...</button>
+    </div>
+
+</div>

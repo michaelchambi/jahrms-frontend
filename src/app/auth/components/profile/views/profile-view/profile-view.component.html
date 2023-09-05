@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow-lg text-center">
+            <div class="card-body text-black">
+                <img src="../../../../../../assets//images/users/no_image.jpg" class="rounded-circle"
+                    style="height: 200px;" alt="profile-image">
+
+                <h4 class="mb-0 mt-2">{{employeeDetails?.data?.name}}</h4>
+                <p class=" font-14">{{employeeDetails?.data?.designation}}</p>
+                <span *ngIf="employeeDetails?.data?.active" class="badge badge-outline-success">Active User</span>
+                <span *ngIf="!employeeDetails?.data?.active" class="badge badge-outline-danger">Innactive User</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <table class="table table-hover table-sm mb-0" id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Check Number</b>:</td>
+                                <td>{{employeeDetails?.data?.check_number}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Phone Number</b>:</td>
+                                <td>+255 {{employeeDetails?.data?.phone_number}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Employess Email</b>:</td>
+                                <td>{{employeeDetails?.data?.email}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>National Identity Number (NIDA)</b></td>
+                                <td>{{employeeDetails?.data?.national_id}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Birth Date</b>:</td>
+                                <td>{{employeeDetails?.data?.birth_date}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Hiring Date</b>:</td>
+                                <td>{{employeeDetails?.data?.hired_date}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Roles in The System</b>:</td>
+                                <td>
+                                    <ng-container *ngFor="let roles of employeeDetails?.data?.role_users">
+                                        [{{roles.role.name}}]&nbsp;
+                                    </ng-container>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerLeaveType()" #announcementForm=ngForm>
+            <!-- {{announcementForm.value|json}} -->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <label> Leave Type Name*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="leave_type_name" placeholder="Enter Leave Type Name"
+                        [(ngModel)]="leave_type_data.leave_type_name" leave_type_name required>
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-12">
+                    <label> Leave Description*:</label>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" type="text" name="leave_description" placeholder="Enter Fly Notes"
+                        [(ngModel)]="leave_type_data.leave_description" leave_description required></textarea>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
+                        Add Leave Type</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Leave Type Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>

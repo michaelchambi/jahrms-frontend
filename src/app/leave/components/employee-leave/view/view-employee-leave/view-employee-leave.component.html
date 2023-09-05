@@ -1,0 +1,157 @@
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-employee-detail'">
+            <div class="col-md-8">
+                <a href="/add-jot-setting-user/{{submoduleId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Add Employee</a>
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <!-- content  -->
+    <div class="table-responsive">
+
+        <table class="table table-sm mb-0 " id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Employee Name</th>
+                    <th>Gender</th>
+                    <th>Leave Types</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let leave of userList; let i = index">
+                    <td>{{1+i}}</td>
+
+                    <td>{{leave.user.name}}</td>
+                    <td>{{leave.user.sex}}</td>
+                    <td>{{leave?.leave_type?? 'Not Provided'}}</td>
+                    <td>{{leave?.start_date | date:'dd-MM-yyy'}}</td>
+                    <td>{{leave?.end_date  | date:'dd-MM-yyy'}}</td>
+                    <td>
+                        <span *ngIf="leave?.active" class="badge badge-primary-lighten">Active</span>
+                        <span *ngIf="!leave?.active" class="badge badge-danger-lighten">Inactive</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='show-employee-leave'" href="/edit-leave/{{leave?.uid}}/{{leave.id}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="leave?.active && access =='deactivate-employee-leave'" href="#deactivate_user" data-bs-toggle="modal" (click)="showUser(leave?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!leave?.active && access =='activate-employee-leave'" href="#activate_user" data-bs-toggle="modal" (click)="showUser(leave?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-employee-detai-leave'" href="/show-leave/{{leave.user.uid}}/{{leave.id}}" class="action-icon" title="leave ndogo"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+                    </td>
+
+
+
+                    <div id="activate_user" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                    
+                                <div class="modal-header modal-colored-header bg-dark">
+                                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                    
+                    
+                                <div class="modal-body text-center" style="margin-top: 5%">
+                                    <i class="text-black">You are about to allow the addition of this user{{user_data?.id}}?</i><br>
+                                    <b class="text-black">{{user_data?.name}}</b>
+                                </div>
+                    
+                    
+                                <div class="modal-footer d-flex justify-content-center mb-3">
+                                    <button *ngIf="general.bfrcreating" (click)="activate(user_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Ndio Ruhusu</button>
+                                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    It's Loading...
+                                  </button>
+                    
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                    <!-- /active  -->
+                    
+                    
+                    <!-- deactive   -->
+                    <div id="deactivate_user" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                    
+                                <div class="modal-header modal-colored-header bg-dark">
+                                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                    
+                    
+                                <div class="modal-body text-center" style="margin-top: 5%">
+                                    <i class="text-black">You are going to deactivate the user from being viewd to the public?</i><br>
+                                    <b class="text-black">{{user_data?.id}}</b>
+                                </div>
+                    
+                    
+                                <div class="modal-footer d-flex justify-content-center mb-3">
+                                    <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(user_id)"> Ndio Zuia</button>
+                                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Inazuia...
+                                  </button>
+                    
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                   
+
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- end content  -->
+
+</div>
+
+
+
+
+<div class="modal fade" [hidden]="!showModal" id="loading" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+<!-- active   -->
+
+<!-- /.modal -->
+<!-- /deactive  -->
+
+
+
+
+
+

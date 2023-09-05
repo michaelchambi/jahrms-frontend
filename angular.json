@@ -1,0 +1,190 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "b3495a5e-6c20-4d02-aeff-a895e4898b25"
+  },
+	"version": 1,
+	"newProjectRoot": "projects",
+	"projects": {
+		"jot-mis-portal-ui": {
+			"projectType": "application",
+			"schematics": {},
+			"root": "",
+			"sourceRoot": "src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/jot-mis-portal-ui",
+						"index": "src/index.html",
+						"main": "src/main.ts",
+						"polyfills": ["zone.js"],
+						"tsConfig": "tsconfig.app.json",
+						"assets": [
+							"src/favicon.ico",
+							"src/assets",
+							{
+								"glob": "**/*",
+								"input": "node_modules/ngx-extended-pdf-viewer/assets/",
+								"output": "/assets/"
+							}
+						],
+						"allowedCommonJsDependencies": ["lodash", "pdfjs-dist/build/pdf", "pdfjs-dist/web/pdf_viewer", "crypto-js", "sweetalert2"],
+						"styles": [
+							"src/styles.css",
+							"src/assets/css/icons.min.css",
+							"src/assets/css/app-modern.min.css",
+							"src/assets/css/app-creative.min.css",
+							"src/assets/plugins/fontawesome/css/all.min.css",
+							"src/assets/css/vendor/simplemde.min.css",
+							"src/assets/plugins/datatables/datatables.min.css",
+							"src/assets/css/vendor/dataTables.bootstrap5.css",
+							"src/assets/css/vendor/responsive.bootstrap5.css",
+							"src/assets/css/vendor/buttons.bootstrap5.css",
+							"node_modules/ngx-toastr/toastr.css"
+						],
+						"scripts": [
+							"src/assets/js/vendor.min.js",
+							"src/assets/js/app.js",
+							"src/assets/plugins/fontawesome/js/all.min.js",
+							"src/assets/js/vendor/simplemde.min.js",
+							"src/assets/js/ui/component.todo.js",
+							"src/assets/plugins/datatables/datatables.min.js",
+							"src/assets/plugins/jQuery/jQuery-2.1.4.min.js",
+							"src/assets/js/vendor/jquery.dataTables.min.js",
+							"src/assets/js/vendor/dataTables.bootstrap5.js",
+							"src/assets/js/vendor/dataTables.responsive.min.js",
+							"src/assets/js/vendor/responsive.bootstrap5.min.js",
+							"src/assets/js/pages/demo.datatable-init.js",
+							"src/assets/js/vendor/dataTables.buttons.min.js",
+							"src/assets/js/vendor/buttons.bootstrap5.min.js",
+							"src/assets/js/vendor/buttons.html5.min.js",
+							"src/assets/js/vendor/buttons.flash.min.js",
+							"src/assets/js/vendor/buttons.print.min.js",
+							"src/assets/js/custom.js",
+							"src/assets/plugins/jQuery/jquery.mask.js"
+						]
+					},
+					"configurations": {
+						"production": {
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							],
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "50mb",
+									"maximumError": "50mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.dev.ts"
+								}
+							]
+						},
+						"testing": {
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.testing.ts"
+								}
+							]
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "jot-mis-portal-ui:build:production"
+						},
+						"development": {
+							"browserTarget": "jot-mis-portal-ui:build:development"
+						},
+						"testing": {
+							"browserTarget": "jot-mis-portal-ui:build:testing"
+						}
+					},
+					"defaultConfiguration": "testing"
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "jot-mis-portal-ui:build"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"polyfills": ["zone.js", "zone.js/testing"],
+						"tsConfig": "tsconfig.spec.json",
+						"assets": [
+							"src/favicon.ico",
+							"src/assets",
+							{
+								"glob": "**/*",
+								"input": "node_modules/ngx-extended-pdf-viewer/assets/",
+								"output": "/assets/"
+							}
+						],
+						"styles": [
+							"src/styles.css",
+							"src/assets/css/icons.min.css",
+							"src/assets/css/app-modern.min.css",
+							"src/assets/css/app-creative.min.css",
+							"src/assets/plugins/fontawesome/css/all.min.css",
+							"src/assets/css/vendor/simplemde.min.css",
+							"src/assets/plugins/datatables/datatables.min.css",
+							"src/assets/css/vendor/dataTables.bootstrap5.css",
+							"src/assets/css/vendor/responsive.bootstrap5.css",
+							"src/assets/css/vendor/buttons.bootstrap5.css",
+							"node_modules/ngx-toastr/toastr.css"
+						],
+						"scripts": [
+							"src/assets/js/vendor.min.js",
+							"src/assets/js/app.js",
+							"src/assets/plugins/fontawesome/js/all.min.js",
+							"src/assets/js/vendor/simplemde.min.js",
+							"src/assets/js/ui/component.todo.js",
+							"src/assets/plugins/datatables/datatables.min.js",
+							"src/assets/plugins/jQuery/jQuery-2.1.4.min.js",
+							"src/assets/js/vendor/jquery.dataTables.min.js",
+							"src/assets/js/vendor/dataTables.bootstrap5.js",
+							"src/assets/js/vendor/dataTables.responsive.min.js",
+							"src/assets/js/vendor/responsive.bootstrap5.min.js",
+							"src/assets/js/pages/demo.datatable-init.js",
+							"src/assets/js/vendor/dataTables.buttons.min.js",
+							"src/assets/js/vendor/buttons.bootstrap5.min.js",
+							"src/assets/js/vendor/buttons.html5.min.js",
+							"src/assets/js/vendor/buttons.flash.min.js",
+							"src/assets/js/vendor/buttons.print.min.js",
+							"src/assets/js/custom.js",
+							"src/assets/plugins/jQuery/jquery.mask.js"
+						]
+					}
+				}
+			}
+		}
+	}
+}

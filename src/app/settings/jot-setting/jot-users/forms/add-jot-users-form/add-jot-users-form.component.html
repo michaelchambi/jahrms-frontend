@@ -1,0 +1,124 @@
+<div class="responsive p-0">
+    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="first_name">First Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="first_name" [(ngModel)]="data.first_name" name="first_name" placeholder="xxxxxxx" first_name required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="middle_name">Middle Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="middle_name" [(ngModel)]="data.middle_name" name="middle_name" placeholder="xxxxxxx" middle_name required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="last_name">Last Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="last_name" [(ngModel)]="data.last_name" name="last_name" placeholder="xxxxxxx" last_name required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="birth_date">Birth Date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control" id="birth_date" [(ngModel)]="data.birth_date" name="birth_date" placeholder="xxxxxxx" birth_date required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="hired_date">Hired Date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control" id="hired_date" [(ngModel)]="data.hired_date" name="hired_date" placeholder="Hired Date" hired_date required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="check_number">Check Number</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="check_number" [(ngModel)]="data.check_number" name="check_number" placeholder="xxxxxxx" check_number required />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="pf_number">PF Number</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="pf_number" [(ngModel)]="data.pf_number" name="pf_number" placeholder="xxxxxxx" pf_number required />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="email">Email</label>
+                <div class="form-group mb-3">
+                    <input type="email" class="form-control" id="email" [(ngModel)]="data.email" name="email" placeholder="email@jot.go.tz" email required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>Phone Number</label>
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">+255</span>
+                        <input type="text" class="form-control" id="phone" [(ngModel)]="data.phone_number" name="phone" data-mask="999 999 999" placeholder="712 xxx xxx" maxlength="9" minlength="9" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="majukumu">Gender:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.gender"  name="gender" placeholder="Male" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Gender</ng-option>
+                        <ng-option value="Male"  Selected>Male</ng-option>
+                        <ng-option value="Female"  Selected>Female</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="majukumu">Designation:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.designation_id"  name="designation_id" placeholder="xxx" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose designation</ng-option>
+                        <ng-option value="1"  Selected>ICT Officer II</ng-option>
+                        <ng-option value="2"  Selected>HRO Officer II</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="nida">National Identity (NIDA)</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="nida" [(ngModel)]="data.national_id" name="nida" placeholder="19XXXXXXXX" required />
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <label for="majukumu">Role:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.roles" [multiple]="true" name="majukumu" placeholder="Chagua System Roles" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Roles</ng-option>
+                        <ng-container *ngFor="let roles of permission.role_list">
+                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Inasajili...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

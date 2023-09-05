@@ -1,0 +1,60 @@
+<div class="leftside-menus">
+    <div class="leftbar-user">
+        <a href="/home">
+            <app-side-bar-name></app-side-bar-name>
+        </a>
+    </div>
+
+    <!--- Sidemenu -->
+
+    <ul class="side-nav">
+        <li class="side-nav-title side-nav-item"></li>
+        <ng-container *ngFor="let module of permission.module_access; let i = index">
+            <li class="side-nav-item" *ngIf="module?.active">
+                <a data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{ module?.id }}" aria-expanded="false" attr.aria-controls="{{ module?.linkName }}" class="side-nav-link button">
+                    <i class="{{ module?.icon }}"></i>
+                    <span class="text-black"> {{ module?.name }} </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="collapse_{{ module?.id }}" attr.aria-labelledby="{{ module?.linkName }}">
+                    <ul class="side-nav-second-level text-black">
+                        <ng-container *ngFor="let submodule of permission.submodule_access">
+                            <li *ngIf="module?.id == submodule?.module_id && submodule.active">
+                                <a href="/{{ submodule?.link }}/{{submodule?.uid}}" class="text-black"><i class="{{ submodule?.icon }}"></i> {{ submodule?.name }}</a>
+                            </li>
+                            
+                        </ng-container>
+
+                        
+
+                    </ul>
+                </div>
+            </li>
+        </ng-container>
+
+       
+
+       
+
+
+
+
+
+
+       
+
+
+
+
+
+        
+
+
+       
+
+    </ul>
+
+    <!-- End Sidebar -->
+
+    <!-- Sidebar -left -->
+</div>

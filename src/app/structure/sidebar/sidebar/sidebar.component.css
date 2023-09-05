@@ -1,0 +1,19 @@
+@media screen and (min-width: 1000px) {
+
+    .title-details{
+        width:10;
+            line-height: 16px;
+    }
+    /* .leftside-menu{
+        margin:0;
+        margin-top:-3em;
+    } */
+    .leftside-menus{
+        margin-top:0em;
+        width:20em;
+        background-color: #ffff;
+        overflow-y: scroll;
+        height: 40em;
+    }
+    
+}

@@ -1,0 +1,34 @@
+<div class="responsive p-0">
+    <form (ngSubmit)="editRole()" #regionForm="ngForm">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <label>Jukumu: </label>
+                <div class="mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="Afisa Masuhuli" aria-label="Profile" aria-describedby="profile-addon" required />
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <label for="module">Eneo:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.modal_name" name="module" placeholder="Changua Eneo" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Changua Eneo</ng-option>
+                        <ng-option value="private">Private Role</ng-option>
+                        <ng-option value="public">Public Role</ng-option>
+
+                    </ng-select>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <br />
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-100" [disabled]="!regionForm.valid">Badili Taarifa</button>
+
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-100" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Inabadili...
+          </button>
+            </div>
+        </div>
+    </form>
+</div>

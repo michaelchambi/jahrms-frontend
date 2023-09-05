@@ -1,0 +1,12 @@
+.topnav-navbar{
+    background-color:#dc143c;
+}
+.nav-user{
+    background-color:#dc143c; 
+    border:0rem #dc143c; 
+    
+}
+.account-user-name,.text-div{
+    margin-top:0.7em;
+    color:#ffff;
+}

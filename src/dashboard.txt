@@ -1,0 +1,72 @@
+<div class="responsive mt-3 p-0">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- card count -->
+                    <div class="card border border-primary  shadow-lg rounded">
+                        <div class="card-body text-center">
+                            <h5 class=" text-primary text-bold text-uppercase mt-0">Active Complaints</h5>
+                            <h2 class="m-b-20">1,587</h2>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+
+                    <div class="card border border-primary  shadow-lg rounded">
+                        <div class="card-body text-center">
+                            <h5 class=" text-primary text-bold text-uppercase mt-0">Closed Complaints</h5>
+                            <h2 class="m-b-20">1,587</h2>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+
+                    <!--end card-->
+                    <!-- end card-->
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card border border-dark shadow-lg rounded">
+                        <div class="card-body text-center">
+                            <h5 class="text-dark text-uppercase mt-0">Closed Complaints</h5>
+                            <h2 class="m-b-20">1,587</h2>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+            </div>
+        </div>
+
+        <!-- appeals count  -->
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- card count -->
+                    <div class="card border border-primary  shadow-lg rounded">
+
+                        <div class="card-body text-center">
+                            <h5 class=" text-primary text-bold text-uppercase mt-0">Active Appeals</h5>
+                            <h2 class="m-b-20">1,587</h2>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!--end card-->
+                    <!-- end card-->
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card border border-dark shadow-lg rounded">
+                        <div class="card-body text-center">
+                            <h5 class="text-dark text-uppercase mt-0">Closed Appeals</h5>
+                            <h2 class="m-b-20">1,587</h2>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!--end card-->
+                </div>
+            </div>
+        </div>
+        <!-- end appeals  -->
+    </div>
+</div>

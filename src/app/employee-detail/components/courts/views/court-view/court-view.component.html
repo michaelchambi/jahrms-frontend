@@ -1,0 +1,143 @@
+
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-court'">
+            <div class="col-md-8">
+                <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_court">Add Court</button></h5>
+      </div>
+           
+
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+   <div class="row choice-borer" >
+    <div class="col-xl-4 col-lg-5 col-md-6 ">
+        <label for="icon">Zone Selection: </label>
+        <div class="form-group mb-3">
+            <select class="zone-option" [(ngModel)]="request_data.zone_id" name="zone_id" required>
+                <option value="" disabled Selected>Choose Zone</option>
+                <ng-container *ngFor="let zones of zoneList">
+                    <option  value="{{zones.id}}" (click)=" getcourt_level()">{{zones.name}}</option>
+                </ng-container>
+
+            </select>
+        </div>
+    </div>
+    <ng-container *ngIf="zone_selected">
+        <div class="col-xl-4 col-lg-5 col-md6 ">
+            <label for="icon">Court Level List: </label>
+            <div class="form-group mb-3">
+                <select class="court-option" [(ngModel)]="request_data.court_level_id" name="court_level_id" required>
+                    <option value="" disabled Selected>Choose Option</option>
+                    <ng-container *ngFor="let levels of court_levelList">
+                        <option  value="{{levels.id}}" (click)="getCourt(levels.id)">{{levels.name}}</option>
+                    </ng-container>
+    
+                </select>
+            </div>
+        </div>
+    </ng-container>
+    
+   </div>
+    
+    
+  
+   <ng-container *ngIf="data_found">
+    <div class="responsive mt-3 p-0">
+        <div class="table-responsive">
+            <table class="table table-sm mb-0 table-responsive" id="dataTable">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th>Court Name</th>
+                        <th>Court Display Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let court of courtList; let i = index">
+                        <td>{{1+i}}</td>
+                        <td>{{court.name}}</td>
+                        <td>{{court?.display_name}}</td>
+                       
+                        <td>
+                            <span *ngIf="court?.status" class="badge badge-primary-lighten">Active</span>
+                            <span *ngIf="!court?.status" class="badge badge-danger-lighten">Inactive</span>
+                        </td>
+                        <td class="table-action">
+                            <ng-container *ngFor="let access of permission?.action_access">
+                                <a *ngIf="access =='edit-court'" href="/edit-court/{{court?.uid}}/{{mouleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                                <a *ngIf="court?.status && access =='deactivate-court'" href="#deactivate_court" data-bs-toggle="modal" (click)="deactivate(court?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
+                                <a *ngIf="!court?.status && access =='activate-court'" href="#activate_court" data-bs-toggle="modal" (click)="activate(court?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                                <a *ngIf="access =='view-court'" href="/court/{{court?.id}}/{{court.id}}" class="action-icon" title="court ndogo"> <i class="mdi mdi-eye"></i></a>
+                            </ng-container>
+                        </td>
+    
+    
+    
+    
+                        <div id="activate_court" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                        
+                                    <div class="modal-header modal-colored-header bg-dark">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                        
+                        
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to allow the addition of this court{{court_detas.id}}?</i><br>
+                                        <b class="text-black">{{court?.name}}</b>
+                                    </div>
+                        
+                        
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating" (click)="activate(court_detas.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        It's Loading...
+                                      </button>
+                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div id="deactivate_court" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+    
+                <div class="modal-header modal-colored-header bg-dark">
+                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+    
+    
+                <div class="modal-body text-center" style="margin-top: 5%">
+                    <i class="text-black">You are going to deactivate the court from being viewd to the public?</i><br>
+                    <b class="text-black">{{court_detas?.id}}</b>
+                </div>
+    
+    
+                <div class="modal-footer d-flex justify-content-center mb-3">
+                    <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(court_detas?.id)"> Ndio Zuia</button>
+                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Inazuia...
+                  </button>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+   </ng-container> 
+   
+

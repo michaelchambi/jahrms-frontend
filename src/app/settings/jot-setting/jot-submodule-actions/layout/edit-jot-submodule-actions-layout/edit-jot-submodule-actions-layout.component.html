@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<!-- Start Content-->
+<div class="container-fluid">
+    <!-- Begin page -->
+    <div class="wrapper">
+        <!-- ========== Left Sidebar Start ========== -->
+        <app-sidebar></app-sidebar>
+        <!-- Left Sidebar End -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">{{permission.submodule_data?.app_module?.name}}</li>
+                                    <li class="breadcrumb-item">{{permission.submodule_data?.name}}</li>
+                                    <li class="breadcrumb-item active">Badili taarifa</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Arrangement</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                <div class="row">
+                    <!-- chat area -->
+                    <div class="card col-12">
+                        <div class="card-header fw-bold">
+                            <h5><a class="float-end" routerLink="/jot-setting-sub-modules-action/{{permission.action_data?.app_sub_module?.uid}}/{{submoduleId}}"><i class="fal fa-arrow-circle-left fa-2x"></i></a>Badili vitendo cha module ndogo</h5>
+                        </div>
+                        <div class="card-body">
+                            <ng-container *ngFor="let access of permission?.action_access">
+                                <!-- start content-->
+                                <div class="row">
+                                    <div class="col-md-12" *ngIf="access =='edit-submodule-action'">
+                                        <app-edit-jot-submodule-actions-form></app-edit-jot-submodule-actions-form>
+                                    </div>
+                                </div>
+                                <!-- end content-->
+                            </ng-container>
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    <!-- end card-->
+                    <!-- end card-->
+                </div>
+                <!-- end col -->
+                <!-- end user detail -->
+            </div>
+
+            <!-- end row-->
+
+            <!-- Footer Start -->
+            <app-footer></app-footer>
+            <!-- end Footer -->
+
+        </div>
+        <!-- End Content -->
+    </div>
+    <!-- content-page -->
+</div>
+<!-- end wrapper-->
+<!-- END Container -->

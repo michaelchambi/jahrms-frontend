@@ -1,0 +1,106 @@
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-bank'">
+            <div class="col-md-8">
+                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_bank">Add Bank</button></h5>
+          </div>
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <!-- content  -->
+    <div class="table-responsive">
+        <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Bank Name</th>
+                    <th>Bank Code</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bank of bankList; let i = index">
+                    <td>{{1+i}}</td>
+                    <td>{{bank.name}}</td>
+                    <td>{{bank?.bank_abbreviation}}</td>
+                    <td>
+                        <span *ngIf="bank?.status" class="badge badge-primary-lighten">Active</span>
+                        <span *ngIf="!bank?.status" class="badge badge-danger-lighten">Inactive</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='edit-bank'" href="/edit-bank/{{bank?.uid}}/{{subbankId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="bank?.status && access =='deactivate-bank'" href="#deactivate_bank" data-bs-toggle="modal" (click)="deactivate(bank?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!bank?.status && access =='activate-bank'" href="#activate_bank" data-bs-toggle="modal" (click)="activate(bank?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-bank'" href="/bank/{{bank?.id}}/{{bank.id}}" class="action-icon" title="bank ndogo"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+                    </td>
+
+
+
+
+                    <div id="activate_bank" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                    
+                                <div class="modal-header modal-colored-header bg-dark">
+                                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                    
+                    
+                                <div class="modal-body text-center" style="margin-top: 5%">
+                                    <i class="text-black">You are about to allow the addition of this bank{{bank_datas.id}}?</i><br>
+                                    <b class="text-black">{{bank?.name}}</b>
+                                </div>
+                    
+                    
+                                <div class="modal-footer d-flex justify-content-center mb-3">
+                                    <button *ngIf="general.bfrcreating" (click)="activate(bank_datas.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
+                                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    It's Loading...
+                                  </button>
+                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="deactivate_bank" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">You are going to deactivate the bank from being viewd to the public?</i><br>
+                <b class="text-black">{{bank_data?.id}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(bank_data?.id)"> Ndio Zuia</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inazuia...
+              </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

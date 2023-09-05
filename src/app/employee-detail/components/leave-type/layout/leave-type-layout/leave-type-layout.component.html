@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+    <div class="wrapper">
+        <app-sidebar></app-sidebar><div class="content-page">
+            <div class="content">
+                <div class="row">
+                    <div class="card col-12">
+                        <div class="card-header fw-bold">
+                            <h5><button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal" data-bs-target="#instruction">Personal Dashboard</button></h5>
+                        </div>
+                        <div class="card-body">
+                            <ng-container *ngFor="let access of permission?.action_access">
+                               
+                                <div class="row">
+                                    <div class="col-md-12 main-cont" *ngIf="access =='view-modules-list'">
+                                        <app-leave-type-view></app-leave-type-view>
+                                    </div>
+                            </div>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-footer></app-footer>
+        </div>
+    </div>
+
+
+    <div id="add_leave_type" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-stroopwafel fa-lg fa-spin"></i>&nbsp;Heearing You...!</h4>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+                <div class="form-control">
+                    <app-add-leave-type-form></app-add-leave-type-form>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>

@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow-lg text-center">
+            <div class="card-body text-black">
+                <img src="../../../../../../assets//images/users/no_image.jpg" class="rounded-circle" style="height: 200px;" alt="profile-image">
+
+                <h4 class="mb-0 mt-2">{{users.user_details?.data?.name}}</h4>
+                <p class=" font-14">{{users.user_details?.data?.designation}}</p>
+                <span *ngIf="users.user_details?.data?.active" class="badge badge-outline-success">Umeruhusiwa</span>
+                <span *ngIf="!users.user_details?.data?.active" class="badge badge-outline-danger">Umezuiliwa</span>
+            </div>
+            <!-- end card-body -->
+        </div>
+        <!-- end card -->
+
+
+
+    </div>
+    <!-- end col-->
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <table class="table table-hover table-sm mb-0" id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Taasisi/Wizara</b>:</td>
+                                <td>{{users.user_details?.organization?.name}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Check Namba</b>:</td>
+                                <td>{{users.user_details?.data?.check_number}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Taasisi</b>:</td>
+                                <td>{{users.user_details?.data?.name}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Simu</b>:</td>
+                                <td>+255 {{users.user_details?.data?.phone_number}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Barua pepe</b>:</td>
+                                <td>{{users.user_details?.data?.email}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Namba ya Uraia (NIDA)</b></td>
+                                <td>{{users.user_details?.data?.national_id}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Tarehe ya kuzaliwa</b>:</td>
+                                <td>{{users.user_details?.data?.birth_date}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Tarehe ya Kuajiriliwa</b>:</td>
+                                <td>{{users.user_details?.data?.hire_date}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>System Roles</b>:</td>
+                                <td>
+                                    <ng-container *ngFor="let roles of users.user_details?.data?.role_users">
+                                        [{{roles.role.name}}]&nbsp;
+                                    </ng-container>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- end tab-content -->
+            </div>
+            <!-- end card body -->
+        </div>
+
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row-->

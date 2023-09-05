@@ -1,0 +1,80 @@
+<div class="responsive p-0">
+
+    <form (ngSubmit)="addSubmoduleItem()" #Form=ngForm>
+        <div class="row">
+
+            <!-- <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="name">Name: </label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="User Management" aria-label="Module" aria-describedby="module-addon" required>
+                </div>
+
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Symbol: </label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="data.icon" name="icon" placeholder="fal fa-user" aria-label="Icon" aria-describedby="icon-addon" required>
+                </div>
+
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Link: </label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="data.link" name="icon" placeholder="user-roles" aria-label="Icon" aria-describedby="icon-addon" required>
+                </div>
+
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Display Option: </label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.submodule_option"  name="submodule_option" placeholder="Option" required>
+                        <ng-option value="" disabled Selected>Choose Option</ng-option>
+                        <ng-option value="single_1"  Selected >Single View</ng-option>
+                        <ng-option value="multi_2"  Selected >Multiple View</ng-option>>
+                    </ng-select>
+                </div>
+            </div> -->
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Display Option: </label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.submodule_id" [multiple]="true" name="submodule_id" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Option</ng-option>
+                        <ng-container *ngFor="let submodule of submoduleDetails.data">
+                            <ng-option  value="{{submodule.id}}">{{submodule.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+            
+
+           
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="name">Submodule Item Name: </label>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="Item name" aria-label="Module" aria-describedby="module-addon" required>
+                    </div>
+    
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="name">Submodule Item link: </label>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" [(ngModel)]="data.link" name="link" placeholder="Item Link" aria-label="Module" aria-describedby="module-addon" required>
+                    </div>
+    
+                </div>
+           
+
+            <div class="col-xl-3 col-lg-3 col-md-12 ">
+                <br>
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-dark rounded-pill w-100" [disabled]="!Form.valid">Add Sub Module</button>
+
+                <button *ngIf="general.creating" class="btn btn-outline-dark rounded-pill w-100" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Inaongeza...
+                  </button>
+            </div>
+        </div>
+    </form>
+</div>

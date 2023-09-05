@@ -1,0 +1,51 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerBank()" #announcementForm=ngForm>
+            <!-- {{announcementForm.value|json}} -->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <label> Bank Name*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name"
+                        [(ngModel)]="bank_data.bank_name" bank_name required>
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-12">
+                    <label> Bank Bank Abbreviation*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="bank_abbreviation" placeholder="Enter Bank Abbreviation"
+                        [(ngModel)]="bank_data.bank_abbreviation" bank_abbreviation required>
+                    </div>
+                    
+                </div>
+
+                
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
+                        Add Bank</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Bank Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>
+
+
+

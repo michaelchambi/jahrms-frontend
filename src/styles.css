@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.main-cont{
+    overflow-y:scroll;
+    height:32em;
+}
+.mat-typographys{
+    
+    overflow-y:hidden;
+}
+.content-page{
+    max-height: 20em;
+}
+.mat-typographys{
+    /* background-color:rgb(48, 46, 46); */
+    height:32em;
+}
+
+.green-line, .black-line, .gold-line, .blue-line{
+    margin:0;
+    min-height:0.3em;
+    width:100%;
+  }
+  .green-line{
+    background-color: green;
+  }
+  .black-line{
+    background-color:black;
+  }
+ 
+  .gold-line{
+    background-color: gold;
+  }
+  .blue-line{
+    background-color:rgb(6, 151, 248);
+  }
+
+
+
+  .card-body{
+    overflow-y:scroll;
+    height:38em;
+}
+.content-page{
+    height:35em;
+    overflow-y:hidden;
+}
+.wrapper{
+    background-color:rgb(255, 255, 255);
+     height:43em;
+}
+.right-button{
+    float:right;
+}
+.left-button{
+    float:left;
+}
+
+
+.text-mute{
+  padding:0.1em;
+  width:20em;
+  color:#ffff;
+  background-color:rgb(173, 24, 24);
+  border-radius:0em 2em 2em 0em;
+  margin-left:-1em;
+}
+
+/* LOGIN PAGE */

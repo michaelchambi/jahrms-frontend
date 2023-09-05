@@ -1,0 +1,15 @@
+<p class="text-center text-bold text-black">{{labelName}}.</p>
+<form (ngSubmit)="sessionRestore()" #resetForm=ngForm>
+    <input type="password" class="form-control" [(ngModel)]="data.password" name="password" placeholder="Neno la siri" aria-label="Password" aria-describedby="password-addon" required>
+
+    <div class="text-center">
+        <br>
+        <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill" [disabled]="!resetForm.valid">Rudisha Session</button>
+
+        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inarudisha ...
+              </button>
+    </div>
+
+</form>

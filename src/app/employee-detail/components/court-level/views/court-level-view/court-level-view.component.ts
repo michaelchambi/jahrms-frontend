@@ -1,0 +1,144 @@
+import { Component, OnInit } from '@angular/core';
+import { GeneralService } from '../../../../../services/general/general.service';
+import { CourtLevelService} from '../../../../../services/court-level/court-level.service';
+import { PermissionsService} from '../../../../../services/permissions/permissions.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
+
+@Component({
+  selector: 'app-court-level-view',
+  templateUrl: './court-level-view.component.html',
+  styleUrls: ['./court-level-view.component.css']
+})
+export class CourtLevelViewComponent {
+
+  court_levelList: any;
+  court_level_data: any;
+  subcourt_levelId: any;
+  
+  data = {
+    uid: '',user_id:''
+  }
+  court_level_datas={id:''}
+  constructor(
+    public general: GeneralService,
+    public court_level: CourtLevelService ,
+    public permission: PermissionsService ,
+    public script: ScriptConfigService,
+    private route: Router,
+    private activeRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+    this.subcourt_levelId = this.activeRoute.snapshot.paramMap.get('id');
+    this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
+    this.data.user_id=this.general.decryptionId(sessionStorage.getItem('id') as any)
+    this.getcourt_level() ;
+  }
+
+  getcourt_level() {
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    this.court_level.getCourt_level().subscribe(
+      res => {
+        this.court_levelList = res;
+        this.script.datatable();
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+      },
+      err => {
+        
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+        this.script.errorAlert(err.error.sw_message);
+        if (err.error.token == 0) {
+          this.general.encryptUrl(this.route.url);
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
+
+
+
+
+  showCourt_level(id: any) {
+    this.court_level_datas.id = id
+    this.court_level.showCourt_level_level(id).subscribe(
+      res => {
+        this.court_level_data = res;
+      },
+      err => {
+        if (err.error.token == 0) {
+          sessionStorage.setItem('current_url', this.route.url)
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
+
+
+  activate(id: any) {
+    this.court_level_datas.id = id;
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    this.court_level.activateCourt_level_level(this.court_level_datas).subscribe(
+      res => {
+        this.general.bfrcreating = true;
+        this.general.creating = false;
+        this.general.successMessage(res.sw_message, (e: any) => {
+          if (e) {
+            window.location.reload();
+          }
+
+        });
+      },
+      err => {
+        this.general.bfrcreating = true;
+        this.general.creating = false;
+        this.general.errorMessage(err.error.sw_message, (e: any) => {
+          if (e) {
+            window.location.reload();
+          }
+
+        });
+        if (err.error.token == 0) {
+          sessionStorage.setItem('current_url', this.route.url)
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
+
+  deactivate(id: any) {
+    this.court_level_datas.id = id;
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    this.court_level.deactivateCourt_level_level(this.court_level_datas).subscribe(
+      res => {
+        this.general.bfrcreating = true;
+        this.general.creating = false;
+        this.general.successMessage(res.sw_message, (e: any) => {
+          if (e) {
+            window.location.reload();
+          }
+
+        });
+      },
+      err => {
+        this.general.bfrcreating = true;
+        this.general.creating = false;
+        this.general.errorMessage(err.error.sw_message, (e: any) => {
+          if (e) {
+            window.location.reload();
+          }
+
+        });
+        if (err.error.token == 0) {
+          sessionStorage.setItem('current_url', this.route.url)
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
+}

@@ -1,0 +1,58 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerQualification_grade()" #qualificationForm=ngForm>
+            <!-- {{qualificationForqualification_detailsm.valation_detailsue|json}} -->
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="icon">Display Option: </label>
+                    <div class="form-group mb-3">
+                        <ng-select [(ngModel)]="grade_data.qualification_id" name="qualification_id" [clearable]="true" [clearOnBackspace]="false" required>
+                            <ng-option value="" disabled Selected>Choose Option</ng-option>
+                            <ng-container *ngFor="let qualification of qualificationDetails">
+                                <ng-option  value="{{qualification.id}}">{{qualification.name}}</ng-option>
+                            </ng-container>
+    
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <label>Education Grade*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" type="text" name="grade" placeholder="Enter Fly Notes"
+                        [(ngModel)]="grade_data.grade" grade required>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12">
+                    <label>Description*:</label>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter Fly Notes"
+                        [(ngModel)]="grade_data.description" description required></textarea>
+                    </div>
+                    
+                </div>
+
+               
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!qualificationForm.valid">
+                        Add Qualification</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Qualification Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>

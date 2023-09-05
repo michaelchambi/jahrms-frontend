@@ -1,0 +1,23 @@
+<div class="responsive p-0">
+    <form (ngSubmit)="addInstitutionRole()" #regionForm="ngForm">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <label>Jukumu: </label>
+                <div class="mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="Afisa Masuhuli" aria-label="Profile" aria-describedby="profile-addon" required />
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <br />
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary w-100" [disabled]="!regionForm.valid">Add</button>
+
+                <button *ngIf="general.creating" class="btn btn-danger" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Inaongeza...
+          </button>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12"></div>
+        </div>
+    </form>
+</div>

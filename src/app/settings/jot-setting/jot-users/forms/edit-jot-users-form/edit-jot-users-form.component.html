@@ -1,0 +1,41 @@
+<div class="responsive p-0">
+    <p class="text-black ">Jaza fumo kikamilifu kubadili taarifa za mtumiaji.</p>
+
+   
+
+
+    <form *ngIf="general.formart" (ngSubmit)="editDetails()" #userForm="ngForm">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="email">Email</label>
+                <div class="form-group mb-3">
+                    <input type="email" class="form-control" id="email" [(ngModel)]="data.email" name="email" placeholder="email@jot.go.tz" email required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>Phone Number</label>
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">+255</span>
+                        <input type="text" class="form-control" id="phone" [(ngModel)]="data.phone_number" name="phone" data-mask="999 999 999" placeholder="712 xxx xxx" maxlength="9" minlength="9" required />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill  w-50 float-end" [disabled]="!userForm.valid">Badili</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Inabadili...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

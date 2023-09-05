@@ -1,0 +1,173 @@
+<div class="responsive mt-3 p-0">
+    <p class="text-black ">Jaza fumo kikamilifu kuongeza mtumiaji.</p>
+
+    <form *ngIf="!general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+        <div class="row text-black">
+            <div class="col-md-4">
+                <label for="firstname">First Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="firstname" [(ngModel)]="data.first_name" name="firstname" placeholder="First Name" required />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="middlename">Middle Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="middlename" [(ngModel)]="data.middle_name" name="middlename" placeholder="Middle Name" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="lastname">Last Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="lastname" [(ngModel)]="data.last_name" name="lastname" placeholder="Last Name" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-black">
+            <div class="col-md-4">
+                <label for="email">Email</label>
+                <div class="form-group mb-3">
+                    <input type="email" class="form-control" id="email" [(ngModel)]="data.email" name="email" placeholder="email@judiciary.go.tz" email required />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Phone</label>
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">+255</span>
+                        <input type="text" class="form-control" id="phone" [(ngModel)]="data.phone_number" name="phone" data-mask="999 999 999" placeholder="712 xxx xxx" maxlength="9" minlength="9" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="checknumber">Check Number</label>
+                <div class="form-group mb-3">
+                    <input type="number" class="form-control" id="checknumber" [(ngModel)]="data.check_number" name="checknumber" placeholder="1119XXXXX" required />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row text-black">
+            <div class="col-md-4">
+                <label for="employee_number">Employee Number</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="employee_number" [(ngModel)]="data.employee_number" name="employee_number" placeholder="PF. 1119XXXXX" required />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="dob">Date of Birth:</label>
+                <div class="form-group mb-3 date" id="datepicker">
+                    <input type="date" class="form-control" id="dob" [(ngModel)]="data.dob" data-date-container="#datepicker1" name="dob" placeholder="1987-04-20" required />
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="date_employment">Date of employment:</label>
+                <div class="form-group mb-3 date" id="datepicker2">
+                    <input type="date" class="form-control" id="date_employment" [(ngModel)]="data.date_employment" data-date-container="#datepicker2" name="date_employment" placeholder="2000-04-20" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 text-black">
+                <label for="institution">Court Level</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.institution" name="institution" placeholder="Select Role" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Select Institution</ng-option>
+                        <ng-option value="1">Mahakama ya Rufaa (CAT)</ng-option>
+                        <ng-option value="2">Mahakama Kuu (CAT)</ng-option>
+                        <ng-option value="3">Mahakama ya Mkoa (RMC)</ng-option>
+                        <ng-option value="3">Mahakama ya Wilaya (DC)</ng-option>
+                        <ng-option value="3">Mahakama ya Mwanzo (PC)</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-4">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Register</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Registering...
+        </button>
+            </div>
+
+        </div>
+    </form>
+
+
+    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userFormExternal="ngForm">
+
+        <div class="row text-black">
+            <div class="col-md-4">
+                <label for="firstname">First Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="first_name" [(ngModel)]="data.first_name" name="first_name" placeholder="First Name" required />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="middlename">Middle Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="middle_name" [(ngModel)]="data.middle_name" name="middle_name" placeholder="Middle Name" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="lastname">Last Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="last_name" [(ngModel)]="data.last_name" name="last_name" placeholder="Last Name" required />
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-black">
+        <div class="col-md-4">
+            <label for="email">Email</label>
+            <div class="form-group mb-3">
+                <input type="email" class="form-control" id="email" [(ngModel)]="data.email" name="email" placeholder="email@judiciary.go.tz" email required />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>Phone</label>
+            <div class="form-group mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">+255</span>
+                    <input type="text" class="form-control" id="phone_number" [(ngModel)]="data.phone_number" name="phone_number" data-mask="999 999 999" placeholder="712 xxx xxx" maxlength="9" minlength="9" required />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="employee_number">Namba ya Utambulisho wa Taifa</label>
+            <div class="form-group mb-3">
+                <input type="text" class="form-control" id="national_id" [(ngModel)]="data.national_id" name="national_id" placeholder="1990XXXXXXX" required />
+            </div>
+        </div>
+    </div>
+        
+
+        <br />
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill  w-50 float-end" [disabled]="!userFormExternal.valid">Jisajili</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill  w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Inasajili...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

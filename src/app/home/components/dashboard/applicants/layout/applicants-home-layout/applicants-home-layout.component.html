@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="wrapper" >
+    <app-sidebar></app-sidebar>
+    <div class="content-page">
+        <div class="content">
+            <div class="row">
+                <div class="card col-12">
+                    <div class="card-header fw-bold">
+                        
+                            <div class="left-button">
+                                <span  class="btn btn-outline-primary float-ends" data-bs-toggle="modal"
+                                data-bs-target="#instruction">{{ roleLabel}} Dashboard</span>
+                            </div>
+
+                            <div class="right-button">
+                                <span  class="btn btn-outline-primary float-end" data-bs-toggle="modal"
+                                data-bs-target="#instruction">Personal Dashboard</span>
+                            </div>
+                        
+                        
+                            </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <app-applicants-home-view></app-applicants-home-view>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- <app-applicants-home-charts-view></app-applicants-home-charts-view> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

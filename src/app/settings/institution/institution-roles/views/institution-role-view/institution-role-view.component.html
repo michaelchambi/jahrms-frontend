@@ -1,0 +1,154 @@
+<div class="responsive mt-3 p-0">
+
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <a routerLink="/add-institution-role" class="btn btn-outline-dark"><i class="fal fa-plus fa-lg"></i> Add System Roles</a>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+
+    <!-- content  -->
+    <div class="table-responsive">
+
+        <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Name</th>
+                    <th style="width: 15%">Status</th>
+                    <th style="width: 15%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Super Admin</td>
+                    <td><span class="badge badge-primary-lighten">Active</span></td>
+                    <td class="table-action">
+                        <a routerLink="/edit-institution-role" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                        <a href="#deactivate_role" data-bs-toggle="modal" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
+                        <!-- <a href="javascript: void(0);" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a> -->
+                        <a href="/institution-role-permission" class="action-icon" title="permission"> <i class="mdi mdi-cog-clockwise"></i></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>ICT Officer</td>
+                    <td><span class="badge badge-danger-lighten">Inactive</span></td>
+                    <td class="table-action">
+                        <a routerLink="/edit-institution-role" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                        <!-- <a href="javascript: void(0);" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a> -->
+                        <a href="#activate_role" data-bs-toggle="modal" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a>
+                        <a href="/institution-role-permission" class="action-icon" title="permission"> <i class="mdi mdi-cog-clockwise"></i></a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <!-- end content  -->
+
+</div>
+
+
+
+
+
+
+<!-- active role  -->
+<div id="activate_role" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <!-- <div *ngIf="action" class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+            <!-- <div *ngIf="close" class="modal-header modal-colored-header bg-success">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fad fa-check-circle fa-lg"></i>&nbsp;Success...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <div *ngIf="actionError" class="modal-header modal-colored-header bg-danger">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fad fa-check-circle fa-lg"></i>&nbsp;Danger...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i>Una uhakika unataka kuruhusu jukumu hili litumike kwenye mfumo ?</i>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary"> Ndio Ruhusu</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                It's Loading...
+              </button>
+                <!-- <button *ngIf="close" class="btn btn-outline-primary" data-bs-dismiss="modal" (click)="reloadPage()">Close</button> -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /active role -->
+
+
+<!-- deactive role  -->
+<div id="deactivate_role" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-colored-header bg-danger">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <div class="modal-body">
+
+                <form (ngSubmit)="deactivateRole()" #Form="ngForm">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="deactivate_reason">Sababu za zuia jukumu:</label>
+                            <div class="form-group mb-3">
+                                <angular-editor [placeholder]="'Weka sababu za kuzuia jukumu'" id="remove_reason" [config]=" this.general.config" [(ngModel)]="data.deactivate_reason" [ngModelOptions]="{ standalone: true }"></angular-editor>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-dark" (click)="Form.resetForm()" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-danger  w-50 float-end" [disabled]="!Form.valid"><i class="fal fa-times fa-lg"></i> Ndio Zuia</button>
+                            <button *ngIf="general.creating" class="btn btn-outline-primary  w-50 float-end" type="button " disabled>
+                            <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+                            Inazuia...
+                            </button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /deactive role -->

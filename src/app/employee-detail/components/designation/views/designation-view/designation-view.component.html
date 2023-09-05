@@ -1,0 +1,155 @@
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-announcement'">
+            <div class="col-md-8">
+                <a routerLink="/add-announcement/{{subannouncementId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Add Designation</a>
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <!-- content  -->
+    <div class="table-responsive">
+
+        <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Designation Name</th>
+                    <th>Publisher</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let announcement of announcementList; let i = index">
+                    <td>{{1+i}}</td>
+
+                    <td>{{announcement.provider.name}}</td>
+                    <td>{{announcement?.approver?.name ?? 'Private'}}</td>
+                    <td>{{announcement.announcement_description}}</td>
+                    <td>
+                        <span *ngIf="announcement?.active" class="badge badge-primary-lighten">Active</span>
+                        <span *ngIf="!announcement?.active" class="badge badge-danger-lighten">Inactive</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='edit-announcement'" href="/edit-announcement/{{announcement?.uid}}/{{subannouncementId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="announcement?.active && access =='deactivate-announcement'" href="#deactivate_announcement" data-bs-toggle="modal" (click)="showAnnouncement(announcement?.id)" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!announcement?.active && access =='activate-announcement'" href="#activate_announcement" data-bs-toggle="modal" (click)="showAnnouncement(announcement?.id)" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-subannouncement-list'" href="/announcement/{{announcement?.id}}/{{announcement.id}}" class="action-icon" title="announcement ndogo"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+                    </td>
+
+
+
+
+                    <div id="activate_announcement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                    
+                                <div class="modal-header modal-colored-header bg-dark">
+                                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                </div>
+                    
+                    
+                                <div class="modal-body text-center" style="margin-top: 5%">
+                                    <i class="text-black">You are about to allow the addition of this announcement{{anouncement_deta.id}}?</i><br>
+                                    <b class="text-black">{{announcement?.name}}</b>
+                                </div>
+                    
+                    
+                                <div class="modal-footer d-flex justify-content-center mb-3">
+                                    <button *ngIf="general.bfrcreating" (click)="activate(anouncement_deta.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
+                                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    It's Loading...
+                                  </button>
+                    
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- end content  -->
+
+</div>
+
+
+<!-- active   -->
+<div id="activate_announcement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">You are about to allow the addition of this announcement{{announcement_data?.id}}?</i><br>
+                <b class="text-black">{{announcement_data?.name}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" (click)="activate(announcement_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Ndio Ruhusu</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                It's Loading...
+              </button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /active  -->
+
+
+<!-- deactive   -->
+<div id="deactivate_announcement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">You are going to deactivate the announcement from being viewd to the public?</i><br>
+                <b class="text-black">{{announcement_data?.id}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(announcement_data?.id)"> Ndio Zuia</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inazuia...
+              </button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /deactive  -->

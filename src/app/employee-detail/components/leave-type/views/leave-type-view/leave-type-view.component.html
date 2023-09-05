@@ -1,0 +1,92 @@
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-court-level'">
+            <div class="col-md-8">
+                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_leave_type">Add Leave Type</button></h5>
+          </div>
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <!-- content  -->
+    <div class="table-responsive">
+        <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Leave Type Name</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let leave_type of leave_typeList; let i = index">
+                    <td>{{1+i}}</td>
+                    <td>{{leave_type.name}}</td>
+                    <td>
+                        <span *ngIf="leave_type?.active" class="badge badge-primary-lighten">Active</span>
+                        <span *ngIf="!leave_type?.active" class="badge badge-danger-lighten">Inactive</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='edit-court-level'" href="/edit-court-level/{{leave_type?.uid}}/{{subleave_typeId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="leave_type?.active && access =='deactivate-court-level'" href="#deactivate_leave_type" data-bs-toggle="modal" (click)="deactivate(leave_type?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!leave_type?.active && access =='activate-court-level'" href="#activate_leave_type" data-bs-toggle="modal" (click)="activate(leave_type?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-court-level'" href="/leave_type/{{leave_type?.id}}/{{leave_type.id}}" class="action-icon" title="leave_type ndogo"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+                    </td>
+
+
+
+
+                    <div id="activate_leave_type" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                    
+                                <div class="modal-footer d-flex justify-content-center mb-3">
+                                    <button *ngIf="general.bfrcreating" (click)="activate(leave_type_datas.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
+                                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    It's Loading...
+                                  </button>
+                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="deactivate_leave_type" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">You are going to deactivate the leave_type from being viewd to the public?</i><br>
+                <b class="text-black">{{leave_type_data?.id}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(leave_type_data?.id)"> Ndio Zuia</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inazuia...
+              </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

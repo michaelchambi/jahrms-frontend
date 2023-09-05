@@ -1,0 +1,45 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerQualification()" #qualificationForm=ngForm>
+            <!-- {{qualificationForqualification_detailsm.valation_detailsue|json}} -->
+            <div class="row">
+                <div class="col-md-12">
+                    <label> Qualification Name*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="qualification_name" placeholder="Enter Qualification Name"
+                        [(ngModel)]="qualification_details.qualification_name" qualification_name required>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12">
+                    <label>Description*:</label>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter Fly Notes"
+                        [(ngModel)]="qualification_details.description"></textarea>
+                    </div>
+                    
+                </div>
+
+               
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!qualificationForm.valid">
+                        Add Qualification</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Qualification Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>

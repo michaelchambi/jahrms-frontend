@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="content-page">
+        <div class="content">
+            <div class="row">
+                <div class="card col-12">
+                    <div class="card-body">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <div class="row">
+                                <div class="col-md-12" *ngIf="access =='update-role-permissions'">
+                                    <app-role-permission-form></app-role-permission-form>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

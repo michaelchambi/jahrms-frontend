@@ -1,0 +1,47 @@
+<div class="responsive p-0">
+    <p class="text-muted ">Education Information.</p>
+    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+        <div class="row">
+           
+            <div class="col-md-6">
+                <label for="skill_id">Personal Skill:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.skill_id"  name="skill_id" placeholder="Personal Skill" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Professional Body</ng-option>
+                        <ng-container *ngFor="let roles of permission.role_list">
+                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="skill_level_id">Personal Skill:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.skill_level_id"  name="skill_level_id" placeholder="Personal Skill" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Professional Body</ng-option>
+                        <ng-container *ngFor="let roles of permission.role_list">
+                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+
+    
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Inasajili...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

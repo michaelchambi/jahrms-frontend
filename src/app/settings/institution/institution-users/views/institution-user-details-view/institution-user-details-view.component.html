@@ -1,0 +1,292 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow-lg text-center">
+            <div class="card-body text-black">
+                <img src="../../../../../../assets//images/users/no_image.jpg" class="rounded-circle" style="height: 200px;" alt="profile-image">
+
+                <h4 class="mb-0 mt-2">{{details?.name}}</h4>
+                <p class=" font-14">{{details?.designation}}</p>
+                <span *ngIf="details?.active" class="badge badge-outline-success">Ameruhusiwa</span>
+                <span *ngIf="!details?.active" class="badge badge-outline-danger">Amezuiliwa</span>
+            </div>
+            <!-- end card-body -->
+        </div>
+        <!-- end card -->
+
+
+
+    </div>
+    <!-- end col-->
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <table class="table table-hover table-sm mb-0" id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Check Namba</b>:</td>
+                                <td>{{details?.check_number}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Taasisi</b>:</td>
+                                <td>{{organization?.name}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Simu</b>:</td>
+                                <td>+255 {{details?.phone_number}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Barua pepe</b>:</td>
+                                <td>{{details?.email}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Namba ya Uraia (NIDA)</b></td>
+                                <td>{{details?.national_id}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Tarehe ya kuzaliwa</b>:</td>
+                                <td>{{details?.birth_date}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Tarehe ya Kuajiriliwa</b>:</td>
+                                <td>{{details?.hire_date}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>System Roles</b>:</td>
+                                <td>
+                                    <ng-container *ngFor="let roles of details?.role_users">
+                                        [{{roles.role.name}}]&nbsp;
+                                    </ng-container>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- end tab-content -->
+            </div>
+            <!-- end card body -->
+        </div>
+
+
+        <!-- <div class="row mt-3">
+            <div class="col-md-4">
+                <a *ngIf="!details?.active" href="#activate_user" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-primary w-100 btn-sm mb-2 m-1">Ruhusu</a>
+                <a *ngIf="details?.active" href="#deactivate_user" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-danger w-100 btn-sm mb-2 m-1">Zuia</a>
+            </div>
+            <div class="col-md-4">
+                <a href="/edit-institution-user/{{details?.uid}}/{{submoduleId}}" type="button" class="btn btn-outline-dark w-100 btn-sm mb-2 m-1">Badili Taarifa</a>
+            </div>
+            <div class="col-md-4">
+                <a href="#user_roles" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-dark w-100 btn-sm mb-2 m-1">System Roles</a>
+            </div>
+        </div> -->
+
+        <table class="table table-sm mt-3">
+            <tbody>
+                <tr>
+                    <td>
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <ng-container *ngIf="details?.active">
+                                <a *ngIf="access =='deactivate-institution-users'" href="#deactivate_user" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-danger rounded-pill w-100 btn-sm mb-2 m-1">Zuia</a>
+                            </ng-container>
+                            <ng-container *ngIf="!details?.active">
+                                <a *ngIf="access =='activate-institution-users'" href="#activate_user" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-primary rounded-pill w-100 btn-sm mb-2 m-1">Ruhusu</a>
+                            </ng-container>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='edit-institution-users'" href="/edit-institution-user/{{details?.uid}}/{{submoduleId}}" type="button" class="btn btn-outline-dark rounded-pill w-100 btn-sm mb-2 m-1">Badili Taarifa</a>
+                        </ng-container>
+                    </td>
+
+                    <td>
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='change-institution-user-roles'" href="#user_roles" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-dark rounded-pill w-100 btn-sm mb-2 m-1">System Roles</a>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row-->
+
+
+
+<!-- roles user  -->
+<div id="user_roles" [hidden]="!showModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <div class="modal-body text-black mt-2">
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card shadow-lg">
+                            <div class="card-header">
+                                System Roles aliyonayo sasa
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li *ngFor="let roles of details?.role_users">{{roles.role.name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <form (ngSubmit)="editRoles()" #userForm="ngForm">
+                                    <label for="majukumu">System Roles:</label>
+                                    <div class="form-group mb-3">
+                                        <ng-select [(ngModel)]="data.roles" [multiple]="true" name="majukumu" placeholder="Chagua System Roles" [clearable]="true" [clearOnBackspace]="false" required>
+                                            <ng-option value="" disabled Selected>Chagua System Roles</ng-option>
+                                            <ng-container *ngFor="let roles of permission.role_list">
+                                                <ng-option *ngIf="roles.active && roles.modal_name=='public'" value="{{roles.id}}">{{roles.name}}</ng-option>
+                                            </ng-container>
+
+                                        </ng-select>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6"></div>
+                                        <div class="col-md-6">
+                                            <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Badili</button>
+                                            <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+                                      <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+                                      Inabadili...
+                                    </button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /roles user -->
+
+<!-- active user  -->
+<div id="activate_user" [hidden]="!showModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <!-- <div *ngIf="action" class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+            <!-- <div *ngIf="close" class="modal-header modal-colored-header bg-success">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fad fa-check-circle fa-lg"></i>&nbsp;Success...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <div *ngIf="actionError" class="modal-header modal-colored-header bg-danger">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fad fa-check-circle fa-lg"></i>&nbsp;Danger...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+            <div class="modal-body text-center text-black" style="margin-top: 5%">
+                <i>Una uhakika unataka kumruhusu mtumiaji huyu kutumia mfumo ?</i><br>
+                <b>{{details?.name}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" (click)="activate(details?.uid)"> Ndio Ruhusu</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                It's Loading...
+              </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /active user -->
+
+<!-- deactive user  -->
+<div id="deactivate_user" [hidden]="!showModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <!-- <div *ngIf="action" class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+            <!-- <div *ngIf="close" class="modal-header modal-colored-header bg-success">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fad fa-check-circle fa-lg"></i>&nbsp;Success...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <div *ngIf="actionError" class="modal-header modal-colored-header bg-danger">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fad fa-check-circle fa-lg"></i>&nbsp;Danger...!</h4>
+                <button *ngIf="action" type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+            <div class="modal-body text-center text-black" style="margin-top: 5%">
+                <i>Una uhakika unataka kumzuia mtumiaji huyu kutumia mfumo ?</i><br>
+                <b>{{details?.name}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" (click)="deactivate(details?.uid)"> Ndio Zuia</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inazuia...
+              </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /deactive user -->

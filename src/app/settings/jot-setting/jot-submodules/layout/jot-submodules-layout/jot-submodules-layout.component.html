@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<!-- Start Content-->
+<div class="container-fluid">
+    <!-- Begin page -->
+    <div class="wrapper">
+        <!-- ========== Left Sidebar Start ========== -->
+        <app-sidebar></app-sidebar>
+        <!-- Left Sidebar End -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <div class="row">
+                    <!-- chat area -->
+                    <div class="card col-12">
+                        <div class="card-header fw-bold">
+                            <h5><a class="float-end" routerLink="/jot-setting-modules/{{submoduleId}}"><i class="fal fa-arrow-circle-left fa-2x"></i></a>Sub Module List</h5>
+
+                        </div>
+                        <div class="card-body">
+                            <ng-container *ngFor="let access of permission?.action_access">
+                                <!-- start content-->
+                                <div class="row">
+                                    <div class="col-md-12" *ngIf="access =='view-submodules-list'">
+                                        <app-jot-submodules-view></app-jot-submodules-view>
+                                    </div>
+                                </div>
+                                <!-- end content-->
+                            </ng-container>
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    <!-- end card-->
+                    <!-- end card-->
+                </div>
+                <!-- end col -->
+                <!-- end user detail -->
+            </div>
+
+            <!-- end row-->
+
+            <!-- Footer Start -->
+            <app-footer></app-footer>
+            <!-- end Footer -->
+
+        </div>
+        <!-- End Content -->
+    </div>
+    <!-- content-page -->
+</div>
+<!-- end wrapper-->
+<!-- END Container -->

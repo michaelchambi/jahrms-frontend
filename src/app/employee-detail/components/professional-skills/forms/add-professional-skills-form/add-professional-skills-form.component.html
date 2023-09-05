@@ -1,0 +1,50 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerAnnouncement()" #announcementForm=ngForm>
+            <!-- {{announcementForm.value|json}} -->
+            <div class="row">
+                <!-- <div class="col-md-6">
+                    <label>Description {{my_id}}</label>
+                    <div class="form-group">
+                        <Textarea type="text" class="form-control" 
+                        [(ngModel)]="announcement_details.descriptin" name="fileUrl" placeholder="description"
+                            required></Textarea>
+                    </div>
+                </div> -->
+
+                <div class="col-md-6">
+                    <label>Description*:</label>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter Fly Notes"
+                        [(ngModel)]="announcement_details.description"></textarea>
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-6">
+                    <label> Upload Announcement Image</label>
+                    <input type="file" class="form-control" [(ngModel)]="announcement_details.fileUrl" name="filUrl"
+                        (change)="fileUpload($event)" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
+                        Add Announcement</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Announcement Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>

@@ -1,0 +1,26 @@
+<div class="responsive p-0">
+
+    <form (ngSubmit)="editAction()" #profileForm=ngForm>
+        <div class="row">
+
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label>Action: </label>
+                <div class="mb-3">
+                    <input type="text" class="form-control" [(ngModel)]="data.name" name="name" placeholder="add users" aria-label="Action" aria-describedby="action-addon" required>
+                </div>
+
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <br>
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-dark rounded-pill w-100" [disabled]="!profileForm.valid">Badili Action</button>
+
+                <button *ngIf="general.creating" class="btn btn-outline-dark rounded-pill w-100" type="button" disabled>
+                    <span class="spinner-border rounded-pill spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Adding...
+                  </button>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 "></div>
+        </div>
+    </form>
+</div>

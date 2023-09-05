@@ -1,0 +1,13 @@
+.my-pagination /deep/ .ngx-pagination .current {
+    background: linear-gradient(310deg, #7928ca, #ff0080);
+    border-radius: 40px;
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+    opacity: 0.3;
+}
+
+.generate-slideout-menu.main-navigation.offside {
+    width: 100%;
+}

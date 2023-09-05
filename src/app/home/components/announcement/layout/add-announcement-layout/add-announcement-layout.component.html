@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="wrapper">
+    <app-sidebar></app-sidebar><div class="content-page">
+        <div class="content">
+            <div class="row">
+                <div class="card col-12">
+                    <div class="card-header fw-bold">
+                        <h5><button type="button"
+                                class="btn btn-outline-primary float-end"
+                                data-bs-toggle="modal"
+                                data-bs-target="#instruction">Announcement Registration</button></h5>
+                    </div>
+                    <div class="card-body">
+                        <ng-container
+                            *ngFor="let access of permission?.action_access">
+
+                            <div class="row">
+                                <div class="col-md-12 main-cont"
+                                    *ngIf="access =='view-modules-list'">
+                                    <app-add-announcement-form></app-add-announcement-form>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

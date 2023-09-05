@@ -1,0 +1,56 @@
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-institution-users'">
+            <div class="col-md-8">
+                <a routerLink="/add-institution-user/{{submoduleId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Add Mtumiaji</a>
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+
+
+    <!-- content  -->
+    <div class="table-responsive">
+
+        <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Name Kamili</th>
+                    <th>Barua Pepe</th>
+                    <th>Cheo</th>
+                    <th style="width: 15%">Status</th>
+                    <th style="width: 15%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users.users_list; let i = index;">
+                    <td>{{1+i}}</td>
+                    <td>{{user?.name}}</td>
+                    <td>{{user?.email}}</td>
+                    <td>{{user?.designation}}</td>
+                    <td>
+                        <span *ngIf="user?.active" class="badge badge-primary-lighten">Ameruhusiwa</span>
+                        <span *ngIf="!user?.active" class="badge badge-danger-lighten">Amezuiliwa</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <!-- <a *ngIf="access =='edit-institution-users'" href="/edit-institution-user/{{user?.uid}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a> -->
+                            <a *ngIf="access =='view-institution-user-details'" href="/institution-user-details/{{user?.uid}}/{{submoduleId}}" class="action-icon" title="Angalia Taarifa"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+
+                        <!-- <a href="javascript: void(0);" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
+                        <a href="javascript: void(0);" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a> -->
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <!-- end content  -->
+
+</div>

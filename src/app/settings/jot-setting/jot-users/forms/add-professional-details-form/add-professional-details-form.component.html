@@ -1,0 +1,66 @@
+<div class="responsive p-0">
+    <p class="text-muted ">Education Information.</p>
+    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+        <div class="row">
+           
+            <div class="col-md-6">
+                <label for="level_id">Proffesional body:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.professional_body_id" [multiple]="true" name="professional_body_id" placeholder="Professional Body" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Professional Body</ng-option>
+                        <ng-container *ngFor="let roles of permission.role_list">
+                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="specialization">Specialization</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="specialization" [(ngModel)]="data.specialization" name="specialization" placeholder="xxxxx" specialization required />
+                </div>
+            </div>
+
+            
+            <div class="col-md-6">
+                <label for="starting_date">Start date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control"  id="starting_date" [(ngModel)]="data.starting_date" name="starting_date" id="myDatepicker" placeholder="xxxxxxx" starting_date required (change)="calculateAge()"/>
+                </div>
+            </div>
+          
+            <div class="col-md-6">
+                <label for="completion_date">Completion Date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control"  id="completion_date" [(ngModel)]="data.completion_date" name="completion_date" id="myDatepicker" placeholder="xxxxxxx" completion_date required (change)="calculateAge()"/>
+                </div>
+            </div>
+
+      
+
+           
+
+            <div class="col-md-6">
+               
+                <label> Attach Relating Certificate</label>
+                <input type="file" class="form-control" [(ngModel)]="data.certificate_attachment" name="birth_certificate_attachment"
+                    (change)="fileBirthCertificateUpload($event)" required />
+            </div>
+           
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Inasajili...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

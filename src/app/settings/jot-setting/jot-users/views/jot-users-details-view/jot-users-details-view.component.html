@@ -1,0 +1,106 @@
+<!-- <div class="card-body" style="background-color:blue"> -->
+    <div class="row">
+        <ng-container *ngFor="let access of permission?.action_access">
+
+            <div class="progress-card" *ngIf="access =='add-employee-detail'">
+               
+                <ng-container *ngFor="let itemlist of submoduleItemList">
+                    <input type="button" value="{{itemlist.name}}" class="btn bg-light system-submodule"
+                        (click)="viewOption(itemlist.link)">
+                </ng-container>
+            </div>
+
+            <div class="employee-form" *ngIf="access =='add-employee-detail'">
+                <ng-container *ngIf="personal_info">
+                    <div class="table-responsive p-0">
+                         <span class="card-body">
+                    <img src="../../../../../../assets//images/users/no_image.jpg" class="img-thumbnail"
+                        style="height: 120px;" alt="profile-image">
+                    <h4 class="mb-0 mt-2">{{details?.name}}</h4>
+                    <p class=" font-14">{{details?.designation}}</p>
+                    <span *ngIf="details?.active" class="badge badge-outline-success">Active Employee</span>
+                    <span *ngIf="!details?.active" class="badge badge-outline-danger">Innactive Employee</span>
+                </span>
+                        <table class="table table-hover table-sm mb-0" id="dataTables">
+                            <tbody class="text-black">
+                                <tr>
+                                    <td><b>Check Number</b>:</td>
+                                    <td>{{details?.check_number}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>Phone Number</b>:</td>
+                                    <td>+255 {{details?.phone_number}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Email</b>:</td>
+                                    <td>{{details?.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>National Identity Number (NIDA)</b></td>
+                                    <td>{{details?.national_id}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>Birth Date</b>:</td>
+                                    <td>{{details?.birth_date|date:'dd/MM/YYYY'}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>Hiring Date</b>:</td>
+                                    <td>{{details?.hired_date|date :'dd/MM/YYYY'}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td><b>Role in The System</b>:</td>
+                                    <td>
+                                        <ng-container *ngFor="let roles of details?.role_users">
+                                            [{{roles.role.name}}]&nbsp;
+                                        </ng-container>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="employment_details">
+                    <app-add-employment-details-form></app-add-employment-details-form>
+                </ng-container>
+
+                <ng-container *ngIf="professional_details">
+                    <app-add-professional-details-form></app-add-professional-details-form>
+                </ng-container>
+
+                <ng-container *ngIf="office_details">
+                    <app-add-office-details-form></app-add-office-details-form>
+                </ng-container>
+
+                <ng-container *ngIf="bank_details">
+                    <app-add-bank-details-form></app-add-bank-details-form>
+                </ng-container>
+
+                <ng-container *ngIf="next_kin_details">
+                    <app-add-next-kins-details-form></app-add-next-kins-details-form>
+                </ng-container>
+
+                <ng-container *ngIf="dependant_details">
+                    <app-add-dependant-details-form></app-add-dependant-details-form>
+                </ng-container>
+
+                <ng-container *ngIf="education_details">
+                    <app-add-education-details-form></app-add-education-details-form>
+                </ng-container>
+                <ng-container *ngIf="personal_skills">
+                    <app-add-skills-details-form></app-add-skills-details-form>
+                </ng-container>
+
+            </div>
+
+        </ng-container>
+    </div>
+
+<!-- </div> -->

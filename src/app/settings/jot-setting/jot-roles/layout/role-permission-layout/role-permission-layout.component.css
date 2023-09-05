@@ -1,0 +1,18 @@
+.card-body{
+    overflow-y:scroll;
+    height:35em;
+}
+.content-page{
+    height:35em;
+    overflow-y:hidden;
+}
+.wrapper{
+    background-color:rgb(255, 255, 255);
+     height:43em;
+}
+.right-button{
+    float:right;
+}
+.left-button{
+    float:left;
+}

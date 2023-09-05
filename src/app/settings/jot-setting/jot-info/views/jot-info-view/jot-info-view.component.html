@@ -1,0 +1,7 @@
+<ng-container *ngFor="let access of permission?.action_access">
+    <a *ngIf="access=='update-maelezo-muhimu'" href="#edit_info" data-bs-toggle="modal" (click)="openModal()" class="float-end"><i class="fal fa-edit fa-lg"></i></a>
+
+</ng-container>
+
+<a [innerHTML]="settings.info">
+</a>
