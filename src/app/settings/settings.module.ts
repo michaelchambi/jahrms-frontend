@@ -21,14 +21,6 @@ import { EditInstitutionRoleFormComponent } from './institution/institution-role
 import { InstitutionRoleLayoutComponent } from './institution/institution-roles/layout/institution-role-layout/institution-role-layout.component';
 import { AddInstitutionRoleLayoutComponent } from './institution/institution-roles/layout/add-institution-role-layout/add-institution-role-layout.component';
 import { EditInstitutionRoleLayoutComponent } from './institution/institution-roles/layout/edit-institution-role-layout/edit-institution-role-layout.component';
-import { JotUsersLayoutComponent } from './jot-setting/jot-users/layout/jot-users-layout/jot-users-layout.component';
-import { AddJotUsersLayoutComponent } from './jot-setting/jot-users/layout/add-jot-users-layout/add-jot-users-layout.component';
-import { EditJotUsersLayoutComponent } from './jot-setting/jot-users/layout/edit-jot-users-layout/edit-jot-users-layout.component';
-import { AddJotUsersFormComponent } from './jot-setting/jot-users/forms/add-jot-users-form/add-jot-users-form.component';
-import { EditJotUsersFormComponent } from './jot-setting/jot-users/forms/edit-jot-users-form/edit-jot-users-form.component';
-import { JotUsersViewComponent } from './jot-setting/jot-users/views/jot-users-view/jot-users-view.component';
-import { JotUsersDetailsViewComponent } from './jot-setting/jot-users/views/jot-users-details-view/jot-users-details-view.component';
-import { JotUsersDetailsLayoutComponent } from './jot-setting/jot-users/layout/jot-users-details-layout/jot-users-details-layout.component';
 import { JotRolesLayoutComponent } from './jot-setting/jot-roles/layout/jot-roles-layout/jot-roles-layout.component';
 import { AddJotRolesLayoutComponent } from './jot-setting/jot-roles/layout/add-jot-roles-layout/add-jot-roles-layout.component';
 import { EditJotRolesLayoutComponent } from './jot-setting/jot-roles/layout/edit-jot-roles-layout/edit-jot-roles-layout.component';
@@ -71,22 +63,7 @@ import { SubmoduleItemLayoutComponent } from './jot-setting/jot-submodule-item/l
 import { AddSubmoduleItemFormComponent } from './jot-setting/jot-submodule-item/forms/add-submodule-item-form/add-submodule-item-form.component';
 import { EditSubmoduleItemFormComponent } from './jot-setting/jot-submodule-item/forms/edit-submodule-item-form/edit-submodule-item-form.component';
 import { SubmoduleItemViewComponent } from './jot-setting/jot-submodule-item/views/submodule-item-view/submodule-item-view.component';
-import { AddEmploymentDetailsFormComponent } from './jot-setting/jot-users/forms/add-employment-details-form/add-employment-details-form.component';
-import { EditEmploymentDetailsFormComponent } from './jot-setting/jot-users/forms/edit-employment-details-form/edit-employment-details-form.component';
-import { AddOfficeDetailsFormComponent } from './jot-setting/jot-users/forms/add-office-details-form/add-office-details-form.component';
-import { EditOfficeDetailsFormComponent } from './jot-setting/jot-users/forms/edit-office-details-form/edit-office-details-form.component';
-import { EditBankDetailsFormComponent } from './jot-setting/jot-users/forms/edit-bank-details-form/edit-bank-details-form.component';
-import { AddBankDetailsFormComponent } from './jot-setting/jot-users/forms/add-bank-details-form/add-bank-details-form.component';
-import { AddNextKinsDetailsFormComponent } from './jot-setting/jot-users/forms/add-next-kins-details-form/add-next-kins-details-form.component';
-import { EditNextKinsDetailsFormComponent } from './jot-setting/jot-users/forms/edit-next-kins-details-form/edit-next-kins-details-form.component';
-import { EditDependantDetailsFormComponent } from './jot-setting/jot-users/forms/edit-dependant-details-form/edit-dependant-details-form.component';
-import { AddDependantDetailsFormComponent } from './jot-setting/jot-users/forms/add-dependant-details-form/add-dependant-details-form.component';
-import { AddEducationDetailsFormComponent } from './jot-setting/jot-users/forms/add-education-details-form/add-education-details-form.component';
-import { EditEducationDetailsFormComponent } from './jot-setting/jot-users/forms/edit-education-details-form/edit-education-details-form.component';
-import { EditProfessionalDetailsFormComponent } from './jot-setting/jot-users/forms/edit-professional-details-form/edit-professional-details-form.component';
-import { AddProfessionalDetailsFormComponent } from './jot-setting/jot-users/forms/add-professional-details-form/add-professional-details-form.component';
-import { AddSkillsDetailsFormComponent } from './jot-setting/jot-users/forms/add-skills-details-form/add-skills-details-form.component';
-import { EditSkillsDetailsFormComponent } from './jot-setting/jot-users/forms/edit-skills-details-form/edit-skills-details-form.component';
+
 
 
 @NgModule({
@@ -105,14 +82,7 @@ import { EditSkillsDetailsFormComponent } from './jot-setting/jot-users/forms/ed
     InstitutionRoleLayoutComponent,
     AddInstitutionRoleLayoutComponent,
     EditInstitutionRoleLayoutComponent,
-    JotUsersLayoutComponent,
-    AddJotUsersLayoutComponent,
-    EditJotUsersLayoutComponent,
-    AddJotUsersFormComponent,
-    EditJotUsersFormComponent,
-    JotUsersViewComponent,
-    JotUsersDetailsViewComponent,
-    JotUsersDetailsLayoutComponent,
+   
     JotRolesLayoutComponent,
     AddJotRolesLayoutComponent,
     EditJotRolesLayoutComponent,
@@ -154,22 +124,7 @@ import { EditSkillsDetailsFormComponent } from './jot-setting/jot-users/forms/ed
     AddSubmoduleItemFormComponent,
     EditSubmoduleItemFormComponent,
     SubmoduleItemViewComponent,
-    AddEmploymentDetailsFormComponent,
-    EditEmploymentDetailsFormComponent,
-    AddOfficeDetailsFormComponent,
-    EditOfficeDetailsFormComponent,
-    EditBankDetailsFormComponent,
-    AddBankDetailsFormComponent,
-    AddNextKinsDetailsFormComponent,
-    EditNextKinsDetailsFormComponent,
-    EditDependantDetailsFormComponent,
-    AddDependantDetailsFormComponent,
-    AddEducationDetailsFormComponent,
-    EditEducationDetailsFormComponent,
-    EditProfessionalDetailsFormComponent,
-    AddProfessionalDetailsFormComponent,
-    AddSkillsDetailsFormComponent,
-    EditSkillsDetailsFormComponent,
+  
   ],
   imports: [
     CommonModule,
@@ -196,14 +151,7 @@ import { EditSkillsDetailsFormComponent } from './jot-setting/jot-users/forms/ed
     InstitutionRoleLayoutComponent,
     AddInstitutionRoleLayoutComponent,
     EditInstitutionRoleLayoutComponent,
-    JotUsersLayoutComponent,
-    AddJotUsersLayoutComponent,
-    EditJotUsersLayoutComponent,
-    AddJotUsersFormComponent,
-    EditJotUsersFormComponent,
-    JotUsersViewComponent,
-    JotUsersDetailsViewComponent,
-    JotUsersDetailsLayoutComponent,
+  
     JotRolesLayoutComponent,
     AddJotRolesLayoutComponent,
     EditJotRolesLayoutComponent,

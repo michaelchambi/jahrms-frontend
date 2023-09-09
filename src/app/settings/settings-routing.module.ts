@@ -7,10 +7,6 @@ import { InstitutionUserDetailsLayoutComponent } from './institution/institution
 import { InstitutionRoleLayoutComponent } from './institution/institution-roles/layout/institution-role-layout/institution-role-layout.component';
 import { AddInstitutionRoleLayoutComponent } from './institution/institution-roles/layout/add-institution-role-layout/add-institution-role-layout.component';
 import { EditInstitutionRoleLayoutComponent } from './institution/institution-roles/layout/edit-institution-role-layout/edit-institution-role-layout.component';
-import { JotUsersLayoutComponent } from './jot-setting/jot-users/layout/jot-users-layout/jot-users-layout.component';
-import { AddJotUsersLayoutComponent } from './jot-setting/jot-users/layout/add-jot-users-layout/add-jot-users-layout.component';
-import { EditJotUsersLayoutComponent } from './jot-setting/jot-users/layout/edit-jot-users-layout/edit-jot-users-layout.component';
-import { JotUsersDetailsLayoutComponent } from './jot-setting/jot-users/layout/jot-users-details-layout/jot-users-details-layout.component';
 import { JotRolesLayoutComponent } from './jot-setting/jot-roles/layout/jot-roles-layout/jot-roles-layout.component';
 import { AddJotRolesLayoutComponent } from './jot-setting/jot-roles/layout/add-jot-roles-layout/add-jot-roles-layout.component';
 import { EditJotRolesLayoutComponent } from './jot-setting/jot-roles/layout/edit-jot-roles-layout/edit-jot-roles-layout.component';
@@ -80,30 +76,6 @@ const routes: Routes = [
     title: 'System Roles na vitendo'
   },
 
-
-  //==========================================
-  //JOT ADMIN USERS
-  //==========================================
-  {
-    path: 'employee-details/:id',
-    component: JotUsersLayoutComponent,
-    title: 'Watumiaji'
-  },
-  {
-    path: 'add-jot-setting-user/:id',
-    component: AddJotUsersLayoutComponent,
-    title: 'Submit mtumiaji'
-  },
-  {
-    path: 'edit-jot-setting-user/:id/:id2',
-    component: EditJotUsersLayoutComponent,
-    title: 'Badili taarifa za mtumiaji'
-  },
-  {
-    path: 'user/:id/:id2',
-    component: JotUsersDetailsLayoutComponent,
-    title: 'Employee Details'
-  },
 
   //===================================================
   //          ROLES

@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth/auth.guard';
+import { CadreLayoutComponent } from '../employee-detail/components/cadre/layout/cadre-layout/cadre-layout.component';
+import { AddCadreLayoutComponent } from '../employee-detail/components/cadre/layout/add-cadre-layout/add-cadre-layout.component';
+import { EditCadreLayoutComponent } from '../employee-detail/components/cadre/layout/edit-cadre-layout/edit-cadre-layout.component';
 import { DesignationLayoutComponent } from '../employee-detail/components/designation/layout/designation-layout/designation-layout.component';
 import { AddDesignationLayoutComponent } from '../employee-detail/components/designation/layout/add-designation-layout/add-designation-layout.component';
 import { EditDesignationLayoutComponent } from '../employee-detail/components/designation/layout/edit-designation-layout/edit-designation-layout.component';
@@ -66,10 +69,24 @@ import { EditSectionLayoutComponent } from './components/section/layout/edit-sec
 import { LeaveTypeLayoutComponent } from './components/leave-type/layout/leave-type-layout/leave-type-layout.component';
 import { AddLeaveTypeLayoutComponent } from './components/leave-type/layout/add-leave-type-layout/add-leave-type-layout.component';
 import { EditLeaveTypeLayoutComponent } from './components/leave-type/layout/edit-leave-type-layout/edit-leave-type-layout.component';
+import { JotUsersLayoutComponent } from './components/employee/user-registration/layout/jot-users-layout/jot-users-layout.component';
+import { AddJotUsersLayoutComponent } from './components/employee/user-registration/layout/add-jot-users-layout/add-jot-users-layout.component';
+import { EditJotUsersLayoutComponent } from './components/employee/user-registration/layout/edit-jot-users-layout/edit-jot-users-layout.component';
+import { JotUsersDetailsLayoutComponent } from './components/employee/user-registration/layout/jot-users-details-layout/jot-users-details-layout.component';
 
 
 
 const routes: Routes = [
+
+    //======================================================================================
+  //  UUSER DETAILS ROUTES
+//======================================================================================
+  {path: 'employee-details/:id', component: JotUsersLayoutComponent,title: 'Watumiaji',canActivate: [AuthGuard]},
+  {path: 'add-jot-setting-user/:id', component: AddJotUsersLayoutComponent,title: 'Submit mtumiaji',canActivate: [AuthGuard]},
+  {path: 'edit-jot-setting-user/:id/:id2',component: EditJotUsersLayoutComponent, title: 'Badili taarifa za mtumiaji',canActivate: [AuthGuard]},
+  { path: 'user/:id/:id2', component: JotUsersDetailsLayoutComponent, title: 'Employee Details',canActivate: [AuthGuard]},
+  
+
   //======================================================================================
   //  DEPARTMENT DETAILS ROUTES
   //======================================================================================
@@ -91,6 +108,13 @@ const routes: Routes = [
   { path: 'designation/:id', component: DesignationLayoutComponent,title: 'Cheo', canActivate: [AuthGuard]},
   { path: 'add-designation/:id', component: AddDesignationLayoutComponent,title: 'Ongeza Cheo', canActivate: [AuthGuard]},
   { path: 'edit-designation/:id', component: EditDesignationLayoutComponent,title: 'Hariri Cheo', canActivate: [AuthGuard]},
+   
+    //======================================================================================
+  //  DESIGNATION ROUTES
+  //======================================================================================
+  { path: 'cadre/:id', component: CadreLayoutComponent,title: 'Cheo', canActivate: [AuthGuard]},
+  { path: 'add-cadre/:id', component: AddCadreLayoutComponent,title: 'Ongeza Cheo', canActivate: [AuthGuard]},
+  { path: 'edit-cadre/:id', component: EditCadreLayoutComponent,title: 'Hariri Cheo', canActivate: [AuthGuard]},
    
 
   //======================================================================================
@@ -151,6 +175,14 @@ const routes: Routes = [
   { path: 'professional-skills/:id', component:   ProfessionalSkillsLayoutComponent ,title: 'Utaalamu', canActivate: [AuthGuard]},
   { path: 'add-professional-skills/:id', component:  AddProfessionalSkillsLayoutComponent,title: 'Ongeza Utaalamu', canActivate: [AuthGuard]},
   { path: 'edit-professional-skills/:id', component: EditProfessionalSkillsLayoutComponent,title: 'Hariri Utaalamu', canActivate: [AuthGuard]},
+
+//======================================================================================
+  //  PROFESSIONAL DETAILS ROUTES
+  //======================================================================================
+  { path: 'professional/:id', component:   ProfessionalSkillsLayoutComponent ,title: 'Taaluma', canActivate: [AuthGuard]},
+  // { path: 'add-professional/:id', component:  AddProfessionalSkillsLayoutComponent,title: 'Ongeza Taaluma', canActivate: [AuthGuard]},
+  { path: 'edit-professional/:id', component: EditProfessionalSkillsLayoutComponent,title: 'Hariri Taaluma', canActivate: [AuthGuard]},
+
 
    //======================================================================================
   //  DEPENDANT  DETAILS ROUTES

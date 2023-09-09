@@ -3,19 +3,10 @@
         <form (ngSubmit)="registerAnnouncement()" #announcementForm=ngForm>
             <!-- {{announcementForm.value|json}} -->
             <div class="row">
-                <!-- <div class="col-md-6">
-                    <label>Description {{my_id}}</label>
-                    <div class="form-group">
-                        <Textarea type="text" class="form-control" 
-                        [(ngModel)]="announcement_details.descriptin" name="fileUrl" placeholder="description"
-                            required></Textarea>
-                    </div>
-                </div> -->
-
                 <div class="col-md-6">
                     <label>Description*:</label>
                     <div class="form-group">
-                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter Fly Notes"
+                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
                         [(ngModel)]="announcement_details.description"></textarea>
                     </div>
                     

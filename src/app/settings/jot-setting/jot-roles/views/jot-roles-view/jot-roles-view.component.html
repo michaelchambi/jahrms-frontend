@@ -31,8 +31,8 @@
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
                             <a *ngIf="access=='edit-roles'" routerLink="/edit-jot-setting-roles/{{role?.id}}/{{submoduleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                            <a *ngIf="role?.active && access=='deactivate-roles'" href="#deactivate" data-bs-toggle="modal" (click)="showRole(role?.id)" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
-                            <a *ngIf="!role?.active && access=='activate-roles'" href="#activate" data-bs-toggle="modal" (click)="showRole(role?.id)" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="role?.active && access=='deactivate-roles'" href="#deactivate" data-bs-toggle="modal" (click)="showRole(role?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!role?.active && access=='activate-roles'" href="#activate" data-bs-toggle="modal" (click)="showRole(role?.id)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access=='update-role-permissions'" href="/role-permission/{{role?.id}}/{{submoduleId}}" class="action-icon" title="permission"> <i class="mdi mdi-cog-clockwise"></i></a>
                         </ng-container>
                     </td>
@@ -68,7 +68,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" (click)="activate(role_data?.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Ndio Ruhusu</button>
+                <button *ngIf="general.bfrcreating" (click)="activate(role_data?.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Activate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 It's Loading...
@@ -102,7 +102,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(role_data?.id)"> Ndio Zuia</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(role_data?.id)"> Yes Deactivate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Inazuia...

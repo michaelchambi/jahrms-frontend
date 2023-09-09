@@ -1,7 +1,6 @@
-
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-import { AnnouncemntService } from '../../../../../services/announcement/announcemnt.service';
+import { DesignationsService } from '../../../../../services/designations/designations.service';
 import { PermissionsService} from '../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
@@ -12,11 +11,10 @@ import { ScriptConfigService } from '../../../../../services/script-config/scrip
   styleUrls: ['./designation-view.component.css']
 })
 export class DesignationViewComponent {
-
-
-  announcementList: any;
-  announcement_data: any;
-  subannouncementId: any;
+ 
+  designationList: any;
+  designation_data: any;
+  submoduleId: any;
   
   data = {
     uid: '',user_id:''
@@ -24,7 +22,7 @@ export class DesignationViewComponent {
   anouncement_deta={id:''}
   constructor(
     public general: GeneralService,
-    public announcement: AnnouncemntService ,
+    public designation:DesignationsService  ,
     public permission: PermissionsService ,
     public script: ScriptConfigService,
     private route: Router,
@@ -32,18 +30,18 @@ export class DesignationViewComponent {
   ) { }
 
   ngOnInit(): void {
-    this.subannouncementId = this.activeRoute.snapshot.paramMap.get('id');
+    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.data.user_id=this.general.decryptionId(sessionStorage.getItem('id') as any)
-    this.getAnnouncement() ;
+    this.getDesignation() ;
   }
 
-  getAnnouncement() {
+  getDesignation() {
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.announcement.getAnnouncements().subscribe(
+    this.designation.getDesignations().subscribe(
       res => {
-        this.announcementList = res;
+        this.designationList = res;
         this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
@@ -64,11 +62,11 @@ export class DesignationViewComponent {
 
 
 
-  showAnnouncement(id: any) {
+  showDesignation(id: any) {
     this.anouncement_deta.id = id
-    this.announcement.showAnnouncement(id).subscribe(
+    this.designation.showDesignation(id).subscribe(
       res => {
-        this.announcement_data = res;
+        this.designation_data = res;
       },
       err => {
         if (err.error.token == 0) {
@@ -84,7 +82,7 @@ export class DesignationViewComponent {
     this.data.uid = id;
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.announcement.activateAnnouncement(this.data).subscribe(
+    this.designation.activateDesignation(this.data).subscribe(
       res => {
         this.general.bfrcreating = true;
         this.general.creating = false;
@@ -116,7 +114,7 @@ export class DesignationViewComponent {
     this.data.uid = id;
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.announcement.deactivateAnnouncement(this.data).subscribe(
+    this.designation.deactivateDesignation(this.data).subscribe(
       res => {
         this.general.bfrcreating = true;
         this.general.creating = false;

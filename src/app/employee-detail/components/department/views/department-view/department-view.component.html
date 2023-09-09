@@ -2,15 +2,16 @@
 
     <ng-container *ngFor="let access of permission?.action_access">
         <div class="row mb-3" *ngIf="access =='add-departments'">
-
+            <!-- <div class="col-md-8">
+                
+                <a routerLink="/add-department/{{submoduleId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Add Department</a>
+            </div> -->
             <div class="col-md-8">
                 <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_department">Add Department</button></h5>
       </div>
-
             <div class="col-md-4"></div>
         </div>
     </ng-container>
-    <!-- content  -->
     <div class="table-responsive">
 
         <table class="table table-sm mb-0 table-responsive" id="dataTables">
@@ -18,8 +19,7 @@
                 <tr>
                     <th style="width: 5%">#</th>
                     <th>Department Name</th>
-                    <th>Publisher</th>
-                    <th>Description</th>
+                    <th>Department Code</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -29,18 +29,17 @@
                     <td>{{1+i}}</td>
 
                     <td>{{department.name}}</td>
-                    <td>{{department?.approver?.name ?? 'Private'}}</td>
-                    <td>{{department.department_description}}</td>
+                    <td>{{department?.abbreviation ?? 'Private'}}</td>
                     <td>
                         <span *ngIf="department?.active" class="badge badge-primary-lighten">Active</span>
                         <span *ngIf="!department?.active" class="badge badge-danger-lighten">Inactive</span>
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-departments'" href="/edit-department/{{department?.uid}}/{{subdepartmentId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                            <a *ngIf="department?.active && access =='deactivate-departments'" href="#deactivate_department" data-bs-toggle="modal" (click)="showDepartment(department?.id)" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
-                            <a *ngIf="!department?.active && access =='activate-departments'" href="#activate_department" data-bs-toggle="modal" (click)="showDepartment(department?.id)" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a>
-                            <a *ngIf="access =='view-subdepartment-list'" href="/department/{{department?.id}}/{{department.id}}" class="action-icon" title="department ndogo"> <i class="mdi mdi-eye"></i></a>
+                            <a *ngIf="access =='edit-departments'" href="/edit-department/{{department?.uid}}/{{submoduleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="department?.active && access =='deactivate-departments'" href="#deactivate_department" data-bs-toggle="modal" (click)="showDepartment(department?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!department?.active && access =='activate-departments'" href="#activate_department" data-bs-toggle="modal" (click)="showDepartment(department?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-departments'" href="/department/{{department?.id}}/{{department.id}}" class="action-icon" title="department ndogo"> <i class="mdi mdi-eye"></i></a>
                         </ng-container>
                     </td>
 
@@ -58,7 +57,7 @@
                     
                     
                                 <div class="modal-body text-center" style="margin-top: 5%">
-                                    <i class="text-black">You are about to allow the addition of this department{{anouncement_deta.id}}?</i><br>
+                                    <i class="text-black">You are about to allow the addition of this department?</i><br>
                                     <b class="text-black">{{department?.name}}</b>
                                 </div>
                     
@@ -69,26 +68,17 @@
                                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     It's Loading...
                                   </button>
-                    
                                 </div>
                             </div>
-                            <!-- /.modal-content -->
                         </div>
-                        <!-- /.modal-dialog -->
                     </div>
-
-
                 </tr>
             </tbody>
         </table>
-
     </div>
-    <!-- end content  -->
-
 </div>
 
 
-<!-- active   -->
 <div id="activate_department" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -106,7 +96,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" (click)="activate(department_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Ndio Ruhusu</button>
+                <button *ngIf="general.bfrcreating" (click)="activate(department_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Activate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 It's Loading...
@@ -114,15 +104,9 @@
 
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-<!-- /active  -->
 
-
-<!-- deactive   -->
 <div id="deactivate_department" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -140,7 +124,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(department_data?.id)"> Ndio Zuia</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(department_data?.id)"> Yes Deactivate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Inazuia...
@@ -148,9 +132,5 @@
 
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-<!-- /deactive  -->

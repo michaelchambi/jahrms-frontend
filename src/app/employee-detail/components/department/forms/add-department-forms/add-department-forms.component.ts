@@ -61,14 +61,14 @@ export class AddDepartmentFormsComponent {
         this.my_id=this.general.decryptionId(this.id);
         this.department_data.user_id=this.my_id;
         formData.append('description', this.department_data.department_description);
-        formData.append('name', this.department_data.department_name);
-        formData.append('department_code', this.department_data.department_code);
+        formData.append('department_name', this.department_data.department_name);
+        formData.append('abbreviation', this.department_data.department_code);
         formData.append('user_id', this.department_data.user_id);
-        this.department.addDepartment(this.department_data).subscribe(
+        this.department.addDepartment(formData).subscribe(
           res => {
             this.appSuccess = true;
             this.successMessage = res.message;
-            this.router.navigate(['/leave-type/' + this.submoduleId]);
+            this.router.navigate(['/departments/' + this.submoduleId]);
             this.general.bfrcreating = true;
             this.general.creating = false;
             this.general.successMessage(res.sw_message, (e: any) => {

@@ -128,7 +128,7 @@ export class GeneralService {
 
 
   successMessage(message: any, callback?: any) {
-    const trimmedTitle = 'Imefanikiwa';
+    const trimmedTitle = 'Congraturation !';
     const translatedTitle = trimmedTitle;
     const translatedMessage = message;
     const confirmButtonText = 'Close';

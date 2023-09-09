@@ -1,0 +1,133 @@
+<div class="responsive p-0">
+    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+<!-- {{userForm.value|json}} -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="first_name">First Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="first_name" [(ngModel)]="data.first_name" name="first_name" placeholder="xxxxxxx" first_name required />
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="middle_name">Middle Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="middle_name" [(ngModel)]="data.middle_name" name="middle_name" placeholder="xxxxxxx" middle_name required />
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="last_name">Last Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="last_name" [(ngModel)]="data.last_name" name="last_name" placeholder="xxxxxxx" last_name required />
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="birth_date">Birth Date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control" id="birth_date" [(ngModel)]="data.birth_date" name="birth_date" placeholder="xxxxxxx" birth_date required />
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="icon">Region Name: </label>
+                <div class="form-group mb-3">
+                    <select class="selection_region" [(ngModel)]="data.region_id" name="region_id" required>
+                        <option value="" disabled Selected>Choose Region</option>
+                        <ng-container *ngFor="let region of regionDetails">
+                            <option  value="{{region.id}}" (click)="getDistricts(region.id)">{{region.name}}</option>
+                        </ng-container>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="icon">District Name: </label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.district_id" name="district_id" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose District</ng-option>
+                        <ng-container *ngFor="let district of districtDetails">
+                            <ng-option  value="{{district.id}}">{{district.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+          
+           
+
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="email">Email</label>
+                <div class="form-group mb-3">
+                    <input type="email" class="form-control" id="email" [(ngModel)]="data.email" name="email" placeholder="email@jot.go.tz" email required />
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label>Phone Number</label>
+                <div class="form-group mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">+255</span>
+                        <input type="text" class="form-control" id="phone" [(ngModel)]="data.phone_number" name="phone" data-mask="999 999 999" placeholder="712 xxx xxx" maxlength="9" minlength="9" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="majukumu">Gender:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.gender"  name="gender" placeholder="Male" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Gender</ng-option>
+                        <ng-option value="Male"  Selected>Male</ng-option>
+                        <ng-option value="Female"  Selected>Female</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+
+            <!-- <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="majukumu">Marital Status:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.marital_status"  name="marital_status" placeholder="Single" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Marriage Status</ng-option>
+                        <ng-option value="Single"  Selected>Single</ng-option>
+                        <ng-option value="Married"  Selected>Married</ng-option>
+                        <ng-option value="Divorced"  Selected>Divorced</ng-option>
+                        
+                    </ng-select>
+                </div>
+            </div> -->
+
+            
+
+            
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label for="nida">National Identity (NIDA)</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="nida" [(ngModel)]="data.national_id" name="nida" placeholder="19XXXXXXXX" required />
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label> Upload Employee Image</label>
+                <input type="file" class="form-control" [(ngModel)]="data.employee_passport" name="employee_passport"
+                    (change)="filePassportImageUpload($event)" required />
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <label> Upload Birth Certificate</label>
+                <input type="file" class="form-control" [(ngModel)]="data.birth_certificate" name="birth_certificate"
+                    (change)="fileBirthCertificateUpload($event)" required />
+            </div>
+
+            <div class="col-xl-4 col-lg-4 col-md-12 "></div>
+            <div class="col-xl-4 col-lg-4 col-md-12 "></div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                
+                <div>
+                    <input type="button" *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill form-control w-50 float-end" [disabled]="!userForm.valid" value="Submit">
+                <button  *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 form-control float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Inasajili...
+        </button>
+                </div>
+                
+            </div>
+
+           
+        </div>
+    </form>
+</div>

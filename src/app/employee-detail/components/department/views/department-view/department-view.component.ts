@@ -14,7 +14,7 @@ import { ScriptConfigService } from '../../../../../services/script-config/scrip
 export class DepartmentViewComponent {
   departmentList: any;
   department_data: any;
-  subdepartmentId: any;
+  submoduleId: any;
   
   data = {
     uid: '',user_id:''
@@ -30,7 +30,7 @@ export class DepartmentViewComponent {
   ) { }
 
   ngOnInit(): void {
-    this.subdepartmentId = this.activeRoute.snapshot.paramMap.get('id');
+    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.data.user_id=this.general.decryptionId(sessionStorage.getItem('id') as any)
     this.getDepartment() ;

@@ -2,12 +2,12 @@
 
     <ng-container *ngFor="let access of permission?.action_access">
         <div class="row mb-3" *ngIf="access =='add-court'">
-            <div class="col-md-8">
-                <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_court">Add Court</button></h5>
+            <div class="col-md-4">
+                <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_court">Add Work Station</button></h5>
       </div>
            
 
-            <div class="col-md-4"></div>
+            <div class="col-md-8 workstation-category">rrr</div>
         </div>
     </ng-container>
    <div class="row choice-borer" >
@@ -128,7 +128,7 @@
     
     
                 <div class="modal-footer d-flex justify-content-center mb-3">
-                    <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(court_detas?.id)"> Ndio Zuia</button>
+                    <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(court_detas?.id)"> Yes Deactivate</button>
                     <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Inazuia...

@@ -38,8 +38,8 @@
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
                             <a *ngIf="access =='edit-modules'" routerLink="/edit-jot-setting-module/{{module?.uid}}/{{submoduleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                            <a *ngIf="module?.active && access =='deactivate-modules'" href="#deactivate_module" data-bs-toggle="modal" (click)="showMyLeave(module?.uid)" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
-                            <a *ngIf="!module?.active && access =='activate-modules'" href="#activate_module" data-bs-toggle="modal" (click)="showMyLeave(module?.uid)" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="module?.active && access =='deactivate-modules'" href="#deactivate_module" data-bs-toggle="modal" (click)="showMyLeave(module?.uid)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!module?.active && access =='activate-modules'" href="#activate_module" data-bs-toggle="modal" (click)="showMyLeave(module?.uid)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-submodules-list'" href="/jot-setting-submodules/{{module?.uid}}/{{submoduleId}}" class="action-icon" title="module ndogo"> <i class="mdi mdi-eye"></i></a>
                         </ng-container>
                     </td>
@@ -71,7 +71,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" (click)="activate(module_data?.uid)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Ndio Ruhusu</button>
+                <button *ngIf="general.bfrcreating" (click)="activate(module_data?.uid)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Activate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 It's Loading...
@@ -105,7 +105,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(module_data?.uid)"> Ndio Zuia</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(module_data?.uid)"> Yes Deactivate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Inazuia...

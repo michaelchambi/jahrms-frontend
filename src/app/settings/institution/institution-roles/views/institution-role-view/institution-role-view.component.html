@@ -27,8 +27,8 @@
                     <td><span class="badge badge-primary-lighten">Active</span></td>
                     <td class="table-action">
                         <a routerLink="/edit-institution-role" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                        <a href="#deactivate_role" data-bs-toggle="modal" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a>
-                        <!-- <a href="javascript: void(0);" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a> -->
+                        <a href="#deactivate_role" data-bs-toggle="modal" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
+                        <!-- <a href="javascript: void(0);" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a> -->
                         <a href="/institution-role-permission" class="action-icon" title="permission"> <i class="mdi mdi-cog-clockwise"></i></a>
                     </td>
                 </tr>
@@ -39,8 +39,8 @@
                     <td><span class="badge badge-danger-lighten">Inactive</span></td>
                     <td class="table-action">
                         <a routerLink="/edit-institution-role" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                        <!-- <a href="javascript: void(0);" class="action-icon" title="Zuia kutumia"> <i class="mdi mdi-close-circle"></i></a> -->
-                        <a href="#activate_role" data-bs-toggle="modal" class="action-icon" title="Ruhusu kutumia"> <i class="mdi mdi-check-circle"></i></a>
+                        <!-- <a href="javascript: void(0);" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a> -->
+                        <a href="#activate_role" data-bs-toggle="modal" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                         <a href="/institution-role-permission" class="action-icon" title="permission"> <i class="mdi mdi-cog-clockwise"></i></a>
                     </td>
                 </tr>
@@ -89,7 +89,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary"> Ndio Ruhusu</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary"> Yes Activate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 It's Loading...
@@ -132,7 +132,7 @@
                             <button class="btn btn-outline-dark" (click)="Form.resetForm()" data-bs-dismiss="modal">Close</button>
                         </div>
                         <div class="col-md-6">
-                            <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-danger  w-50 float-end" [disabled]="!Form.valid"><i class="fal fa-times fa-lg"></i> Ndio Zuia</button>
+                            <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-danger  w-50 float-end" [disabled]="!Form.valid"><i class="fal fa-times fa-lg"></i> Yes Deactivate</button>
                             <button *ngIf="general.creating" class="btn btn-outline-primary  w-50 float-end" type="button " disabled>
                             <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
                             Inazuia...

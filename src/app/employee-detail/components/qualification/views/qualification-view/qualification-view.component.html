@@ -1,7 +1,7 @@
 <div class="responsive mt-3 p-0">
 
     <ng-container *ngFor="let access of permission?.action_access">
-        <div class="row mb-3" *ngIf="access =='add-court-level'">
+        <div class="row mb-3" *ngIf="access =='add-professional'">
             <div class="col-md-8">
                     <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_qualification">Add Qualification</button></h5>
           </div>
@@ -29,10 +29,10 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-court-level'" href="/edit-court-level/{{qualification?.uid}}/{{subqualificationId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                            <a *ngIf="qualification?.active && access =='deactivate-court-level'" href="#deactivate_qualification" data-bs-toggle="modal" (click)="deactivate(qualification?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
-                            <a *ngIf="!qualification?.active && access =='activate-court-level'" href="#activate_qualification" data-bs-toggle="modal" (click)="activate(qualification?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
-                            <a *ngIf="access =='view-court-level'" href="/qualification/{{qualification?.id}}/{{qualification.id}}" class="action-icon" title="qualification ndogo"> <i class="mdi mdi-eye"></i></a>
+                            <a *ngIf="access =='edit-professional'" href="/edit-professional/{{qualification?.uid}}/{{subqualificationId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="qualification?.active && access =='deactivate-professional'" href="#deactivate_qualification" data-bs-toggle="modal" (click)="deactivate(qualification?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!qualification?.active && access =='activate-professional'" href="#activate_qualification" data-bs-toggle="modal" (click)="activate(qualification?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-professional'" href="/qualification/{{qualification?.id}}/{{qualification.id}}" class="action-icon" title="qualification ndogo"> <i class="mdi mdi-eye"></i></a>
                         </ng-container>
                     </td>
 
@@ -78,7 +78,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(qualification_data?.id)"> Ndio Zuia</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(qualification_data?.id)"> Yes Deactivate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Inazuia...
