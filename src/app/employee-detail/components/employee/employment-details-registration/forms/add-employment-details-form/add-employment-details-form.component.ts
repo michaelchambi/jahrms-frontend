@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
 import { SettingsService } from '../../../../../../services/settings/settings.service';
-import { UsersService } from '../../../../../../services/users/users.service';
+import { EmploymentInfoService } from '../../../../../../services/employee/employment/employment-info.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { PermissionsService } from '../../../../../../services/permissions/permissions.service';
 import {DesignationsService } from '../../../../../../services/designations/designations.service'
-
+import { UsersService } from '../../../../../../services/users/users.service';
 
 @Component({
   selector: 'app-add-employment-details-form',
@@ -21,7 +21,9 @@ export class AddEmploymentDetailsFormComponent {
   role_list: any;
   submoduleId: any;
   uid: any;
+  
   data = {
+    employee_id:'',
     confirmation_date:'',
     hired_date:'',
     pf_number:'',
@@ -30,25 +32,32 @@ export class AddEmploymentDetailsFormComponent {
     confirmation_later: '',
     created_by:'',
     roles: [],
-    designation_id:''
+    designation_id:'',
+    personal_folder:''
   }
   designationDetails: any;
+  selectedHiredLatterFile: any;
+  selectedConfirmationLatterFile: any;
+  user_id: any;
+  userInfo: any;
+  userInfoDetails: any;
 
   fileHiringUpload(e: any) {
-    this.selectedFile = e.target.files[0];
+    this.selectedHiredLatterFile = e.target.files[0];
   }
 
   fileConfirmationUpload(e: any) {
-    this.selectedFile = e.target.files[0];
+    this.selectedConfirmationLatterFile = e.target.files[0];
   }
  
 
   constructor(
     public general: GeneralService,
     public settings: SettingsService,
-    public users: UsersService,
+    public employmentinfo: EmploymentInfoService,
     public script: ScriptConfigService,
     private route: Router,
+    private users:UsersService,
     public designation:DesignationsService,
     public permission: PermissionsService,
     private activeRoute: ActivatedRoute
@@ -56,7 +65,10 @@ export class AddEmploymentDetailsFormComponent {
 
   ngOnInit(): void {
     this.permission.getRole();
-    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
+    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id2');
+    this.user_id=this.activeRoute.snapshot.paramMap.get('id') 
+    this.getdesignation()
+    this.userDetails(this.user_id) 
   }
 
 
@@ -83,27 +95,61 @@ export class AddEmploymentDetailsFormComponent {
     );
   }
 
-  userRegistration() {
+ 
+      userDetails(id: any) {
+        this.users.showUser(id).subscribe(
+          res => {
+            this.userInfoDetails = res.data;
+    
+          },
+          err => {
+            this.script.errorAlert(err.error.sw_message)
+            if (err.error.token == 0) {
+              this.general.encryptUrl(this.route.url);
+              this.route.navigate(['/restore-session']);
+            }
+          }
+        );
+      }
+    
+  employmentDetails()  {
     this.created_by = sessionStorage.getItem('id')
     this.data.created_by = this.general.decryptionId(this.created_by);
-
-    // return console.log(this.data);
-
-
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.users.addUser(this.data).subscribe(
+    this.data.employee_id=this.userInfoDetails.data.id;
+    this.data.personal_folder=this.userInfoDetails.data.personal_folder;
+    let formData = new FormData();
+    formData.append('personal_folder', this.data.personal_folder);
+    formData.append('user_id', this.data.created_by);
+    formData.append('employee_id', this.data.employee_id);
+    formData.append('check_number', this.data.check_number);
+    formData.append('pf_number', this.data.pf_number);
+    formData.append('hired_date', this.data.hired_date);
+    formData.append('confirmation_date', this.data.confirmation_date);
+    formData.append('designation_id', this.data.designation_id);
+    formData.append('confirmation_letter', this.selectedConfirmationLatterFile);
+    formData.append('hired_latter', this.selectedHiredLatterFile);
+    formData.append('roles', JSON.stringify(this.data['roles']));
+    this.employmentinfo.addEmploymentInfo(formData).subscribe(
       res => {
         this.uid = res.data;
         this.general.creating = false;
         this.general.bfrcreating = true;
-        this.route.navigate(['/view-users/' + this.uid ]);
-        this.script.successAlert(res.sw_message);
+        this.route.navigate(['/user/' + this.uid.uid+'/'+this.submoduleId ]);
+        this.general.successMessage(res.sw_message, (e: any) => {
+          if (e) {
+            window.location.reload();
+          }
+
+        });
+
       },
       err => {
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.script.errorAlert(err.error.sw_message);
+        
         if (err.error.token == 0) {
           this.general.encryptUrl(this.route.url);
           this.route.navigate(['/restore-session']);

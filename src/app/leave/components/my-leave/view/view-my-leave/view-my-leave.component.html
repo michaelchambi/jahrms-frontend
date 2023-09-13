@@ -37,7 +37,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-modules'" routerLink="/edit-jot-setting-module/{{module?.uid}}/{{submoduleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-modules'" routerLink="/edit-jot-setting-module/{{module?.uid}}/{{submoduleId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="module?.active && access =='deactivate-modules'" href="#deactivate_module" data-bs-toggle="modal" (click)="showMyLeave(module?.uid)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!module?.active && access =='activate-modules'" href="#activate_module" data-bs-toggle="modal" (click)="showMyLeave(module?.uid)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-submodules-list'" href="/jot-setting-submodules/{{module?.uid}}/{{submoduleId}}" class="action-icon" title="module ndogo"> <i class="mdi mdi-eye"></i></a>

@@ -37,11 +37,6 @@ export class CourtsService {
   getCourts(){
     return this.http.get<any>(`${this.url}`, { headers: this.general.userAuthorization() });
   }
-  getfreeCourts(){
-    return this.http.get<any>(`${this.url}/free`);
-  }
-
-
   countCourts(){
     return this.http.get<any>(`${this.url}/count_received`, { headers: this.general.userAuthorization() });
   }
@@ -51,13 +46,28 @@ export class CourtsService {
     return this.http.get<any>(`${this.url}/show/${id}`,{ headers: this.general.userAuthorization() });
   }
 
+  showSelectedCourt(id:any) {
+    return this.http.post<any>(`${this.url}/show`,id,{ headers: this.general.userAuthorization() });
+  }
+
   editCourt(id:any, data:any) {
     return this.http.post<any>(`${this.url}/editCourt/${id}`, data , { headers: this.general.userAuthorization() });
   }
 
+  editCourtAsWorkStation(data:any) {
+    return this.http.post<any>(`${this.url}/editCourt`, data , { headers: this.general.userAuthorization() });
+  }
+
+
+
   getCourtsByCourtId(data:any) {
     return this.http.post<any>(`${this.url}/bycourtlevel`, data , { headers: this.general.userAuthorization() });
   }
+
+  getCourtsByCourtLevelIdAndDistrictId(data:any) {
+    return this.http.post<any>(`${this.url}/bycourtlevelDistrict`, data , { headers: this.general.userAuthorization() });
+  }
+
 
   
 

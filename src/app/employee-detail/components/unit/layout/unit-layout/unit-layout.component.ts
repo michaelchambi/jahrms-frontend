@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
 import { PermissionsService } from '../../../../../services/permissions/permissions.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-unit-layout',
   templateUrl: './unit-layout.component.html',
@@ -11,19 +9,16 @@ import { ScriptConfigService } from '../../../../../services/script-config/scrip
 })
 export class UnitLayoutComponent {
 
-  
+
+
   submoduleId: any;
   constructor(
-    public general: GeneralService,
+    private activeRoute: ActivatedRoute,
     public permission: PermissionsService,
-    public script: ScriptConfigService,
-    private route: Router,
-    private activeRoute: ActivatedRoute
+    public general: GeneralService,
   ) { }
 
   ngOnInit(): void {
-    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
   }
-
 }

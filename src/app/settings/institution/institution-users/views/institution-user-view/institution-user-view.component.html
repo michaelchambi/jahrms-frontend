@@ -37,7 +37,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <!-- <a *ngIf="access =='edit-institution-users'" href="/edit-institution-user/{{user?.uid}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a> -->
+                            <!-- <a *ngIf="access =='edit-institution-users'" href="/edit-institution-user/{{user?.uid}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a> -->
                             <a *ngIf="access =='view-institution-user-details'" href="/institution-user-details/{{user?.uid}}/{{submoduleId}}" class="action-icon" title="Angalia Taarifa"> <i class="mdi mdi-eye"></i></a>
                         </ng-container>
 

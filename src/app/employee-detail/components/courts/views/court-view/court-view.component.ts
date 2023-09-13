@@ -16,6 +16,7 @@ export class CourtViewComponent {
 court_level_id={id:''}
   courtList: any;
   court_data: any;
+  
   mouleId: any;
   data_found:boolean=false
   zone_selected:boolean=false;
@@ -57,7 +58,7 @@ court_level_id={id:''}
     this.court_level.getActiveCourt_level().subscribe(
       res => {
         this.court_levelList = res;
-        this.script.datatable();
+        // this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.data_found=true
@@ -82,7 +83,7 @@ court_level_id={id:''}
     this.zone.getZones().subscribe(
       res => {
         this.zoneList = res;
-        this.script.datatable();
+        // this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.zone_selected=true;

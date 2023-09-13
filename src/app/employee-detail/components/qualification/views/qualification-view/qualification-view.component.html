@@ -29,7 +29,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-professional'" href="/edit-professional/{{qualification?.uid}}/{{subqualificationId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-professional'" href="/edit-professional/{{qualification?.uid}}/{{subqualificationId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="qualification?.active && access =='deactivate-professional'" href="#deactivate_qualification" data-bs-toggle="modal" (click)="deactivate(qualification?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!qualification?.active && access =='activate-professional'" href="#activate_qualification" data-bs-toggle="modal" (click)="activate(qualification?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-professional'" href="/qualification/{{qualification?.id}}/{{qualification.id}}" class="action-icon" title="qualification ndogo"> <i class="mdi mdi-eye"></i></a>

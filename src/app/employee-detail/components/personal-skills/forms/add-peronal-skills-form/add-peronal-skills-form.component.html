@@ -1,31 +1,28 @@
 <div class="responsive p-0">
     <div class="advertisement-form">
-        <form (ngSubmit)="registerAnnouncement()" #announcementForm=ngForm>
-            <!-- {{announcementForm.value|json}} -->
+        <form (ngSubmit)="registerSkill()" #skillForm=ngForm>
+            <!-- {{skillForskill_detailsm.valation_detailsue|json}} -->
             <div class="row">
-                <!-- <div class="col-md-6">
-                    <label>Description {{my_id}}</label>
-                    <div class="form-group">
-                        <Textarea type="text" class="form-control" 
-                        [(ngModel)]="announcement_details.descriptin" name="fileUrl" placeholder="description"
-                            required></Textarea>
-                    </div>
-                </div> -->
+             
 
-                <div class="col-md-6">
+                
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <label>Personal Skill*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" type="text" name="skill" placeholder="Enter  "
+                        [(ngModel)]="skill_data.skill" skill required>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <label>Description*:</label>
                     <div class="form-group">
                         <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
-                        [(ngModel)]="announcement_details.description"></textarea>
+                        [(ngModel)]="skill_data.description" description required></textarea>
                     </div>
                     
                 </div>
 
-                <div class="col-md-6">
-                    <label> Upload Announcement Image</label>
-                    <input type="file" class="form-control" [(ngModel)]="announcement_details.fileUrl" name="filUrl"
-                        (change)="fileUpload($event)" required />
-                </div>
+               
             </div>
 
             <div class="row">
@@ -33,13 +30,13 @@
                 </div>
                 <div class="col-md-6">
                     <button *ngIf="bfrcreating" type="submit"
-                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
-                        Add Announcement</button>
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!skillForm.valid">
+                        Add Personal Skill</button>
                     <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
                         type="button" disabled>
                         <span class="spinner-border spinner-border-sm" role="status"
                             aria-hidden="true"></span>
-                        Announcement Creating...
+                         Creating Personal Skill ...
                     </button>
                 </div>
             </div>

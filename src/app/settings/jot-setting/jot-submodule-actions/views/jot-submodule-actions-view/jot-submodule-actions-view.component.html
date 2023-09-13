@@ -32,7 +32,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-submodule-actions'" routerLink="/edit-jot-setting-sub-modules-action/{{action?.uid}}/{{submoduleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-submodule-actions'" routerLink="/edit-jot-setting-sub-modules-action/{{action?.uid}}/{{submoduleId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="action?.active && access =='deactivate-submodule-actions'" href="#deactivate" data-bs-toggle="modal" (click)="showAction(action?.uid)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!action?.active && access =='activate-submodule-actions'" href="#activate" data-bs-toggle="modal" (click)="showAction(action?.uid)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                         </ng-container>

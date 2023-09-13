@@ -19,7 +19,7 @@ import { AddZoneLayoutComponent } from './components/zone/layout/add-zone-layout
 import { EditZoneLayoutComponent } from './components/zone/layout/edit-zone-layout/edit-zone-layout.component';
 import { ZoneLayoutComponent } from './components/zone/layout/zone-layout/zone-layout.component';
 import { CourtLayoutComponent } from './components/courts/layout/court-layout/court-layout.component';
-import { AddCourtLayoutComponent } from './components/courts/layout/add-court-layout/add-court-layout.component';
+import { AddCourtLayoutComponent } from './components/courts/forms/add-court-layout/add-court-layout.component';
 import { EditCourtLayoutComponent } from './components/courts/layout/edit-court-layout/edit-court-layout.component';
 import { CourtLevelLayoutComponent } from './components/court-level/layout/court-level-layout/court-level-layout.component';
 import { AddCourtLevelLayoutComponent } from './components/court-level/layout/add-court-level-layout/add-court-level-layout.component';

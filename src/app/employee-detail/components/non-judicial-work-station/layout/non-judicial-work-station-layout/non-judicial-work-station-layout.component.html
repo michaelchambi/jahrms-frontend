@@ -12,7 +12,7 @@
                                
                                 <div class="row">
                                     <div class="col-md-12 main-cont" *ngIf="access =='view-modules-list'">
-                                        <app-educationl-level-view></app-educationl-level-view>
+                                        <app-non-judicial-work-station-view></app-non-judicial-work-station-view>
                                     </div>
                             </div>
                             </ng-container>
@@ -23,4 +23,25 @@
             </div>
             <app-footer></app-footer>
         </div>
+    </div>
+
+
+
+
+
+    <div id="add_workstation" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-stroopwafel fa-lg fa-spin"></i>&nbsp;Heearing You...!</h4>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+                <div class="form-control">
+                    <app-add-non-judicial-work-station-form></app-add-non-judicial-work-station-form>
+                </div>
+                
+            </div>
+        </div>
+
     </div>

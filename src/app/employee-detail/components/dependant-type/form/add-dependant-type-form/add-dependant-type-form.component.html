@@ -1,31 +1,26 @@
 <div class="responsive p-0">
     <div class="advertisement-form">
-        <form (ngSubmit)="registerAnnouncement()" #announcementForm=ngForm>
-            <!-- {{announcementForm.value|json}} -->
+        <form (ngSubmit)="registerDependantType()" #dependant_typeForm=ngForm>
+            <!-- {{dependant TypeFordependant Type_detailsm.valation_detailsue|json}} -->
             <div class="row">
-                <!-- <div class="col-md-6">
-                    <label>Description {{my_id}}</label>
+                <div class="col-md-12">
+                    <label> Dependant Type Name*:</label>
                     <div class="form-group">
-                        <Textarea type="text" class="form-control" 
-                        [(ngModel)]="announcement_details.descriptin" name="fileUrl" placeholder="description"
-                            required></Textarea>
+                        <input type="text" class="form-control" name="dependant_type_name" placeholder="Enter Dependant Type Name"
+                        [(ngModel)]="dependant_type_details.dependant_type_name" dependant_type_name required>
                     </div>
-                </div> -->
-
-                <div class="col-md-6">
+                    
+                </div>
+                <div class="col-md-12">
                     <label>Description*:</label>
                     <div class="form-group">
                         <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
-                        [(ngModel)]="announcement_details.description"></textarea>
+                        [(ngModel)]="dependant_type_details.description"></textarea>
                     </div>
                     
                 </div>
 
-                <div class="col-md-6">
-                    <label> Upload Announcement Image</label>
-                    <input type="file" class="form-control" [(ngModel)]="announcement_details.fileUrl" name="filUrl"
-                        (change)="fileUpload($event)" required />
-                </div>
+               
             </div>
 
             <div class="row">
@@ -33,13 +28,13 @@
                 </div>
                 <div class="col-md-6">
                     <button *ngIf="bfrcreating" type="submit"
-                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
-                        Add Announcement</button>
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!dependant_typeForm.valid">
+                        Add Dependant Type</button>
                     <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
                         type="button" disabled>
                         <span class="spinner-border spinner-border-sm" role="status"
                             aria-hidden="true"></span>
-                        Announcement Creating...
+                        Dependant Type Creating...
                     </button>
                 </div>
             </div>

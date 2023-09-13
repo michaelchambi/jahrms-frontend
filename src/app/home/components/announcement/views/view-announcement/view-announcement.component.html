@@ -36,7 +36,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-announcement'" href="/edit-announcement/{{announcement?.uid}}/{{subannouncementId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-announcement'" href="/edit-announcement/{{announcement?.uid}}/{{subannouncementId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="announcement?.active && access =='deactivate-announcement'" href="#deactivate_announcement" data-bs-toggle="modal" (click)="showAnnouncement(announcement?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!announcement?.active && access =='activate-announcement'" href="#activate_announcement" data-bs-toggle="modal" (click)="showAnnouncement(announcement?.id)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-subannouncement-list'" href="/announcement/{{announcement?.id}}/{{announcement.id}}" class="action-icon" title="announcement ndogo"> <i class="mdi mdi-eye"></i></a>

@@ -45,7 +45,7 @@ import { EditZoneLayoutComponent } from './components/zone/layout/edit-zone-layo
 import { ZoneLayoutComponent } from './components/zone/layout/zone-layout/zone-layout.component';
 import { ZoneViewComponent } from './components/zone/views/zone-view/zone-view.component';
 import { CourtLayoutComponent } from './components/courts/layout/court-layout/court-layout.component';
-import { AddCourtLayoutComponent } from './components/courts/layout/add-court-layout/add-court-layout.component';
+import { AddCourtLayoutComponent } from './components/courts/forms/add-court-layout/add-court-layout.component';
 import { EditCourtLayoutComponent } from './components/courts/layout/edit-court-layout/edit-court-layout.component';
 import { EditCourtFormsComponent } from './components/courts/forms/edit-court-forms/edit-court-forms.component';
 import { AddCourtFormsComponent } from './components/courts/forms/add-court-forms/add-court-forms.component';
@@ -172,6 +172,7 @@ import { EditProfessionalDetailsFormComponent } from './components/employee/prof
 import { AddProfessionalDetailsFormComponent } from './components/employee/professional-details-registration/forms/add-professional-details-form/add-professional-details-form.component';
 import { AddSkillsDetailsFormComponent } from './components/employee/skills-details-registration/forms/add-skills-details-form/add-skills-details-form.component';
 import { EditSkillsDetailsFormComponent } from './components/employee/skills-details-registration/forms/edit-skills-details-form/edit-skills-details-form.component';
+import { EmployeeDetailsRegistrationViewComponent } from './components/employee/employment-details-registration/views/employee-details-registration-view/employee-details-registration-view.component';
 
 
 @NgModule({
@@ -342,6 +343,7 @@ import { EditSkillsDetailsFormComponent } from './components/employee/skills-det
     AddProfessionalDetailsFormComponent,
     AddSkillsDetailsFormComponent,
     EditSkillsDetailsFormComponent,
+    EmployeeDetailsRegistrationViewComponent,
 
   ],
   imports: [

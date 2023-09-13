@@ -34,7 +34,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-zones'" href="/edit-zone/{{zone?.uid}}/{{subzoneId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-zones'" href="/edit-zone/{{zone?.uid}}/{{subzoneId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="zone?.active && access =='deactivate-zones'" href="#deactivate_zone" data-bs-toggle="modal" (click)="showAnnouncement(zone?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!zone?.active && access =='activate-zones'" href="#activate_zone" data-bs-toggle="modal" (click)="showAnnouncement(zone?.id)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-zones-list'" href="/zone/{{zone?.id}}/{{zone.id}}" class="action-icon" title="zone ndogo"> <i class="mdi mdi-eye"></i></a>

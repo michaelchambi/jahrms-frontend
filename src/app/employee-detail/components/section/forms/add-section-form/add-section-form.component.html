@@ -1,31 +1,45 @@
 <div class="responsive p-0">
     <div class="advertisement-form">
-        <form (ngSubmit)="registerAnnouncement()" #announcementForm=ngForm>
-            <!-- {{announcementForm.value|json}} -->
+        <form (ngSubmit)="registerSection()" #sectionForm=ngForm>
+            <!-- {{sectionForsection_detailsm.valation_detailsue|json}} -->
             <div class="row">
-                <!-- <div class="col-md-6">
-                    <label>Description {{my_id}}</label>
-                    <div class="form-group">
-                        <Textarea type="text" class="form-control" 
-                        [(ngModel)]="announcement_details.descriptin" name="fileUrl" placeholder="description"
-                            required></Textarea>
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="icon">Display Option: </label>
+                    <div class="form-group mb-3">
+                        <ng-select [(ngModel)]="section_data.department_id" name="department_id" [clearable]="true" [clearOnBackspace]="false" required>
+                            <ng-option value="" disabled Selected>Choose Option</ng-option>
+                            <ng-container *ngFor="let department of departmentDetails">
+                                <ng-option  value="{{department.id}}">{{department.name}}</ng-option>
+                            </ng-container>
+    
+                        </ng-select>
                     </div>
-                </div> -->
+                </div>
 
-                <div class="col-md-6">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <label>Section Abbreviation*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" type="text" name="abbreviation" placeholder="Enter  abbreviation"
+                        [(ngModel)]="section_data.abbreviation" bbreviationrequired>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <label>Section*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" type="text" name="section" placeholder="Enter  "
+                        [(ngModel)]="section_data.section" section required>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <label>Description*:</label>
                     <div class="form-group">
                         <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
-                        [(ngModel)]="announcement_details.description"></textarea>
+                        [(ngModel)]="section_data.description" description required></textarea>
                     </div>
                     
                 </div>
 
-                <div class="col-md-6">
-                    <label> Upload Announcement Image</label>
-                    <input type="file" class="form-control" [(ngModel)]="announcement_details.fileUrl" name="filUrl"
-                        (change)="fileUpload($event)" required />
-                </div>
+               
             </div>
 
             <div class="row">
@@ -33,13 +47,13 @@
                 </div>
                 <div class="col-md-6">
                     <button *ngIf="bfrcreating" type="submit"
-                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
-                        Add Announcement</button>
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!sectionForm.valid">
+                        Add Qualification</button>
                     <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
                         type="button" disabled>
                         <span class="spinner-border spinner-border-sm" role="status"
                             aria-hidden="true"></span>
-                        Announcement Creating...
+                        Qualification Creating...
                     </button>
                 </div>
             </div>

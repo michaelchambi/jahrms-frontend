@@ -38,6 +38,29 @@ export class CadreViewComponent {
     this.getCadre() ;
   }
 
+  // getCadre() {
+  //   this.general.bfrcreating = false;
+  //   this.general.creating = true;
+  //   this.cadre.getCadres().subscribe(
+  //     res => {
+  //       this.cadreList = res;
+  //       this.script.datatable();
+  //       this.general.creating = false;
+  //       this.general.bfrcreating = true;
+  //     },
+  //     err => {
+        
+  //       this.general.creating = false;
+  //       this.general.bfrcreating = true;
+  //       this.script.errorAlert(err.error.sw_message);
+  //       if (err.error.token == 0) {
+  //         this.general.encryptUrl(this.route.url);
+  //         this.route.navigate(['/restore-session']);
+  //       }
+  //     }
+  //   );
+  // }
+
   getCadre() {
     this.general.bfrcreating = false;
     this.general.creating = true;
@@ -60,8 +83,6 @@ export class CadreViewComponent {
       }
     );
   }
-
-
 
 
   showCadre(id: any) {

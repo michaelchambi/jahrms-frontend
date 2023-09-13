@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
 import { SettingsService } from '../../../../../../services/settings/settings.service';
 import { UsersService } from '../../../../../../services/users/users.service';
+import { EducationLevelService } from '../../../../../../services/education-level/education-level.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
-import { PermissionsService } from '../../../../../../services/permissions/permissions.service';
 
 @Component({
   selector: 'app-add-education-details-form',
@@ -58,12 +58,12 @@ just_dependant:boolean=false;
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
-    public permission: PermissionsService,
+    public level: EducationLevelService,
     private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.permission.getRole();
+    // this.getLevel();
    
     this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
   }
@@ -99,6 +99,29 @@ just_dependant:boolean=false;
   }
 
   
+  // getLevel() {
+  //   this.general.bfrcreating = false;
+  //   this.general.creating = true;
+  //   this.relation.getDependantTypes().subscribe(
+  //     res => {
+  //       this.relationDetails = res;
+  //       this.script.datatable();
+  //       this.general.creating = false;
+  //       this.general.bfrcreating = true;
+  //     },
+  //     err => {
+        
+  //       this.general.creating = false;
+  //       this.general.bfrcreating = true;
+  //       this.script.errorAlert(err.error.sw_message);
+  //       if (err.error.token == 0) {
+  //         this.general.encryptUrl(this.route.url);
+  //         this.route.navigate(['/restore-session']);
+  //       }
+  //     }
+  //   );
+  // }
+
 
 
 

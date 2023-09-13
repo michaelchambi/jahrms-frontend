@@ -7,12 +7,12 @@
         <div class="row">
            
             <div class="col-md-6">
-                <label for="majukumu">Seleect Bank Name:</label>
+                <label for="bank">Seleect Bank Name:</label>
                 <div class="form-group mb-3">
                     <ng-select [(ngModel)]="data.bank_id" name="bank_id" placeholder="Choose Bank" [clearable]="true" [clearOnBackspace]="false" required>
-                        <ng-option value="" disabled Selected>Chagua System Roles</ng-option>
-                        <ng-container *ngFor="let roles of permission.role_list">
-                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                        <ng-option value="" disabled Selected>Choose Bank</ng-option>
+                        <ng-container *ngFor="let banks of bankDetails">
+                            <ng-option value="{{banks.id}}">{{banks.name}}</ng-option>
                         </ng-container>
 
                     </ng-select>
@@ -41,8 +41,8 @@
             <div class="col-md-6">
                 <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
-          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
-          Inasajili...
+          <span class="spinner-border spinner-border-sm" bank="status " aria-hidden="true "></span>
+          Registering...
         </button>
             </div>
 

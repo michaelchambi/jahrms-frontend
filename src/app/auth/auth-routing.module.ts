@@ -56,7 +56,7 @@ const routes: Routes = [
   {
     path: 'edit-my-profile',
     component: EditProfileLayoutComponent,
-    title: 'Badili Taarifa'
+    title: 'Change Details'
   }
 
 ];

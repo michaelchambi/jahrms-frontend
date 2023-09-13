@@ -34,7 +34,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-professional'" href="/edit-professional/{{professional?.uid}}/{{submoduleId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-professional'" href="/edit-professional/{{professional?.uid}}/{{submoduleId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="professional?.active && access =='deactivate-professional'" href="#deactivate_professional" data-bs-toggle="modal" (click)="showProfessional(professional?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!professional?.active && access =='activate-professional'" href="#activate_professional" data-bs-toggle="modal" (click)="showProfessional(professional?.id)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-professional'" href="/professional/{{professional?.id}}/{{professional.id}}" class="action-icon" title="professional ndogo"> <i class="mdi mdi-eye"></i></a>

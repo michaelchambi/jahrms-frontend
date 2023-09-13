@@ -6,18 +6,18 @@
     <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
         <div class="row">
            
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <label for="level_id">Education Level:</label>
                 <div class="form-group mb-3">
                     <ng-select [(ngModel)]="data.level_id" [multiple]="true" name="level_id" placeholder="Choose leve" [clearable]="true" [clearOnBackspace]="false" required>
                         <ng-option value="" disabled Selected>Choose Education Level</ng-option>
-                        <ng-container *ngFor="let roles of permission.role_list">
+                        <ng-container *ngFor="let level of permission.role_list">
                             <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
                         </ng-container>
 
                     </ng-select>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-6">
                 <label for="index_number">Index Number</label>
                 <div class="form-group mb-3">
@@ -90,7 +90,7 @@
                 <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
           <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
-          Inasajili...
+          Registering...
         </button>
             </div>
 

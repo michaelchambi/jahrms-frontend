@@ -93,7 +93,7 @@ export class AddJotUsersFormComponent implements OnInit {
         this.uid = res.data;
         this.general.creating = false;
         this.general.bfrcreating = true;
-        this.route.navigate(['/employee-details/' + this.submoduleId ]);
+        this.route.navigate(['/user/' + this.submoduleId ]);
         // this.script.successAlert(res.sw_message);
         this.general.successMessage(res.sw_message, (e: any) => {
           if (e) {

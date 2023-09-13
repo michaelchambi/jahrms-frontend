@@ -82,7 +82,7 @@
                 <a *ngIf="details?.active" href="#deactivate_user" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-danger w-100 btn-sm mb-2 m-1">Zuia</a>
             </div>
             <div class="col-md-4">
-                <a href="/edit-institution-user/{{details?.uid}}/{{submoduleId}}" type="button" class="btn btn-outline-dark w-100 btn-sm mb-2 m-1">Badili Taarifa</a>
+                <a href="/edit-institution-user/{{details?.uid}}/{{submoduleId}}" type="button" class="btn btn-outline-dark w-100 btn-sm mb-2 m-1">Change Details</a>
             </div>
             <div class="col-md-4">
                 <a href="#user_roles" (click)="openModal()" data-bs-toggle="modal" type="button" class="btn btn-outline-dark w-100 btn-sm mb-2 m-1">System Roles</a>
@@ -104,7 +104,7 @@
                     </td>
                     <td>
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-institution-users'" href="/edit-institution-user/{{details?.uid}}/{{submoduleId}}" type="button" class="btn btn-outline-dark rounded-pill w-100 btn-sm mb-2 m-1">Badili Taarifa</a>
+                            <a *ngIf="access =='edit-institution-users'" href="/edit-institution-user/{{details?.uid}}/{{submoduleId}}" type="button" class="btn btn-outline-dark rounded-pill w-100 btn-sm mb-2 m-1">Change Details</a>
                         </ng-container>
                     </td>
 

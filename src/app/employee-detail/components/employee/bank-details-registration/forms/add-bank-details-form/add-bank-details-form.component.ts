@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
 import { SettingsService } from '../../../../../../services/settings/settings.service';
 import { UsersService } from '../../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
-import { PermissionsService } from '../../../../../../services/permissions/permissions.service';
+import { BankService } from '../../../../../../services/bank/bank.service';
 
 @Component({
   selector: 'app-add-bank-details-form',
@@ -25,6 +25,7 @@ export class AddBankDetailsFormComponent {
     account_name:'',
     created_by: '',
   }
+  bankDetails: any;
 
  
 
@@ -34,12 +35,12 @@ export class AddBankDetailsFormComponent {
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
-    public permission: PermissionsService,
+    public bank: BankService,
     private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.permission.getRole();
+    this.getBank();
     this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
   }
 
@@ -72,5 +73,32 @@ export class AddBankDetailsFormComponent {
     );
 
   }
+
+
+
+  getBank() {
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    this.bank.getBanks().subscribe(
+      res => {
+        this.bankDetails = res;
+        this.script.datatable();
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+      },
+      err => {
+        
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+        this.script.errorAlert(err.error.sw_message);
+        if (err.error.token == 0) {
+          this.general.encryptUrl(this.route.url);
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
+
+
 
 }

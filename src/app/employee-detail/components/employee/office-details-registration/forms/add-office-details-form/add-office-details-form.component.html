@@ -1,46 +1,152 @@
 <div class="responsive p-0">
-    <p class="text-muted ">Office Details.</p>
-    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+     <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row  mb-3" *ngIf="access =='add-court'">
+            <div class="col-md-12 workstation-category">
+                <span> <button type="button" class="btn btn-outline-primary rounded-pill "
+                        (click)="getTrueCourt()">Court Workstation</button></span>
+                <span> <button type="button" class="btn btn-outline-primary rounded-pill "
+                        (click)="getUnTrueCourt()">Non Court Workstation</button></span>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="majukumu">Working Station:</label>
+            </div>
+        </div>
+    </ng-container>
+
+
+    <form *ngIf="general.formart" (ngSubmit)="officeDetailsRegistration()" #workstationForm="ngForm">
+      
+        <ng-container *ngIf="trueCourt">
+            <!-- {{workstationForm.value|json}} -->
+            <div class="row">
+                
+
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="icon">Zone Name: </label>
+                    <div class="form-group mb-3">
+                        <select class="selection_region"  name="region_id" required>
+                            <option value="" disabled Selected>Choose Zone</option>
+                            <ng-container *ngFor="let region of regionDetails">
+                                <option  value="{{region.id}}" (click)="getDistricts(region.id)">{{region.name}}</option>
+                            </ng-container>
+    
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="icon">District Name: </label>
+                    <div class="form-group mb-3">
+                        <select class="selection_region"  name="district_id" required>
+                            <option value="" disabled Selected>Choose District</option>
+                            <ng-container *ngFor="let district of districtDetails">
+                                <option  value="{{district.id}}" (click)="getShowDistrictId(district.id)">{{district.name}}</option>
+                            </ng-container>
+    
+                        </select>
+                    </div>
+                </div>
+
+
+              
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">Court Level List: </label>
+                        <div class="form-group mb-3">
+                            <select class="selection_region" [(ngModel)]="request_data.court_level_id" name="court_level_id" required>
+                                <option value="" disabled Selected>Choose Option</option>
+                                <ng-container *ngFor="let levels of court_levelList">
+                                    <option value="{{levels.id}}" (click)="getCourt(levels.id,my_district_id)">{{levels.name}}</option>
+                                </ng-container>
+            
+                            </select>
+                        </div>
+                    </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="icon">Court Name: </label>
+                    <div class="form-group mb-3">
+                        <select class="selection_region"  [(ngModel)]="station_data.court_id" name="court_id" required>
+                            <option value="" disabled Selected>Choose Court</option>
+                            <ng-container *ngFor="let court of courtList">
+                                <option  value="{{court.id}}" (click)="getCourtDetails(court.id)">{{court.name}}</option>
+                            </ng-container>
+    
+                        </select>
+                    </div>
+                </div>
+    
+    
+                <div class="col-md-5">
+                    <label for="station_assignment_date">Station Assignment Date</label>
+                    <div class="form-group mb-3">
+                        <input type="date" class="form-control" id="station_assignment_date"
+                            [(ngModel)]="station_data.station_assignment_date" name="station_assignment_date"
+                            placeholder="Station Assignment Date" station_assignment_daterequired />
+                    </div>
+                </div>
+            </div>
+    
+    
+            <br>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-5">
+                    <button *ngIf="general.bfrcreating" type="submit"
+                        class="btn btn-outline-primary rounded-pill w-50 float-end"
+                        [disabled]="!workstationForm.valid">Submit</button>
+                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end"
+                        type="button " disabled>
+                        <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+                        Registering...
+                    </button>
+                </div>
+    
+            </div>
+        </ng-container>
+</form>
+
+<form *ngIf="general.formart" (ngSubmit)="nonCourtofficeDetailsRegistration()" #workstationForm="ngForm">
+   
+        <ng-container  *ngIf="nonTrueCourt">
+             <!-- {{workstationForm.value|json}} -->
+            <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Workstation Name: </label>
                 <div class="form-group mb-3">
-                    <ng-select [(ngModel)]="data.working_station_id" [multiple]="true" name="working_station_id" placeholder="Chagua System Roles" [clearable]="true" [clearOnBackspace]="false" required>
-                        <ng-option value="" disabled Selected>Choose Station</ng-option>
-                        <ng-container *ngFor="let roles of permission.role_list">
-                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                    <select class="selection_region"  [(ngModel)]="station_data.workstation_id" name="workstation_id" required>
+                        <option value="" disabled Selected>Choose Workstation</option>
+                        <ng-container *ngFor="let workstation of workstationList">
+                            <option  value="{{workstation.id}}" (click)="getCourtDetails(workstation.id)">{{workstation.name}}</option>
                         </ng-container>
 
-                    </ng-select>
+                    </select>
                 </div>
             </div>
-          
-         
-            <div class="col-md-6">
+
+
+            <div class="col-md-5">
                 <label for="station_assignment_date">Station Assignment Date</label>
                 <div class="form-group mb-3">
-                    <input type="date" class="form-control" id="station_assignment_date" [(ngModel)]="data.station_assignment_date" name="station_assignment_date" placeholder="Station Assignment Date" station_assignment_daterequired />
+                    <input type="date" class="form-control" id="station_assignment_date"
+                        [(ngModel)]="station_data.station_assignment_date" name="station_assignment_date"
+                        placeholder="Station Assignment Date" station_assignment_daterequired />
                 </div>
             </div>
-           
-        
-
-            
         </div>
 
 
         <br>
         <div class="row">
             <div class="col-md-6"></div>
-            <div class="col-md-6">
-                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
-                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
-          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
-          Inasajili...
-        </button>
+            <div class="col-md-5">
+                <button *ngIf="general.bfrcreating" type="submit"
+                    class="btn btn-outline-primary rounded-pill w-50 float-end"
+                    [disabled]="!workstationForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end"
+                    type="button " disabled>
+                    <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+                    Registering...
+                </button>
             </div>
 
         </div>
+        </ng-container>
+       
     </form>
 </div>

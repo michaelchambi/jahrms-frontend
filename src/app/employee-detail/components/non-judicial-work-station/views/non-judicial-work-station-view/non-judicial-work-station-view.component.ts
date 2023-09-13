@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-import { AnnouncemntService } from '../../../../../services/announcement/announcemnt.service';
+import { StationService } from '../../../../../services/station/station.service';
 import { PermissionsService} from '../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
@@ -13,17 +13,17 @@ import { ScriptConfigService } from '../../../../../services/script-config/scrip
 export class NonJudicialWorkStationViewComponent {
 
 
-  announcementList: any;
-  announcement_data: any;
-  subannouncementId: any;
+  workstationList: any;
+  workstationDetails: any;
+  submoduleId: any;
   
   data = {
     uid: '',user_id:''
   }
-  anouncement_deta={id:''}
+  workstation_data={id:''}
   constructor(
     public general: GeneralService,
-    public announcement: AnnouncemntService ,
+    public workstation: StationService ,
     public permission: PermissionsService ,
     public script: ScriptConfigService,
     private route: Router,
@@ -31,19 +31,19 @@ export class NonJudicialWorkStationViewComponent {
   ) { }
 
   ngOnInit(): void {
-    this.subannouncementId = this.activeRoute.snapshot.paramMap.get('id');
+    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.data.user_id=this.general.decryptionId(sessionStorage.getItem('id') as any)
-    this.getAnnouncement() ;
+    this.getWorkstation() ;
   }
 
-  getAnnouncement() {
+  getWorkstation() {
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.announcement.getAnnouncements().subscribe(
+    this.workstation.getStations().subscribe(
       res => {
-        this.announcementList = res;
-        this.script.datatable();
+        this.workstationList = res;
+        // this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
       },
@@ -63,11 +63,11 @@ export class NonJudicialWorkStationViewComponent {
 
 
 
-  showAnnouncement(id: any) {
-    this.anouncement_deta.id = id
-    this.announcement.showAnnouncement(id).subscribe(
+  showWorkstation(id: any) {
+    this.workstation_data.id = id
+    this.workstation.showStation(id).subscribe(
       res => {
-        this.announcement_data = res;
+        this.workstationDetails = res;
       },
       err => {
         if (err.error.token == 0) {
@@ -83,7 +83,7 @@ export class NonJudicialWorkStationViewComponent {
     this.data.uid = id;
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.announcement.activateAnnouncement(this.data).subscribe(
+    this.workstation.activateStation(this.data).subscribe(
       res => {
         this.general.bfrcreating = true;
         this.general.creating = false;
@@ -115,7 +115,7 @@ export class NonJudicialWorkStationViewComponent {
     this.data.uid = id;
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.announcement.deactivateAnnouncement(this.data).subscribe(
+    this.workstation.deactivateStation(this.data).subscribe(
       res => {
         this.general.bfrcreating = true;
         this.general.creating = false;
@@ -142,4 +142,17 @@ export class NonJudicialWorkStationViewComponent {
       }
     );
   }
+
+
+
+
+  
+
+
+
+
+
+
+
+
 }

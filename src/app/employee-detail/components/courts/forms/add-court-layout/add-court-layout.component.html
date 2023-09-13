@@ -1,0 +1,138 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+            <form (ngSubmit)="addStation()" #workstationForm=ngForm>
+                <!-- {{workstationForm.value|json}} -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">Zone Name: </label>
+                        <div class="form-group mb-3">
+                            <select class="selection_region" [(ngModel)]="station_data.zone_id" name="zone_id" required>
+                                <option value="" disabled Selected>Choose Zone</option>
+                                <ng-container *ngFor="let zone of regionDetails">
+                                    <option  value="{{zone.id}}" (click)="getDistricts(zone.id)">{{zone.name}}</option>
+                                </ng-container>
+        
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">District Name: </label>
+                        <div class="form-group mb-3">
+                            <ng-select [(ngModel)]="station_data.district_id" name="district_id" [clearable]="true" [clearOnBackspace]="false" required>
+                                <ng-option value="" disabled Selected>Choose District</ng-option>
+                                <ng-container *ngFor="let district of districtDetails">
+                                    <ng-option  value="{{district.id}}">{{district.name}}</ng-option>
+                                </ng-container>
+        
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">Court Level List: </label>
+                        <div class="form-group mb-3">
+                            <select class="selection_region" [(ngModel)]="station_data.court_level" name="court_level" required>
+                                <option value="" disabled Selected>Choose Option</option>
+                                <ng-container *ngFor="let levels of court_levelList">
+                                    <option value="{{levels.id}}" >{{levels.name}}</option>
+                                </ng-container>
+            
+                            </select>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Station Name*:</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="station_name" placeholder="Enter Station Name"
+                            [(ngModel)]="station_data.station_name" station_name required>
+                        </div>
+                        
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Station Display Name*:</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="display_name" placeholder="Enter display name"
+                            [(ngModel)]="station_data.display_name" display_name required>
+                        </div>
+                        
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Station Abbreviation*:</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="abbreviation" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.abbreviation" abbreviation required>
+                        </div>
+                
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> PO Box Number*:</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="address_number" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.address_number" address_number required>
+                        </div>
+                
+                    </div>
+    
+    
+                   
+                    <div class="col-md-6">
+                        <label> Working Station Phone Number*:</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="phone_number" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.phone_number" phone_number required>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Email Adress*:</label>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email_address" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.email_address" email_address required>
+                        </div>
+                    </div>
+    
+    
+                    <div class="col-md-6">
+                        <label> Post Code*:</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="post_code" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.post_code" post_code required>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Road Name*:</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="road_name" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.road_name" road_name required>
+                        </div>
+                    </div>
+    
+                    
+    
+                </div>
+    
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="bfrcreating" type="submit"
+                            class="btn btn-primary btn-lg w-100 exit" [disabled]="!workstationForm.valid">
+                            Add Bank</button>
+                        <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                            type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            Bank Creating...
+                        </button>
+                    </div>
+                </div>
+            </form>
+    </div>
+
+   
+</div>

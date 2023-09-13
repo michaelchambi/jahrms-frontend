@@ -1,49 +1,128 @@
 <div class="responsive p-0">
     <div class="advertisement-form">
-        <form (ngSubmit)="registerAnnouncement()" #announcementForm=ngForm>
-            <!-- {{announcementForm.value|json}} -->
-            <div class="row">
-                <!-- <div class="col-md-6">
-                    <label>Description {{my_id}}</label>
-                    <div class="form-group">
-                        <Textarea type="text" class="form-control" 
-                        [(ngModel)]="announcement_details.descriptin" name="fileUrl" placeholder="description"
-                            required></Textarea>
-                    </div>
-                </div> -->
+            <form (ngSubmit)="addStation()" #workstationForm=ngForm>
+                <!-- {{workstationForm.value|json}} -->
 
-                <div class="col-md-6">
-                    <label>Description*:</label>
-                    <div class="form-group">
-                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
-                        [(ngModel)]="announcement_details.description"></textarea>
+                
+
+
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">Zone Name: </label>
+                        <div class="form-group mb-3">
+                            <select class="selection_region" [(ngModel)]="station_data.region_id" name="region_id" required>
+                                <option value="" disabled Selected>Choose Zone</option>
+                                <ng-container *ngFor="let region of regionDetails">
+                                    <option  value="{{region.id}}" (click)="getDistricts(region.id)">{{region.name}}</option>
+                                </ng-container>
+        
+                            </select>
+                        </div>
                     </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">District Name: </label>
+                        <div class="form-group mb-3">
+                            <select class="selection_region"  [(ngModel)]="station_data.district_id" name="district_id" required>
+                                <option value="" disabled Selected>Choose District</option>
+                                <ng-container *ngFor="let district of districtDetails">
+                                    <option  value="{{district.id}}" (click)="getShowDistrictId(district.id)">{{district.name}}</option>
+                                </ng-container>
+        
+                            </select>
+                        </div>
+                    </div>
+
+
+                  
+                        <div class="col-xl-6 col-lg-6 col-md-12 ">
+                            <label for="icon">Court Level List: </label>
+                            <div class="form-group mb-3">
+                                <select class="selection_region" [(ngModel)]="request_data.court_level_id" name="court_level_id" required>
+                                    <option value="" disabled Selected>Choose Option</option>
+                                    <ng-container *ngFor="let levels of court_levelList">
+                                        <option value="{{levels.id}}" (click)="getCourt(levels.id,my_district_id)">{{levels.name}}</option>
+                                    </ng-container>
+                
+                                </select>
+                            </div>
+                        </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 ">
+                        <label for="icon">Court Name: </label>
+                        <div class="form-group mb-3">
+                            <select class="selection_region"  [(ngModel)]="station_data.court_id" name="court_id" required>
+                                <option value="" disabled Selected>Choose Court</option>
+                                <ng-container *ngFor="let court of courtList">
+                                    <option  value="{{court.id}}" (click)="getCourtDetails(court.id)">{{court.name}}</option>
+                                </ng-container>
+        
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label> PO Box Number*:</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="address_number" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.address_number" address_number required>
+                        </div>
+                
+                    </div>
+    
+    
+                   
+                    <div class="col-md-6">
+                        <label> Working Station Phone Number*:</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="phone_number" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.phone_number" phone_number required>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Email Adress*:</label>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email_address" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.email_address" email_address required>
+                        </div>
+                    </div>
+    
+    
+                    <div class="col-md-6">
+                        <label> Post Code*:</label>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="post_code" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.post_code" post_code required>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label> Road Name*:</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="road_name" placeholder="Enter Abbreviation"
+                            [(ngModel)]="station_data.road_name" road_name required>
+                        </div>
+                    </div>
+    
                     
+    
                 </div>
-
-                <div class="col-md-6">
-                    <label> Upload Announcement Image</label>
-                    <input type="file" class="form-control" [(ngModel)]="announcement_details.fileUrl" name="filUrl"
-                        (change)="fileUpload($event)" required />
+    
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                        <button *ngIf="bfrcreating" type="submit"
+                            class="btn btn-primary btn-lg w-100 exit" [disabled]="!workstationForm.valid">
+                            Update Workstation</button>
+                        <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                            type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status"
+                                aria-hidden="true"></span>
+                            Updating Court...
+                        </button>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6">
-                    <button *ngIf="bfrcreating" type="submit"
-                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
-                        Add Announcement</button>
-                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
-                        type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status"
-                            aria-hidden="true"></span>
-                        Announcement Creating...
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
     </div>
 
    

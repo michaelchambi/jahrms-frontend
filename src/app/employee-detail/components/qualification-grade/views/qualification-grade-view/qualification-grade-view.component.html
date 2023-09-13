@@ -31,7 +31,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-qualification-grade'" href="/edit-court-level/{{qualification?.uid}}/{{subqualificationId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-qualification-grade'" href="/edit-court-level/{{qualification?.uid}}/{{subqualificationId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="qualification?.active && access =='deactivate-qualification-grade'" href="#deactivate_qualification" data-bs-toggle="modal" (click)="deactivate(qualification?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!qualification?.active && access =='activate-qualification-grade'" href="#activate_qualification" data-bs-toggle="modal" (click)="activate(qualification?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-qualification-grade'" href="/qualification/{{qualification?.id}}/{{qualification.id}}" class="action-icon" title="qualification ndogo"> <i class="mdi mdi-eye"></i></a>

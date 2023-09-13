@@ -31,7 +31,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-bank'" href="/edit-bank/{{bank?.uid}}/{{subbankId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='edit-bank'" href="/edit-bank/{{bank?.uid}}/{{subbankId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="bank?.status && access =='deactivate-bank'" href="#deactivate_bank" data-bs-toggle="modal" (click)="deactivate(bank?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!bank?.status && access =='activate-bank'" href="#activate_bank" data-bs-toggle="modal" (click)="activate(bank?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-bank'" href="/bank/{{bank?.id}}/{{bank.id}}" class="action-icon" title="bank ndogo"> <i class="mdi mdi-eye"></i></a>

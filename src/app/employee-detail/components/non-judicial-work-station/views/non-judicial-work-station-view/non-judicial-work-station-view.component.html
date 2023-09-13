@@ -1,52 +1,48 @@
 <div class="responsive mt-3 p-0">
 
     <ng-container *ngFor="let access of permission?.action_access">
-        <div class="row mb-3" *ngIf="access =='add-announcement'">
+        <div class="row mb-3" *ngIf="access =='add-workstation'">
+            <!-- <div class="col-md-8">
+                
+                <a routerLink="/add-workstation/{{submoduleId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Add Workstation</a>
+            </div> -->
             <div class="col-md-8">
-                <a routerLink="/add-announcement/{{subannouncementId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Add Non Judicial Work Station</a>
-            </div>
-
+                <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_workstation">Add workstation</button></h5>
+      </div>
             <div class="col-md-4"></div>
         </div>
     </ng-container>
-    <!-- content  -->
     <div class="table-responsive">
 
         <table class="table table-sm mb-0 table-responsive" id="dataTables">
             <thead>
                 <tr>
                     <th style="width: 5%">#</th>
-                    <th>Writer{{data.user_id}}</th>
-                    <th>Publisher</th>
-                    <th>Description</th>
-                    <th>Status</th>
+                    <th>Workstation Name</th>
+                    <th>Workstation Code</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let announcement of announcementList; let i = index">
+                <tr *ngFor="let workstation of workstationList; let i = index">
                     <td>{{1+i}}</td>
 
-                    <td>{{announcement.provider.name}}</td>
-                    <td>{{announcement?.approver?.name ?? 'Private'}}</td>
-                    <td>{{announcement.announcement_description}}</td>
-                    <td>
-                        <span *ngIf="announcement?.active" class="badge badge-primary-lighten">Active</span>
-                        <span *ngIf="!announcement?.active" class="badge badge-danger-lighten">Inactive</span>
-                    </td>
+                    <td>{{workstation.name}}</td>
+                    <td>{{workstation?.display_name ?? 'Private'}}</td>
+            
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='edit-announcement'" href="/edit-announcement/{{announcement?.uid}}/{{subannouncementId}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
-                            <a *ngIf="announcement?.active && access =='deactivate-announcement'" href="#deactivate_announcement" data-bs-toggle="modal" (click)="showAnnouncement(announcement?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
-                            <a *ngIf="!announcement?.active && access =='activate-announcement'" href="#activate_announcement" data-bs-toggle="modal" (click)="showAnnouncement(announcement?.id)" class="action-icon" title="Acivate"> <i class="mdi mdi-check-circle"></i></a>
-                            <a *ngIf="access =='view-subannouncement-list'" href="/announcement/{{announcement?.id}}/{{announcement.id}}" class="action-icon" title="announcement ndogo"> <i class="mdi mdi-eye"></i></a>
+                            <a *ngIf="access =='edit-workstation'" href="/edit-workstation/{{workstation?.uid}}/{{submoduleId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="workstation?.active && access =='deactivate-workstation'" href="#deactivate_workstation" data-bs-toggle="modal" (click)="showWorkstation(workstation?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="!workstation?.active && access =='activate-workstation'" href="#activate_workstation" data-bs-toggle="modal" (click)="showWorkstation(workstation?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-workstation'" href="/workstation/{{workstation?.id}}/{{workstation.id}}" class="action-icon" title="workstation ndogo"> <i class="mdi mdi-eye"></i></a>
                         </ng-container>
                     </td>
 
 
 
 
-                    <div id="activate_announcement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div id="activate_workstation" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                     
@@ -57,18 +53,17 @@
                     
                     
                                 <div class="modal-body text-center" style="margin-top: 5%">
-                                    <i class="text-black">You are about to allow the addition of this announcement{{anouncement_deta.id}}?</i><br>
-                                    <b class="text-black">{{announcement?.name}}</b>
+                                    <i class="text-black">You are about to allow the addition of this workstation?</i><br>
+                                    <b class="text-black">{{workstation?.name}}</b>
                                 </div>
                     
                     
                                 <div class="modal-footer d-flex justify-content-center mb-3">
-                                    <button *ngIf="general.bfrcreating" (click)="activate(anouncement_deta.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
+                                    <button *ngIf="general.bfrcreating" (click)="activate(workstation_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
                                     <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     It's Loading...
                                   </button>
-                    
                                 </div>
                             </div>
                         </div>
@@ -77,11 +72,10 @@
             </tbody>
         </table>
     </div>
-
 </div>
 
 
-<div id="activate_announcement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div id="activate_workstation" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -92,13 +86,13 @@
 
 
             <div class="modal-body text-center" style="margin-top: 5%">
-                <i class="text-black">You are about to allow the addition of this announcement{{announcement_data?.id}}?</i><br>
-                <b class="text-black">{{announcement_data?.name}}</b>
+                <i class="text-black">You are about to allow the addition of this workstation{{workstationDetails?.id}}?</i><br>
+                <b class="text-black">{{workstationDetails?.name}}</b>
             </div>
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" (click)="activate(announcement_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Activate</button>
+                <button *ngIf="general.bfrcreating" (click)="activate(workstation_data.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Activate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 It's Loading...
@@ -108,7 +102,8 @@
         </div>
     </div>
 </div>
-<div id="deactivate_announcement" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<div id="deactivate_workstation" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -119,13 +114,13 @@
 
 
             <div class="modal-body text-center" style="margin-top: 5%">
-                <i class="text-black">You are going to deactivate the announcement from being viewd to the public?</i><br>
-                <b class="text-black">{{announcement_data?.id}}</b>
+                <i class="text-black">You are going to deactivate the workstation from being viewd to the public?</i><br>
+                <b class="text-black">{{workstationDetails?.id}}</b>
             </div>
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(announcement_data?.id)"> Yes Deactivate</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(workstationDetails?.id)"> Yes Deactivate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Inazuia...

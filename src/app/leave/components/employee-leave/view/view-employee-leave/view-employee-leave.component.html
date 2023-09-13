@@ -40,7 +40,7 @@
                     </td>
                     <td class="table-action">
                         <ng-container *ngFor="let access of permission?.action_access">
-                            <a *ngIf="access =='show-employee-leave'" href="/edit-leave/{{leave?.uid}}/{{leave.id}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='show-employee-leave'" href="/edit-leave/{{leave?.uid}}/{{leave.id}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
                             <a *ngIf="leave?.active && access =='deactivate-employee-leave'" href="#deactivate_user" data-bs-toggle="modal" (click)="showUser(leave?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                             <a *ngIf="!leave?.active && access =='activate-employee-leave'" href="#activate_user" data-bs-toggle="modal" (click)="showUser(leave?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
                             <a *ngIf="access =='view-employee-detai-leave'" href="/show-leave/{{leave.user.uid}}/{{leave.id}}" class="action-icon" title="leave ndogo"> <i class="mdi mdi-eye"></i></a>

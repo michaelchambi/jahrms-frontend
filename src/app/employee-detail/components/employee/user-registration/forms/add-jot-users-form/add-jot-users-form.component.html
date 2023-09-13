@@ -46,7 +46,6 @@
                         <ng-container *ngFor="let district of districtDetails">
                             <ng-option  value="{{district.id}}">{{district.name}}</ng-option>
                         </ng-container>
-
                     </ng-select>
                 </div>
             </div>
@@ -121,7 +120,7 @@
                     <input type="button" *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill form-control w-50 float-end" [disabled]="!userForm.valid" value="Submit">
                 <button  *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 form-control float-end" type="button " disabled>
           <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
-          Inasajili...
+          Registering...
         </button>
                 </div>
                 

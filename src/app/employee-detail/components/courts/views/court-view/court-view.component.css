@@ -12,5 +12,9 @@
 .workstation-category{
    border:0.1em solid #04abf3;
     border-radius:2.5em;
-    height:3em;
+    /* height:3em; */
+    padding:1em;
+}
+.right-span{
+    margin-left:1em;
 }
