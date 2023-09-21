@@ -43,8 +43,12 @@ export class EmploymentInfoService {
   }
 
  
-  showEmploymentInfo(id:any) {
+  getEmploymentInfo(id:any) {
     return this.http.get<any>(`${this.url}/show/${id}` , { headers: this.general.userAuthorization() });
+  }
+
+  showEmploymentInfo(id:any) {
+    return this.http.post<any>(`${this.url}/show` ,id, { headers: this.general.userAuthorization() });
   }
 
   editEmploymentInfo(data: any) {

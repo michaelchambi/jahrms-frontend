@@ -73,6 +73,11 @@ import { JotUsersLayoutComponent } from './components/employee/user-registration
 import { AddJotUsersLayoutComponent } from './components/employee/user-registration/layout/add-jot-users-layout/add-jot-users-layout.component';
 import { EditJotUsersLayoutComponent } from './components/employee/user-registration/layout/edit-jot-users-layout/edit-jot-users-layout.component';
 import { JotUsersDetailsLayoutComponent } from './components/employee/user-registration/layout/jot-users-details-layout/jot-users-details-layout.component';
+import { AttachmentLayoutComponent } from './components/attachments/layout/attachment-layout/attachment-layout.component';
+import { EditAttachmentLayoutComponent } from './components/attachments/layout/edit-attachment-layout/edit-attachment-layout.component';
+import { MaritalStatusLayoutComponent } from './components/employee/marital-status/layout/marital-status-layout/marital-status-layout.component';
+import { ProfileLayoutComponent } from '../employee-detail/components/profile/layout/profile-layout/profile-layout.component';
+import { EditProfileLayoutComponent } from '../employee-detail/components/profile/layout/edit-profile-layout/edit-profile-layout.component';
 
 
 
@@ -280,8 +285,19 @@ const routes: Routes = [
   { path: 'add-leave-type/:id', component:  AddLeaveTypeLayoutComponent,title: 'Ongeza Likizo', canActivate: [AuthGuard]},
   { path: 'edit-leave-type/:id', component: EditLeaveTypeLayoutComponent,title: 'Hariri Likizo', canActivate: [AuthGuard]},
 
+//======================================================================================
+  //  ATTACHMENTS TYPES DETAILS ROUTES
+  //======================================================================================
+  { path: 'attachments/:id', component:AttachmentLayoutComponent ,title: 'VIAMBATA', canActivate: [AuthGuard]},
+ { path: 'edit-attachment/:id', component: EditAttachmentLayoutComponent,title: 'VIAMBATA', canActivate: [AuthGuard]},
 
+  //======================================================================================
+  //  MARITAL STATUS  ROUTES
+  //======================================================================================
+  { path: 'marital-status/:id', component:MaritalStatusLayoutComponent ,title: 'NDOA', canActivate: [AuthGuard]},
 
+  { path: 'my-profile',component: ProfileLayoutComponent,title: 'Ukurasa wangu',canActivate: [AuthGuard] },
+  { path: 'edit-my-profile',component: EditProfileLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]}
 
 
 

@@ -20,7 +20,7 @@ export class ApplicantsHomeViewComponent implements OnInit {
   count: any;
   complaint_count: any;
   data = {
-    userId: ''
+    user_id: ''
   }
   totalemployeeDetails: any;
   totalPercentage: any;

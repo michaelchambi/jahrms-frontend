@@ -1,0 +1,23 @@
+<ng-container *ngFor="let access of permission?.action_access">
+    <div class="row mb-3" *ngIf="access =='add-court-level'">
+
+        <ul class="list-group">
+            <li class="list-group-item"><i class="fas fa-male text-info mx-2"></i>David Copperfield</li>
+            <li class="list-group-item"><i class="fas fa-venus text-warning mx-2"></i>The Portrait of a Lady</li>
+            <li class="list-group-item"><i class="fas fa-gavel text-danger mx-2"></i> The Trial</li>
+          </ul>
+
+        <!-- <div class="col-md-5">
+            <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                    data-bs-toggle="modal" data-bs-target="#update_role">Assign Employee System
+                    Role</button></h5>
+        </div>
+        <div class="col-md-4">
+            <span>
+               <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                data-bs-toggle="modal" data-bs-target="#update_role">Change System
+                Role</button></h5> 
+            </span>
+        </div> -->
+    </div>
+</ng-container>

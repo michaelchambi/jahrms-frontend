@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
-import { SettingsService } from '../../../../../../services/settings/settings.service';
+
 import { UsersService } from '../../../../../../services/users/users.service';
 import { EducationLevelService } from '../../../../../../services/education-level/education-level.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
@@ -54,7 +54,7 @@ just_dependant:boolean=false;
 
   constructor(
     public general: GeneralService,
-    public settings: SettingsService,
+    
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
@@ -69,6 +69,8 @@ just_dependant:boolean=false;
   }
 
   userRegistration() {
+
+  
     this.created_by = sessionStorage.getItem('id')
     this.data.created_by = this.general.decryptionId(this.created_by);
 

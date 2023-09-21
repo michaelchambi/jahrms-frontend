@@ -38,7 +38,6 @@ import { AddJotInfoFormComponent } from './jot-setting/jot-info/forms/add-jot-in
 import { EditJotInfoFormComponent } from './jot-setting/jot-info/forms/edit-jot-info-form/edit-jot-info-form.component';
 import { AddJotInfoLayoutComponent } from './jot-setting/jot-info/layout/add-jot-info-layout/add-jot-info-layout.component';
 import { EditJotInfoLayoutComponent } from './jot-setting/jot-info/layout/edit-jot-info-layout/edit-jot-info-layout.component';
-import { JotInfoLayoutsComponent } from '../settings/jot-setting/jot-info/layout/jot-info-layouts/jot-info-layouts.component';
 
 import { PageNotFoundComponent } from './jot-setting/page-not-found/page-not-found/page-not-found.component';
 import { JotSubmodulesLayoutComponent } from './jot-setting/jot-submodules/layout/jot-submodules-layout/jot-submodules-layout.component';
@@ -100,7 +99,6 @@ import { SubmoduleItemViewComponent } from './jot-setting/jot-submodule-item/vie
     EditJotInfoFormComponent,
     AddJotInfoLayoutComponent,
     EditJotInfoLayoutComponent,
-    JotInfoLayoutsComponent,
     PageNotFoundComponent,
     JotSubmodulesLayoutComponent,
     JotSubmodulesViewComponent,
@@ -193,7 +191,6 @@ import { SubmoduleItemViewComponent } from './jot-setting/jot-submodule-item/vie
     EditJotInfoFormComponent,
     AddJotInfoLayoutComponent,
     EditJotInfoLayoutComponent,
-    JotInfoLayoutsComponent,
     PageNotFoundComponent,
   ]
 })

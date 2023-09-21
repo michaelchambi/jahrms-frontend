@@ -1,0 +1,166 @@
+<div class="row">
+    <ng-container *ngFor="let access of permission?.action_access">
+
+        <div class="progress-card" *ngIf="access =='add-employee-detail'">
+
+            <ng-container *ngFor="let itemlist of submoduleItemList">
+                <input type="button" value="{{itemlist.name}}"
+                    class="btn bg-light system-submodule"
+                    (click)="viewOption(itemlist.link)">
+            </ng-container>
+        </div>
+
+        <div class="employee-form" *ngIf="access =='add-employee-detail'">
+            <ng-container *ngIf="personal_info">
+                <div class="table-responsive p-0">
+                
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="card-body">
+                                <img src="{{API_URL}}{{concatenator}}{{details?.data.personal_folder}}/{{details?.data.employee_passport}}"
+                                    class="img-thumbnail" style="height: 160px;" alt="profile-image">
+                                
+                                <p class=" font-14">{{details?.data?.designation}}</p>
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <span class="card-body">
+                                <img src="{{API_URL}}{{concatenator}}{{details?.data.personal_folder}}/file.png"
+                                    class="img-thumbnail" style="height: 160px;" alt="profile-image">
+                           
+                                <p class=" font-14">{{details?.data?.designation}}</p>
+                            </span>
+                        </div>
+                        
+                        
+                    </div>
+
+                    <table class="table table-hover table-sm mb-0"
+                        id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Employee Full Name</b>:</td>
+                                <td><h4 class="mb-0 mt-2">{{details?.data?.name}}</h4></td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Employee Status</b>:</td>
+                                <td>
+                                    <span *ngIf="details?.data?.active"
+                                        class="badge badge-outline-success">Active
+                                        Employee</span>
+                                    <span *ngIf="!details?.data?.active"
+                                        class="badge badge-outline-danger">Innactive
+                                        Employee</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <td><b>Phone Number</b>:</td>
+                                <td>+255 {{details?.data?.phone_number}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Email</b>:</td>
+                                <td>{{details?.data?.email}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>National Identity Number (NIDA)</b></td>
+                                <td>{{details?.data?.national_id}}</td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Birth Date</b>:</td>
+                                <a class="view_certificate"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#birth_certificate"> <td>{{details?.data?.birth_date|date:'dd/MM/YYYY'}}</td></a>
+
+                                <td> <b>Age</b>:</td>
+                                <a class="view_certificate"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#birth_certificate"> <td>{{details?.age}}</td></a>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="employment_details">
+                <app-self-employment-details-view></app-self-employment-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="professional_details">
+                <app-professional-details-registration-view></app-professional-details-registration-view>
+            </ng-container>
+
+            <ng-container *ngIf="office_details">
+                <app-self-office-details-view></app-self-office-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="bank_details">
+                <app-self-bank-details-view></app-self-bank-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="next_kin_details">
+                <app-self-next-of-kin-details-view></app-self-next-of-kin-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="dependant_details">
+                <app-self-dependant-details-view></app-self-dependant-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="education_details">
+                <app-self-education-details-view></app-self-education-details-view>
+            </ng-container>
+            <ng-container *ngIf="personal_skills">
+                <app-self-skills-details-view></app-self-skills-details-view>
+            </ng-container>
+            <ng-container *ngIf="system_assignment">
+                <app-self-employment-asignment-view></app-self-employment-asignment-view>
+            </ng-container>
+            <ng-container *ngIf="marital_status">
+                <app-self-marital-status-view></app-self-marital-status-view>
+            </ng-container>
+
+
+        </div>
+
+    </ng-container>
+</div>
+
+
+
+<div id="birth_certificate" class="modal fade" data-bs-backdrop="static"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="dark-header-modalLabel">Displaying
+                    Birth Certificate of {{details?.name}}...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+            <div class="form-control">
+                <div class="card-body">
+                    <iframe
+                    src="{{API_URL}}{{concatenator}}{{details.personal_folder}}/{{details.birth_certificate}}"
+                    frameBorder="0"
+                    scrolling="auto"
+                    height="100%"
+                    width="100%"
+                ></iframe>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

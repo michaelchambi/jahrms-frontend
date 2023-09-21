@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
 import { PermissionsService } from '../../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StationService } from '../../../../../../services/station/station.service';
+import { WorkstationService } from '../../../../../../services/workstation/workstation.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { RegionService } from '../../../../../../services/region/region.service';
 import { DistrictsService } from '../../../../../../services/districts/districts.service';
 import { CourtLevelService } from '../../../../../../services/court-level/court-level.service';
 import { ZoneService } from '../../../../../../services/zone/zone.service';
+import { UsersService } from '../../../../../../services/users/users.service';
 import { CourtsService } from '../../../../../../services/courts/courts.service';
 @Component({
   selector: 'app-add-office-details-form',
@@ -39,6 +40,8 @@ export class AddOfficeDetailsFormComponent {
   trueCourt: boolean=false;
   nonTrueCourt: boolean=false;
   workstationList: any;
+  employee_id: any;
+  employeeDetails: any;
       getShowDistrictId(id:any){
         this.my_district_id=id;
       }
@@ -51,7 +54,7 @@ export class AddOfficeDetailsFormComponent {
       court_id:'',
       workstation_id:'',
       user_id:'',
-      employee_id:''
+      employee_id:'',
     }
       submoduleId: any;
       my_id: any;
@@ -66,38 +69,56 @@ export class AddOfficeDetailsFormComponent {
         private districts:DistrictsService,
         private region:RegionService,
         private router: Router,
-        private station:StationService,
+        private users:UsersService,
+        private station:WorkstationService,
         public court: CourtsService ,
         public court_level: CourtLevelService ,
         public zone: ZoneService,
       ) { }
     
       ngOnInit(): void {
-        this.submoduleId = this.activeRoute.snapshot.paramMap.get('id')
+        this.submoduleId = this.activeRoute.snapshot.paramMap.get('id2')
         this.id= sessionStorage.getItem("id");
         this.getRegions();
+        this.employee_id=this.activeRoute.snapshot.paramMap.get('id') 
         this.getcourt_level();
+        this.showEmployeeDetails(this.employee_id) 
         this.getStation();
       }
     
+      showEmployeeDetails(id: any) {
+        this.users.showUser(id).subscribe(
+          res => {
+            this.employeeDetails = res.data;
     
+          },
+          err => {
+            this.script.errorAlert(err.error.sw_message)
+            if (err.error.token == 0) {
+              this.general.encryptUrl(this.router.url);
+              this.router.navigate(['/restore-session']);
+            }
+          }
+        );
+      }
     
-      officeDetailsRegistration() {
+      workstationAssignment(id:any) {
         this.bfrcreating = false;
         this.creating = true;
+       
         let formData = new FormData();
+        this.station_data.employee_id=id
         this.my_id=this.general.decryptionId(this.id);
         this.station_data.user_id=this.my_id;
         formData.append('station_id', this.station_data.court_id);
-        formData.append('phone_number', this.station_data.station_assignment_date);
-        formData.append('station_category', 'JUDICIAL');
+        formData.append('assignment_date', this.station_data.station_assignment_date);
         formData.append('user_id', this.station_data.user_id);
         formData.append('employee_id', this.station_data.employee_id);
-        this.court.editCourtAsWorkStation(formData).subscribe(
+        this.station.editWorkstation(formData).subscribe(
           res => {
             this.appSuccess = true;
             this.successMessage = res.message;
-            this.router.navigate(['/judicial-work-station/' + this.submoduleId]);
+            this.router.navigate(['/user/'+this.employee_id +'/'+ this.submoduleId]);
             this.general.successMessage(res.sw_message, (e: any) => {
               if (e) {
                 window.location.reload();
@@ -120,44 +141,6 @@ export class AddOfficeDetailsFormComponent {
        }
     
 
-
-
-       nonCourtofficeDetailsRegistration() {
-        this.bfrcreating = false;
-        this.creating = true;
-        let formData = new FormData();
-        this.my_id=this.general.decryptionId(this.id);
-        this.station_data.user_id=this.my_id;
-        formData.append('station_id', this.station_data.workstation_id);
-        formData.append('phone_number', this.station_data.station_assignment_date);
-        formData.append('station_category', 'NON-JUDICIAL');
-        formData.append('user_id', this.station_data.user_id);
-        formData.append('employee_id', this.station_data.employee_id);
-        this.court.editCourtAsWorkStation(formData).subscribe(
-          res => {
-            this.appSuccess = true;
-            this.successMessage = res.message;
-            this.router.navigate(['/judicial-work-station/' + this.submoduleId]);
-            this.general.successMessage(res.sw_message, (e: any) => {
-              if (e) {
-                window.location.reload();
-              }
-    
-            });
-    
-          },
-    
-          err => {
-            this.appError = true;
-            this.bfrcreating = true;
-            this.creating = false;
-            this.messageError = err.error.message;
-            if (err.error.token == 0) {
-              localStorage.setItem('token', err.error.token);
-            }
-          }
-        );
-       }
     
        getDistricts(id:any) {
         this.general.bfrcreating = false;
@@ -184,7 +167,7 @@ export class AddOfficeDetailsFormComponent {
       getStation() {
         this.general.bfrcreating = false;
         this.general.creating = true;
-        this.station.getStations().subscribe(
+        this.station.getWorkstations().subscribe(
           res => {
             this.workstationList = res;
             this.general.creating = false;

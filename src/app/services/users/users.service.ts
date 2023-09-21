@@ -29,6 +29,11 @@ export class UsersService {
     return this.http.post<any>(`${this.url}/add-user`, data, { headers: this.general.userAuthorization() });
   }
 
+  addUserRoles(data: any) {
+    return this.http.post<any>(`${this.url}/add-user-roles`, data, { headers: this.general.userAuthorization() });
+  }
+
+
   userList(data: any) {
     return this.http.post<any>(`${this.url}/users-list`, data, { headers: this.general.userAuthorization() });
   }
@@ -52,6 +57,17 @@ export class UsersService {
   showUser(id:any) {
     return this.http.get<any>(`${this.url}/show/${id}` , { headers: this.general.userAuthorization() });
   }
+
+  showUserById(id:any) {
+    return this.http.get<any>(`${this.url}/showById/${id}` , { headers: this.general.userAuthorization() });
+  }
+
+
+  getUser(id:any) {
+    return this.http.post<any>(`${this.url}/showWithId` ,id, { headers: this.general.userAuthorization() });
+  }
+
+
 
   editUser(data: any) {
     return this.http.post<any>(`${this.url}/edit-user`, data, { headers: this.general.userAuthorization() });

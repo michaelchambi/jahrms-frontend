@@ -16,10 +16,6 @@ import { RegistrationLayoutComponent } from './components/registration/layout/re
 import { StructureModule } from '../structure/structure.module';
 import { ResetSessionLayoutComponent } from './components/reset-session/layout/reset-session-layout/reset-session-layout.component';
 import { ResetSessionFormComponent } from './components/reset-session/forms/reset-session-form/reset-session-form.component';
-import { ProfileLayoutComponent } from './components/profile/layout/profile-layout/profile-layout.component';
-import { ProfileViewComponent } from './components/profile/views/profile-view/profile-view.component';
-import { EditProfileLayoutComponent } from './components/profile/layout/edit-profile-layout/edit-profile-layout.component';
-import { EditProfileViewComponent } from './components/profile/views/edit-profile-view/edit-profile-view.component';
 
 
 @NgModule({
@@ -34,10 +30,7 @@ import { EditProfileViewComponent } from './components/profile/views/edit-profil
     RegistrationLayoutComponent,
     ResetSessionLayoutComponent,
     ResetSessionFormComponent,
-    ProfileLayoutComponent,
-    ProfileViewComponent,
-    EditProfileLayoutComponent,
-    EditProfileViewComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -59,10 +52,10 @@ import { EditProfileViewComponent } from './components/profile/views/edit-profil
     RegistrationLayoutComponent,
     ResetSessionLayoutComponent,
     ResetSessionFormComponent,
-    ProfileLayoutComponent,
-    ProfileViewComponent,
-    EditProfileLayoutComponent,
-    EditProfileViewComponent,
+    // ProfileLayoutComponent,
+    // ProfileViewComponent,
+    // EditProfileLayoutComponent,
+    // EditProfileViewComponent,
   ]
 })
 export class AuthModule { }

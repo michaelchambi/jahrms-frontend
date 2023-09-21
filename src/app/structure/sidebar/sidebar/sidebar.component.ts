@@ -12,7 +12,7 @@ import { ScriptConfigService } from '../../../services/script-config/script-conf
 })
 export class SidebarComponent implements OnInit {
 
-  userId: any;
+  user_id: any;
   constructor(
     public general: GeneralService,
     public permission: PermissionsService,

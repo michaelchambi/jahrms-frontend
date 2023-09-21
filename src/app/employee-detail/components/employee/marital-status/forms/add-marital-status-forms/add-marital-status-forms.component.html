@@ -1,0 +1,105 @@
+<div class="responsive p-0">
+    <form *ngIf="general.formart" (ngSubmit)="addMaritalStatus()"
+        #userForm="ngForm">
+        <!-- {{userForm.value|json}} -->
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="marriage_status">Marital status:</label>
+                <div class="form-group mb-3">
+                    <select [(ngModel)]="data.marriage_status"
+                        class="status-selection" name="marriage_status"
+                        placeholder="Male" required>
+                        <option value disabled Selected>Choose Status</option>
+                        <option value="SINGLE" (click)="statusSingle()">Single</option>
+                        <option value="MARRIED" (click)="statusMarried()">Married</option>
+                        <option value="DIVORCED" (click)="statusDivorced()">Divorced</option>
+                    </select>
+                </div>
+            </div>
+
+            <ng-container *ngIf="is_married">
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="first_name">Spouse Name</label>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" id="spouse_name"
+                            [(ngModel)]="data.spouse_name"
+                            name="spouse_name" placeholder="xxxxxxx" spouse_name
+                            required />
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="marriage_date">Marriage Date</label>
+                    <div class="form-group mb-3">
+                        <input type="date" class="form-control"
+                            id="marriage_date" [(ngModel)]="data.marriage_date"
+                            name="marriage_date" placeholder="xxxxxxx"
+                            marriage_date required />
+                    </div>
+                </div>
+
+                <!-- <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="majukumu">Supporting Document:</label>
+                    <div class="form-group mb-3">
+                        <ng-select [(ngModel)]="data.attachment_id" [multiple]="true" name="attachment_id"
+                            placeholder="Chagua System Roles" [clearable]="true" [clearOnBackspace]="false" required>
+                            <ng-option value="" disabled Selected>Choose Attachment</ng-option>
+                            <ng-container *ngFor="let attachment of attachmentDetails">
+                                <ng-option *ngIf="attachment.active" value="{{attachment.id}}">{{attachment.name}}</ng-option>
+                            </ng-container>
+    
+                        </ng-select>
+                    </div>
+                </div> -->
+
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label> Upload Marriage Proof</label>
+                    <input type="file" class="form-control"
+                        [(ngModel)]="data.proof_attachment"
+                        name="proof_attachment"
+                        (change)="filePassportImageUpload($event)" required />
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="is_divorced">
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label for="first_name">Spouse Name</label>
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" id="spouse_name"
+                            [(ngModel)]="data.spouse_name"
+                            name="spouse_name" placeholder="xxxxxxx" spouse_name
+                            required />
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-12 ">
+                    <label> Upload Death Proof</label>
+                    <input type="file" class="form-control"
+                        [(ngModel)]="data.proof_attachment"
+                        name="proof_attachment"
+                        (change)="filePassportImageUpload($event)" required />
+                </div>
+            </ng-container>
+            <div class="col-xl-4 col-lg-4 col-md-12 "></div>
+            <div class="col-xl-4 col-lg-4 col-md-12 "></div>
+            <div class="col-xl-4 col-lg-4 col-md-12 ">
+                <div>
+                    <input type="button" *ngIf="general.bfrcreating"
+                        type="submit"
+                        class="btn btn-outline-primary rounded-pill form-control w-50 float-end"
+                        [disabled]="!userForm.valid" value="Submit">
+                    <button *ngIf="general.creating"
+                        class="btn btn-outline-primary rounded-pill w-50 form-control float-end"
+                        type="button "
+                        disabled>
+                        <span class="spinner-border spinner-border-sm"
+                            role="status " aria-hidden="true "></span>
+                        Registering...
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+</div>

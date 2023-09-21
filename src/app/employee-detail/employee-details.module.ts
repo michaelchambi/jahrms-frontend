@@ -160,8 +160,6 @@ import { AddEmploymentDetailsFormComponent } from './components/employee/employm
 import { EditEmploymentDetailsFormComponent } from './components/employee/employment-details-registration/forms/edit-employment-details-form/edit-employment-details-form.component';
 import { AddOfficeDetailsFormComponent } from './components/employee/office-details-registration/forms/add-office-details-form/add-office-details-form.component';
 import { EditOfficeDetailsFormComponent } from './components/employee/office-details-registration/forms/edit-office-details-form/edit-office-details-form.component';
-import { EditBankDetailsFormComponent } from './components/employee/bank-details-registration/forms/edit-bank-details-form/edit-bank-details-form.component';
-import { AddBankDetailsFormComponent } from './components/employee/bank-details-registration/forms/add-bank-details-form/add-bank-details-form.component';
 import { AddNextKinsDetailsFormComponent } from './components/employee/next-of-kin-details-registration/forms/add-next-kins-details-form/add-next-kins-details-form.component';
 import { EditNextKinsDetailsFormComponent } from './components/employee/next-of-kin-details-registration/forms/edit-next-kins-details-form/edit-next-kins-details-form.component';
 import { EditDependantDetailsFormComponent } from './components/employee/dependant-details-registration/forms/edit-dependant-details-form/edit-dependant-details-form.component';
@@ -173,6 +171,57 @@ import { AddProfessionalDetailsFormComponent } from './components/employee/profe
 import { AddSkillsDetailsFormComponent } from './components/employee/skills-details-registration/forms/add-skills-details-form/add-skills-details-form.component';
 import { EditSkillsDetailsFormComponent } from './components/employee/skills-details-registration/forms/edit-skills-details-form/edit-skills-details-form.component';
 import { EmployeeDetailsRegistrationViewComponent } from './components/employee/employment-details-registration/views/employee-details-registration-view/employee-details-registration-view.component';
+
+import { AttachmentLayoutComponent } from './components/attachments/layout/attachment-layout/attachment-layout.component';
+import { EditAttachmentLayoutComponent } from './components/attachments/layout/edit-attachment-layout/edit-attachment-layout.component';
+import { AttachmentViewComponent } from './components/attachments/views/attachment-view/attachment-view.component';
+import { AddAttachmentFormsComponent } from './components/attachments/forms/add-attachment-forms/add-attachment-forms.component';
+import { EditAttachmentFormsComponent } from './components/attachments/forms/edit-attachment-forms/edit-attachment-forms.component';
+import { AddEmployeeAssignmentFormComponent } from './components/employee/employee-assignment/forms/add-employee-assignment-form/add-employee-assignment-form.component';
+import { EditEmployeeAssignmentFormComponent } from './components/employee/employee-assignment/forms/edit-employee-assignment-form/edit-employee-assignment-form.component';
+import { EmployeeAssignmentViewComponent } from './components/employee/employee-assignment/views/employee-assignment-view/employee-assignment-view.component';
+import { EmployeeAssignmentComponent } from './components/employee/employee-assignment/layout/employee-assignment/employee-assignment.component';
+import { MaritalStatusLayoutComponent } from './components/employee/marital-status/layout/marital-status-layout/marital-status-layout.component';
+import { AddMaritalStatusFormsComponent } from './components/employee/marital-status/forms/add-marital-status-forms/add-marital-status-forms.component';
+import { EditMaritalStatusFormsComponent } from './components/employee/marital-status/forms/edit-marital-status-forms/edit-marital-status-forms.component';
+import { MaritalStatusViewComponent } from './components/employee/marital-status/views/marital-status-view/marital-status-view.component';
+import { SkillDetailsViewComponent } from './components/employee/skills-details-registration/views/skill-details-view/skill-details-view.component';
+import { DependantDetailsViewComponent } from './components/employee/dependant-details-registration/views/dependant-details-view/dependant-details-view.component';
+import { NextOfKinDetailsViewComponent } from './components/employee/next-of-kin-details-registration/views/next-of-kin-details-view/next-of-kin-details-view.component';
+import { OfficeDetailsViewComponent } from './components/employee/office-details-registration/views/office-details-view/office-details-view.component';
+import { EducationDetailsRegistrationViewComponent } from './components/employee/education-details-registration/views/education-details-registration-view/education-details-registration-view.component';
+import { ProfessionalDetailsRegistrationViewComponent } from './components/employee/professional-details-registration/views/professional-details-registration-view/professional-details-registration-view.component';
+import { ProfileLayoutComponent } from '../employee-detail/components/profile/layout/profile-layout/profile-layout.component';
+import { ProfileViewComponent } from '../employee-detail/components/profile/views/profile-view/profile-view.component';
+import { EditProfileLayoutComponent } from '../employee-detail/components/profile/layout/edit-profile-layout/edit-profile-layout.component';
+import { EditProfileViewComponent } from '../employee-detail/components/profile/views/edit-profile-view/edit-profile-view.component';
+import { SelfBankDetailsViewComponent } from './components/self-employee/self-bank-details-registration/views/self-bank-details-view/self-bank-details-view.component';
+import { AddSelfBankDetailsFormComponent } from './components/self-employee/self-bank-details-registration/forms/add-self-bank-details-form/add-self-bank-details-form.component';
+import { EditSelfBankDetailsFormComponent } from './components/self-employee/self-bank-details-registration/forms/edit-self-bank-details-form/edit-self-bank-details-form.component';
+import { SelfDependantDetailsViewComponent } from './components/self-employee/self-dependant-details-registration/views/self-dependant-details-view/self-dependant-details-view.component';
+import { AddSelfDependantDetailsFormComponent } from './components/self-employee/self-dependant-details-registration/forms/add-self-dependant-details-form/add-self-dependant-details-form.component';
+
+import { SelfEmploymentAsignmentViewComponent } from './components/self-employee/self-assignment-details/views/self-employment-asignment-view/self-employment-asignment-view.component';
+import { SelfMaritalStatusViewComponent } from './components/self-employee/self-marital-status/views/self-marital-status-view/self-marital-status-view.component';
+import { AddSelfMaritalStatusFormComponent } from './components/self-employee/self-marital-status/forms/add-self-marital-status-form/add-self-marital-status-form.component';
+import { EditSelfMaritalStatusFormComponent } from './components/self-employee/self-marital-status/forms/edit-self-marital-status-form/edit-self-marital-status-form.component';
+import { EditSelfSkillsDetailsFormComponent } from './components/self-employee/self-skills-detail-registration/forms/edit-self-skills-details-form/edit-self-skills-details-form.component';
+import { AddSelfSkillsDetailsFormComponent } from './components/self-employee/self-skills-detail-registration/forms/add-self-skills-details-form/add-self-skills-details-form.component';
+import { SelfSkillsDetailsViewComponent } from './components/self-employee/self-skills-detail-registration/views/self-skills-details-view/self-skills-details-view.component';
+import { SelfOfficeDetailsViewComponent } from './components/self-employee/self-office-detail-registration/views/self-office-details-view/self-office-details-view.component';
+import { SelfProfessionalDetailsViewComponent } from './components/self-employee/self-professional-details-registration/views/self-professional-details-view/self-professional-details-view.component';
+import { AddSelfProfessionalDetailsFormComponent } from './components/self-employee/self-professional-details-registration/forms/add-self-professional-details-form/add-self-professional-details-form.component';
+import { EditSelfProfessionalDetailsFormComponent } from './components/self-employee/self-professional-details-registration/forms/edit-self-professional-details-form/edit-self-professional-details-form.component';
+import { EditSelfNextOfKinDetailsFormComponent } from './components/self-employee/self-next-of-kin-details-registration/forms/edit-self-next-of-kin-details-form/edit-self-next-of-kin-details-form.component';
+import { AddSelfNextOfKinDetailsFormComponent } from './components/self-employee/self-next-of-kin-details-registration/forms/add-self-next-of-kin-details-form/add-self-next-of-kin-details-form.component';
+import { SelfNextOfKinDetailsViewComponent } from './components/self-employee/self-next-of-kin-details-registration/views/self-next-of-kin-details-view/self-next-of-kin-details-view.component';
+import { SelfEmploymentDetailsViewComponent } from './components/self-employee/self-employment-details-registration/view/self-employment-details-view/self-employment-details-view.component';
+import { AddSelfEducationDetailsFormComponent } from './components/self-employee/self-education-details/forms/add-self-education-details-form/add-self-education-details-form.component';
+import { EditSelfEducationDetailsFormComponent } from './components/self-employee/self-education-details/forms/edit-self-education-details-form/edit-self-education-details-form.component';
+import { SelfEducationDetailsViewComponent } from './components/self-employee/self-education-details/views/self-education-details-view/self-education-details-view.component';
+
+
+
 
 
 @NgModule({
@@ -254,8 +303,6 @@ import { EmployeeDetailsRegistrationViewComponent } from './components/employee/
     BankDetailsLayoutComponent,
     AddBankDetailsLayoutComponent,
     EditBankDetailsLayoutComponent,
-    EditBankDetailsFormComponent,
-    AddBankDetailsFormComponent,
     BankDetailsViewComponent,
     DependantDetailsLayoutComponent,
     AddDependantDetailsLayoutComponent,
@@ -331,8 +378,6 @@ import { EmployeeDetailsRegistrationViewComponent } from './components/employee/
     EditEmploymentDetailsFormComponent,
     AddOfficeDetailsFormComponent,
     EditOfficeDetailsFormComponent,
-    EditBankDetailsFormComponent,
-    AddBankDetailsFormComponent,
     AddNextKinsDetailsFormComponent,
     EditNextKinsDetailsFormComponent,
     EditDependantDetailsFormComponent,
@@ -344,6 +389,54 @@ import { EmployeeDetailsRegistrationViewComponent } from './components/employee/
     AddSkillsDetailsFormComponent,
     EditSkillsDetailsFormComponent,
     EmployeeDetailsRegistrationViewComponent,
+    AttachmentLayoutComponent,
+    EditAttachmentLayoutComponent,
+    AttachmentViewComponent,
+    AddAttachmentFormsComponent,
+    EditAttachmentFormsComponent,
+    AddEmployeeAssignmentFormComponent,
+    EditEmployeeAssignmentFormComponent,
+    EmployeeAssignmentViewComponent,
+    EmployeeAssignmentComponent,
+    MaritalStatusLayoutComponent,
+    AddMaritalStatusFormsComponent,
+    EditMaritalStatusFormsComponent,
+    MaritalStatusViewComponent,
+    SkillDetailsViewComponent,
+    DependantDetailsViewComponent,
+    NextOfKinDetailsViewComponent,
+    OfficeDetailsViewComponent,
+    EducationDetailsRegistrationViewComponent,
+    ProfessionalDetailsRegistrationViewComponent,
+
+    ProfileLayoutComponent,
+    ProfileViewComponent,
+    EditProfileLayoutComponent,
+    EditProfileViewComponent,
+    SelfBankDetailsViewComponent,
+    AddSelfBankDetailsFormComponent,
+    EditSelfBankDetailsFormComponent,
+    SelfDependantDetailsViewComponent,
+    AddSelfDependantDetailsFormComponent,
+    SelfEmploymentAsignmentViewComponent,
+    SelfMaritalStatusViewComponent,
+    AddSelfMaritalStatusFormComponent,
+    EditSelfMaritalStatusFormComponent,
+    EditSelfSkillsDetailsFormComponent,
+    AddSelfSkillsDetailsFormComponent,
+    SelfSkillsDetailsViewComponent,
+    SelfOfficeDetailsViewComponent,
+    SelfProfessionalDetailsViewComponent,
+    AddSelfProfessionalDetailsFormComponent,
+    EditSelfProfessionalDetailsFormComponent,
+    EditSelfNextOfKinDetailsFormComponent,
+    AddSelfNextOfKinDetailsFormComponent,
+    SelfNextOfKinDetailsViewComponent,
+    SelfEmploymentDetailsViewComponent,
+    AddSelfEducationDetailsFormComponent,
+    EditSelfEducationDetailsFormComponent,
+    SelfEducationDetailsViewComponent,
+   
 
   ],
   imports: [

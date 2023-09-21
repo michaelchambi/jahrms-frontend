@@ -11,6 +11,19 @@
                     </div>
                     
                 </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 ">
+                    <label for="attachment_id">Attachment:</label>
+                    <div class="form-group mb-3">
+                        <ng-select [(ngModel)]="dependant_type_details.attachment_id" [multiple]="true" name="attachment_id"
+                            placeholder="choose Attachment Required" [clearable]="true" [clearOnBackspace]="false" required>
+                            <ng-option value="" disabled Selected>Choose Attachment</ng-option>
+                            <ng-container *ngFor="let attachments of attachmentList">
+                                <ng-option *ngIf="attachments.active" value="{{attachments.id}}">{{attachments.name}}</ng-option>
+                            </ng-container>
+    
+                        </ng-select>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <label>Description*:</label>
                     <div class="form-group">

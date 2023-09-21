@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
-import { SettingsService } from '../../../../../../services/settings/settings.service';
+
 import { UsersService } from '../../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,9 +19,11 @@ export class JotUsersDetailsViewComponent implements OnInit {
   next_kin_details:boolean=false;
   dependant_details:boolean=false;
   office_details:boolean=false;
+  system_assignment:boolean=false;
   professional_details:boolean=false;
   bank_details:boolean=false;
   personal_skills:boolean=false;
+  marital_status:boolean=false;
   user_data={id:''}
 
   public concatenator='hrm-storage-files/employee/'
@@ -29,7 +31,6 @@ export class JotUsersDetailsViewComponent implements OnInit {
 
   details: any;
   submoduleId: any;
-  organization: any;
   showModal: boolean = false;
   values = {
     uid: ''
@@ -41,7 +42,7 @@ export class JotUsersDetailsViewComponent implements OnInit {
   user_id: any;
   constructor(
     public general: GeneralService,
-    public settings: SettingsService,
+    
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
@@ -102,7 +103,6 @@ this.userDetails(this.user_id);
     this.users.showUser(id).subscribe(
       res => {
         this.details = res.data;
-        this.organization = res.organization
         this.script.successAlert(res.sw_message)
 
       },
@@ -216,7 +216,8 @@ this.userDetails(this.user_id);
       this.professional_details=false;
       this.bank_details=false;
       this.personal_skills=false;
-
+      this.system_assignment=false;
+      this.marital_status=false;
     }
     else if(item=='employment-details'){
       this.employment_details=true
@@ -228,6 +229,8 @@ this.userDetails(this.user_id);
       this.professional_details=false;
       this.bank_details=false;
       this.personal_skills=false;
+      this.system_assignment=false;
+      this.marital_status=false;
     }
 
     else if(item=='education-details'){
@@ -240,6 +243,8 @@ this.userDetails(this.user_id);
       this.professional_details=false;
       this.bank_details=false;
       this.personal_skills=false;
+      this.system_assignment=false;
+      this.marital_status=false;
     }
     else if(item=='next-of-kin'){
       this.next_kin_details=true;
@@ -251,6 +256,8 @@ this.userDetails(this.user_id);
       this.professional_details=false;
       this.bank_details=false;
       this.personal_skills=false;
+      this.system_assignment=false;
+      this.marital_status=false;
     }
 
     else if(item=='office-details'){
@@ -263,6 +270,8 @@ this.userDetails(this.user_id);
       this.professional_details=false;
       this.bank_details=false;
       this.personal_skills=false;
+      this.system_assignment=false;
+      this.marital_status=false;
     }
 
     else if(item=='dependant-details'){
@@ -275,6 +284,8 @@ this.userDetails(this.user_id);
       this.professional_details=false;
       this.bank_details=false;
       this.personal_skills=false;
+      this.system_assignment=false;
+      this.marital_status=false;
     }
 
      else if(item=='professional-skills'){
@@ -287,6 +298,8 @@ this.userDetails(this.user_id);
       this.office_details=false;
       this.bank_details=false;
       this.personal_skills=false;
+      this.system_assignment=false;
+      this.marital_status=false;
     }
   
 
@@ -301,7 +314,8 @@ this.userDetails(this.user_id);
       this.office_details=false;
       this.professional_details=false;
       this.personal_skills=false;
-     
+      this.system_assignment=false;
+      this.marital_status=false;
     }
     else if(item=='personal-skills'){
       this.personal_skills=true;
@@ -314,7 +328,38 @@ this.userDetails(this.user_id);
       this.dependant_details=false;
       this.office_details=false;
       this.professional_details=false;
+      this.system_assignment=false;
+      this.marital_status=false;
+    }
+    else if(item=='system-assignment'){
+      this.system_assignment=true;
+      this.personal_skills=false;
+      this.bank_details=false;
+      this.dependant_details=false;
+      this.next_kin_details=false;
+      this.education_details=false;
+      this.employment_details=false
+      this.personal_info=false
+      this.dependant_details=false;
+      this.office_details=false;
+      this.professional_details=false;
+      this.marital_status=false;
      
+    }
+    else if(item=='marital-status'){
+      this.marital_status=true;
+      this.system_assignment=false;
+      this.personal_skills=false;
+      this.bank_details=false;
+      this.dependant_details=false;
+      this.next_kin_details=false;
+      this.education_details=false;
+      this.employment_details=false
+      this.personal_info=false
+      this.dependant_details=false;
+      this.office_details=false;
+      this.professional_details=false;
+      
      
     }
   }

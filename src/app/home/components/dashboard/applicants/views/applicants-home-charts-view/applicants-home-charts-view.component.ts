@@ -30,7 +30,7 @@ export class ApplicantsHomeChartsViewComponent implements OnInit {
   appeal_count: any;
   complaint_count: any;
   data = {
-    userId: ''
+    user_id: ''
   }
 
 

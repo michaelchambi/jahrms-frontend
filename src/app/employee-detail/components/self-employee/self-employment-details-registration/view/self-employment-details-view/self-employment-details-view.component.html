@@ -1,0 +1,65 @@
+<ng-container *ngFor="let access of permission?.action_access">
+    <div class="employee-form" *ngIf="access =='add-employee-detail'">
+        <h2 class="mb-0 mt-2">Employment Details</h2>
+
+        <table class="table table-hover table-sm mb-0" id="dataTables">
+            <tbody class="text-black">
+
+                <tr>
+                    <td><b>Check Numbers</b>:</td>
+                    <td>
+                       <span class="badge badge-outline-success">{{employmentDetails?.check_number??'UN ADDED'}}
+                           </span>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>PF Number</b>:{{user_id}}</td>
+                    <td>{{employmentDetails?.pf_number}}</td>
+                </tr>
+                <tr>
+                    <td><b>Hired Date</b></td>
+                    <td>{{employmentDetails?.hired_date | date:'dd/MM/YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td><b>Confirmation Date</b></td>
+                    <td>{{employmentDetails?.confirmation_date| date:'dd/MM/YYYY'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+
+
+<!-- </div> -->
+
+<div id="birth_certificate" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="dark-header-modalLabel">Displaying Birth Certificate of
+                    {{details?.name}}...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+            <div class="form-control">
+                <div class="card-body">
+                   <pdf-viewer
+                        src="{{API_URL}}{{concatenator}}{{details?.personal_folder}}/{{details?.birth_certificate}}"
+                        [original-size]="true" [render-text]="true" [rotation]="0" [show-all]="true"
+                        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="true"
+                        [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+                        class="pdf-viewer"></pdf-viewer>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+

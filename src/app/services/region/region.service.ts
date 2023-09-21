@@ -22,7 +22,7 @@ export class RegionService {
   userProfiles:any;
   user_profile:any;
   user:any;
-  userId:any;
+  user_id:any;
 
   data:{roles:number[]}={
     roles:[]

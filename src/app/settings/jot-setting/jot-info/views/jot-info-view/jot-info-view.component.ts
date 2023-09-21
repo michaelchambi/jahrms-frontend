@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-import { SettingsService } from '../../../../../services/settings/settings.service';
+
 import { Router } from '@angular/router';
 import { PermissionsService } from '../../../../../services/permissions/permissions.service';
 @Component({
@@ -14,13 +14,12 @@ export class JotInfoViewComponent implements OnInit {
   showModal: boolean = false;
   constructor(
     public general: GeneralService,
-    public settings: SettingsService,
+    
     private route: Router,
     public permission: PermissionsService,
   ) { }
 
   ngOnInit(): void {
-    this.settings.getInfo();
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
   }
 

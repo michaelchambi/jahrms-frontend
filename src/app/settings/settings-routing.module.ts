@@ -14,7 +14,6 @@ import { JotModuleLayoutComponent } from './jot-setting/jot-modules/layout/jot-m
 import { AddJotModuleLayoutComponent } from './jot-setting/jot-modules/layout/add-jot-module-layout/add-jot-module-layout.component';
 import { EditJotModuleLayoutComponent } from './jot-setting/jot-modules/layout/edit-jot-module-layout/edit-jot-module-layout.component';
 // import { JotInfoLayoutsComponent } from './jot-setting/jot-info/layout/jot-info-layout/jot-info-layout.component';
-import { JotInfoLayoutsComponent } from '../settings/jot-setting/jot-info/layout/jot-info-layouts/jot-info-layouts.component';
 
 import { AddJotInfoLayoutComponent } from './jot-setting/jot-info/layout/add-jot-info-layout/add-jot-info-layout.component';
 import { EditJotInfoLayoutComponent } from './jot-setting/jot-info/layout/edit-jot-info-layout/edit-jot-info-layout.component';
@@ -160,20 +159,6 @@ const routes: Routes = [
   // ATTACHMENT TYPES
   //===================================================
 
-
-
-
-
-
-
-
-
-
-  {
-    path: 'jot-setting-info/:id',
-    component: JotInfoLayoutsComponent,
-    title: 'Maelezo Muhimu'
-  },
 
   {
     path: 'add-jot-setting-info/:id',

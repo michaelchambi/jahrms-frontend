@@ -6,8 +6,6 @@ import { ChangePasswordLayoutComponent } from './components/change-password/layo
 import { RegistrationLayoutComponent } from './components/registration/layout/registration-layout/registration-layout.component';
 import { AuthGuard } from '../services/auth/auth.guard';
 import { ResetSessionLayoutComponent } from './components/reset-session/layout/reset-session-layout/reset-session-layout.component';
-import { ProfileLayoutComponent } from './components/profile/layout/profile-layout/profile-layout.component';
-import { EditProfileLayoutComponent } from './components/profile/layout/edit-profile-layout/edit-profile-layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -48,16 +46,7 @@ const routes: Routes = [
     component: ResetSessionLayoutComponent,
     title: 'Rudisha Session'
   },
-  {
-    path: 'my-profile',
-    component: ProfileLayoutComponent,
-    title: 'Ukurasa wangu'
-  },
-  {
-    path: 'edit-my-profile',
-    component: EditProfileLayoutComponent,
-    title: 'Change Details'
-  }
+ 
 
 ];
 

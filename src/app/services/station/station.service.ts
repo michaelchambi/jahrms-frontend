@@ -21,7 +21,7 @@ export class StationService {
   userProfiles:any;
   user_profile:any;
   user:any;
-  userId:any;
+  user_id:any;
 
   data:{roles:number[]}={
     roles:[]
@@ -41,8 +41,13 @@ export class StationService {
     return this.http.get<any>(`${this.url}/count_received`, { headers: this.general.userAuthorization() });
   }
 
-  showStation(id:any) {
+  getStation(id:any) {
     return this.http.get<any>(`${this.url}/show/${id}` , { headers: this.general.userAuthorization() });
+  }
+
+
+  showStation(id:any) {
+    return this.http.post<any>(`${this.url}/show`,id , { headers: this.general.userAuthorization() });
   }
 
 

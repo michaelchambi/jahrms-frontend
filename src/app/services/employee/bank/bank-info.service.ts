@@ -21,7 +21,7 @@ export class BankInfoService {
   userProfiles:any;
   user_profile:any;
   user:any;
-  userId:any;
+  user_id:any;
 
   data:{roles:number[]}={
     roles:[]
@@ -37,9 +37,14 @@ export class BankInfoService {
   countBankInfos(){
     return this.http.get<any>(`${this.url}/count_received`, { headers: this.general.userAuthorization() });
   }
-  showBankInfo(id:any) {
+  getBankInfo(id:any) {
     return this.http.get<any>(`${this.url}/show/${id}`,{ headers: this.general.userAuthorization() });
   }
+
+  showBankInfo(id:any) {
+    return this.http.post<any>(`${this.url}/show`,id,{ headers: this.general.userAuthorization() });
+  }
+
 
   editBankInfo(id:any, data:any) {
     return this.http.post<any>(`${this.url}/editBankInfo/${id}`, data , { headers: this.general.userAuthorization() });

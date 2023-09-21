@@ -1,34 +1,33 @@
 <app-navbar></app-navbar>
-
-    <!-- Begin page -->
     <div class="wrapper">
-        <!-- ========== Left Sidebar Start ========== -->
-        <app-sidebar></app-sidebar>
-        <!-- Left Sidebar End -->
-
+        <ng-container *ngIf="maximize">
+            <app-sidebar></app-sidebar>
+        </ng-container>
+       
         <div class="content-page">
-            <div class="content">
+            <ng-container *ngIf="maximizer_show">
+                <a value="home" (click)="minimizeWindow()"> <i class="fa fa-bars"></i> </a>
+            </ng-container>
+            <ng-container *ngIf="maximizer_hide">
+                <a value="home" (click)="maximizeWindow()"><i class="fa fa-bars"></i></a>
+            </ng-container>
+        
+            <!-- <div class="content"> -->
                
                 <div class="row">
-                    <!-- chat area -->
                     <div class="card col-12">
-                        <div class="card-header fw-bold">
-                            <h5><a class="float-end" routerLink="/jot-setting-users/{{submoduleId}}"><i class="fal fa-arrow-circle-left fa-2x"></i></a>Employee Details</h5>
-                        </div>
                         <div class="card-body">
                             <ng-container *ngFor="let access of permission?.action_access">
-                                <!-- start content-->
                                 <div class="row">
                                     <div class="col-md-12" *ngIf="access =='view-employee-detail-list'">
                                         <app-jot-users-details-view></app-jot-users-details-view>
                                     </div>
                                 </div>
-                                <!-- end content-->
                             </ng-container>
 
                         </div>
                     </div>
-            </div>
+            <!-- </div> -->
             <app-footer></app-footer>
         </div>
     </div>

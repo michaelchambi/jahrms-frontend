@@ -1,142 +1,164 @@
-<!-- <div class="card-body" style="background-color:blue"> -->
-    <div class="row">
-        <ng-container *ngFor="let access of permission?.action_access">
 
-            <div class="progress-card" *ngIf="access =='add-employee-detail'">
-               
-                <ng-container *ngFor="let itemlist of submoduleItemList">
-                    <input type="button" value="{{itemlist.name}}" class="btn bg-light system-submodule"
-                        (click)="viewOption(itemlist.link)">
-                </ng-container>
-            </div>
 
-            <div class="employee-form" *ngIf="access =='add-employee-detail'">
-                <ng-container *ngIf="personal_info">
-                    <div class="table-responsive p-0">
-                         <span class="card-body">
-                    <img src="{{API_URL}}{{concatenator}}{{details.data.personal_folder}}/{{details.data.employee_passport}}" class="img-thumbnail"
-                        style="height: 160px;" alt="profile-image">
-                    <!-- <h4 class="mb-0 mt-2">{{details?.name}}</h4> -->
-                    <p class=" font-14">{{details?.data?.designation}}</p>
-                </span>
-                        <table class="table table-hover table-sm mb-0" id="dataTables">
-                            <tbody class="text-black">
-                                <tr>
-                                    <td><b>Employee Full Name</b>:</td>
-                                    <td><h4 class="mb-0 mt-2">{{details?.data?.name}}</h4></td>
-                                </tr>
+    <ng-container *ngFor="let access of permission?.action_access">
 
-                                <tr>
-                                    <td><b>Employee Status</b>:</td>
-                                    <td>
-                                        <span *ngIf="details?.data?.active" class="badge badge-outline-success">Active Employee</span>
-                                        <span *ngIf="!details?.data?.active" class="badge badge-outline-danger">Innactive Employee</span>
-                                    </td>
-                                </tr>
+        <div class="progress-card" *ngIf="access =='add-employee-detail'">
 
-                                <tr>
-                                    
-                                    <td><b>Phone Number</b>:</td>
-                                    <td>+255 {{details?.data?.phone_number}}</td>
-                                </tr>
+            <ng-container *ngFor="let itemlist of submoduleItemList">
+                <input type="button" value="{{itemlist.name}}" class="btn bg-light system-submodule"
+                    (click)="viewOption(itemlist.link)">
+            </ng-container>
+        </div>
 
-                                <tr>
-                                    <td><b>Email</b>:</td>
-                                    <td>{{details?.data?.email}}</td>
-                                </tr>
-                                <tr>
-                                    <td><b>National Identity Number (NIDA)</b></td>
-                                    <td>{{details?.data?.national_id}}</td>
-                                </tr>
-
-                                <tr>
-                                    <td><b>Birth Date</b>:</td>
-                                    <a class="view_certificate" data-bs-toggle="modal" data-bs-target="#birth_certificate"> <td>{{details?.data?.birth_date|date:'dd/MM/YYYY'}}</td></a>
-                               
-                                    <td> <b>Age</b>:</td>
-                                    <a class="view_certificate" data-bs-toggle="modal" data-bs-target="#birth_certificate"> <td>{{details?.age}}</td></a>
-                                   
-                                </tr>
-
-                                
-
-                            </tbody>
-                        </table>
-
+        <div class="employee-form" *ngIf="access =='add-employee-detail'">
+            <ng-container *ngIf="personal_info">
+              
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="card-body">
+                                <img src="{{API_URL}}{{concatenator}}{{details?.data.personal_folder}}/{{details?.data.employee_passport}}"
+                                    class="img-thumbnail" style="height: 160px;" alt="profile-image">
+                                <!-- <h4 class="mb-0 mt-2">{{details?.name}}</h4> -->
+                                <p class=" font-14">{{details?.data?.designation}}</p>
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <span class="card-body">
+                                <img src="{{API_URL}}{{concatenator}}{{details?.data.personal_folder}}/file.png"
+                                    class="img-thumbnail" style="height: 160px;" alt="profile-image">
+                                <!-- <h4 class="mb-0 mt-2">{{details?.name}}</h4> -->
+                                <p class=" font-14">{{details?.data?.designation}}</p>
+                            </span>
+                        </div>
+                        
+                        
                     </div>
+                    
+                    <table class="table table-hover table-sm mb-0" id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Employee Full Name</b>:</td>
+                                <td>
+                                    <h4 class="mb-0 mt-2">{{details?.data?.name}}</h4>
+                                </td>
+                            </tr>
 
-                </ng-container>
+                            <tr>
+                                <td><b>Employee Status</b>:</td>
+                                <td>
+                                    <span *ngIf="details?.data?.active" class="badge badge-outline-success">Active
+                                        Employee</span>
+                                    <span *ngIf="!details?.data?.active" class="badge badge-outline-danger">Innactive
+                                        Employee</span>
+                                </td>
+                            </tr>
 
-                <ng-container *ngIf="employment_details">
-                    <app-add-employment-details-form></app-add-employment-details-form>
-                </ng-container>
+                            <tr>
 
-                <ng-container *ngIf="professional_details">
-                    <app-add-professional-details-form></app-add-professional-details-form>
-                </ng-container>
+                                <td><b>Phone Number</b>:</td>
+                                <td>+255 {{details?.data?.phone_number}}</td>
+                            </tr>
 
-                <ng-container *ngIf="office_details">
-                    <app-add-office-details-form></app-add-office-details-form>
-                </ng-container>
+                            <tr>
+                                <td><b>Email</b>:</td>
+                                <td>{{details?.data?.email}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>National Identity Number (NIDA)</b></td>
+                                <td>{{details?.data?.national_id}}</td>
+                            </tr>
 
-                <ng-container *ngIf="bank_details">
-                    <app-add-bank-details-form></app-add-bank-details-form>
-                </ng-container>
+                            <tr>
+                                <td><b>Birth Date</b>:</td>
+                                <a class="view_certificate" data-bs-toggle="modal" data-bs-target="#birth_certificate">
+                                    <td>{{details?.data?.birth_date|date:'dd/MM/YYYY'}}</td>
+                                </a>
 
-                <ng-container *ngIf="next_kin_details">
-                    <app-add-next-kins-details-form></app-add-next-kins-details-form>
-                </ng-container>
+                                <td> <b>Age</b>:</td>
+                                <a class="view_certificate" data-bs-toggle="modal" data-bs-target="#birth_certificate">
+                                    <td>{{details?.age}}</td>
+                                </a>
 
-                <ng-container *ngIf="dependant_details">
-                    <app-add-dependant-details-form></app-add-dependant-details-form>
-                </ng-container>
+                            </tr>
 
-                <ng-container *ngIf="education_details">
-                    <app-add-education-details-form></app-add-education-details-form>
-                </ng-container>
-                <ng-container *ngIf="personal_skills">
-                    <app-add-skills-details-form></app-add-skills-details-form>
-                </ng-container>
 
-            </div>
 
-        </ng-container>
-    </div>
+                        </tbody>
+                    </table>
+
+               
+
+            </ng-container>
+
+            <ng-container *ngIf="employment_details">
+                <app-employee-details-registration-view></app-employee-details-registration-view>
+            </ng-container>
+
+            <ng-container *ngIf="professional_details">
+                <app-professional-details-registration-view></app-professional-details-registration-view>
+            </ng-container>
+
+            <ng-container *ngIf="office_details">
+                <app-office-details-view></app-office-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="bank_details">
+                <app-bank-details-view></app-bank-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="next_kin_details">
+                <app-next-of-kin-details-view></app-next-of-kin-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="dependant_details">
+                <app-dependant-details-view></app-dependant-details-view>
+            </ng-container>
+
+            <ng-container *ngIf="education_details">
+                <app-education-details-registration-view></app-education-details-registration-view>
+            </ng-container>
+            <ng-container *ngIf="personal_skills">
+                <app-skill-details-view></app-skill-details-view>
+            </ng-container>
+            <ng-container *ngIf="system_assignment">
+                <app-employee-assignment-view></app-employee-assignment-view>
+            </ng-container>
+            <ng-container *ngIf="marital_status">
+                <app-marital-status-view></app-marital-status-view>
+            </ng-container>
+
+        </div>
+
+    </ng-container>
+
 
 <!-- </div> -->
 
-<div id="birth_certificate" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div id="birth_certificate" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-  
+
             <div class="modal-header modal-colored-header bg-primary">
-                <h4 class="modal-title" id="dark-header-modalLabel">Displaying Birth Certificate of {{details?.name}}...!</h4>
+                <h4 class="modal-title" id="dark-header-modalLabel">Displaying Birth Certificate of
+                    {{details?.name}}...!</h4>
                 <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
             </div>
             <div class="form-control">
                 <div class="card-body">
                     <!-- <pdfviewer src="https://d1hpn7r5i0azx7.cloudfront.net/uploads/menu/18/ankush.pdf" on-page-load="pageLoaded(page,total)" id="viewer" class="ng-isolate-scope"><canvas></canvas></pdfviewer> -->
                     <pdf-viewer
-                    src="{{API_URL}}{{concatenator}}{{details.personal_folder}}/{{details.birth_certificate}}"
-                    [original-size]="true"
-                    [render-text]="true"
-                    [rotation]="0"
-                    [show-all]="true"
-                    [fit-to-page]="false"
-                    [zoom]="1"
-                    [zoom-scale]="'page-width'"
-                    [stick-to-page]="true"
-                    [external-link-target]="'blank'"
-                    [autoresize]="true"
-                    [show-borders]="false"
-                    class="pdf-viewer"
-                  ></pdf-viewer>
-                   
+                        src="{{API_URL}}{{concatenator}}{{details?.personal_folder}}/{{details?.birth_certificate}}"
+                        [original-size]="true" [render-text]="true" [rotation]="0" [show-all]="true"
+                        [fit-to-page]="false" [zoom]="1" [zoom-scale]="'page-width'" [stick-to-page]="true"
+                        [external-link-target]="'blank'" [autoresize]="true" [show-borders]="false"
+                        class="pdf-viewer"></pdf-viewer>
+
 
                 </div>
             </div>
-            
+
         </div>
     </div>
-  
-  </div>
+
+</div>

@@ -21,7 +21,7 @@ export class BankService {
   userProfiles:any;
   user_profile:any;
   user:any;
-  userId:any;
+  user_id:any;
 
   data:{roles:number[]}={
     roles:[]

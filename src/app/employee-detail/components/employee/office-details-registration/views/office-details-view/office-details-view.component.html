@@ -1,0 +1,75 @@
+<ng-container *ngFor="let access of permission?.action_access">
+    <div class="employee-form" *ngIf="access =='add-employee-detail'">
+        <h2 class="mb-0 mt-2">Current Employee Workstation</h2>
+
+        <table class="table table-hover table-sm mb-0">
+            <tbody class="text-black">
+
+                <tr>
+                    <td><b>Station Name</b>:</td>
+                    <td>
+                       <span class="badge badge-outline-success">{{officeDetails?.court?.name??'UN ADDED'}}
+                           </span>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>District</b>:</td>
+                    <td>{{officeDetails?.court?.district.name}}</td>
+                </tr>
+                <tr>
+                    <td><b>Assignment Date</b></td>
+                    <td>{{officeDetails?.assignment_date | date:'dd/MM/YYYY'}}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+<ng-container *ngFor="let access of permission?.action_access">
+    <div class="row mb-3" *ngIf="access =='approve-marital-status'">
+        <div class="col-md-7"></div>
+        <div class="col-md-3" >
+            <ng-container *ngIf="details?.data?.id!=current_user_id">
+               <ng-container *ngIf="officeDetails?.completion_status!='COMPLETED'">
+                <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                    data-bs-toggle="modal" data-bs-target="#add_office_details">Add Information
+                    </button></h5>
+               </ng-container>
+               <ng-container *ngIf="officeDetails?.completion_status=='COMPLETED'">
+                <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                    data-bs-toggle="modal" data-bs-target="#add_office_details">Update Information
+                    </button></h5>
+               </ng-container>
+           
+
+                    
+            </ng-container>
+        </div>
+        
+       
+    </div>
+</ng-container>
+
+
+
+
+<div id="add_office_details" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i
+                        class="fal fa-stroopwafel fa-lg fa-spin"></i>&nbsp;Heearing You...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+            <div class="form-control">
+                <app-add-office-details-form></app-add-office-details-form>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-import { SettingsService } from '../../../../../services/settings/settings.service';
+
 import { UsersService } from '../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +24,7 @@ export class EditInstitutionUserFormComponent implements OnInit {
 
   constructor(
     public general: GeneralService,
-    public settings: SettingsService,
+    
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,

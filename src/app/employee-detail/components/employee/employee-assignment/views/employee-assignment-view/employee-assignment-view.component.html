@@ -1,0 +1,52 @@
+<div class="row">
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="employee-form" *ngIf="access =='add-employee-detail'">
+            <ng-container>
+                <!-- <div class="table-responsive p-0"> -->
+                <ng-container *ngFor="let access of permission?.action_access">
+                    <div class="row mb-3" *ngIf="access =='add-court-level'">
+                        <div class="col-md-5">
+                            <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                                    data-bs-toggle="modal" data-bs-target="#update_role">Assign Employee System
+                                    Role</button></h5>
+                        </div>
+                        <div class="col-md-4">
+                            <span>
+                               <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                                data-bs-toggle="modal" data-bs-target="#update_role">Change System
+                                Role</button></h5> 
+                            </span>
+                        </div>
+                    </div>
+                </ng-container>
+                <hr>
+                <div class="row">
+                    <div class="col-md-5"><b class="text-black">Employee System Role(S)</b>:</div>
+                    <div class="col-md-3">
+                        <span class="badge badge-outline-success">{{details?.data?.role_users[0]?.role?.name??'UN ASSIGNED'}}</span>
+                    </div>
+                    
+                </div>
+                <hr>
+            </ng-container>
+        </div>
+    </ng-container>
+    <div id="update_role" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="dark-header-modalLabel"><i
+                            class="fal fa-stroopwafel fa-lg fa-spin"></i>&nbsp;Heearing You...!</h4>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+                <div class="form-control">
+                    <app-add-employee-assignment-form></app-add-employee-assignment-form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

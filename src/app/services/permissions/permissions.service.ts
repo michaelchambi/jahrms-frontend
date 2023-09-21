@@ -27,7 +27,7 @@ export class PermissionsService {
   role_list: any;
   data = {
     uid: '',
-    userId: '',
+    user_id: '',
     role_id: ''
   }
 
@@ -124,6 +124,10 @@ export class PermissionsService {
 
   showSubModuleItemList(data: any) {
     return this.http.post<any>(`${this.url_submodule_items}/sub-module-item/showSubmoduleItems`, data, { headers: this.general.userAuthorization() });
+  }
+
+  showSubModuleItemListBySelectionOption(data: any) {
+    return this.http.post<any>(`${this.url_submodule_items}/sub-module-item/showSubmoduleItemsBySelect`, data, { headers: this.general.userAuthorization() });
   }
 
 
@@ -255,7 +259,7 @@ export class PermissionsService {
   }
 
   module_permissions(id: any) {
-    this.data.userId = id;
+    this.data.user_id = id;
     this.modulePermission(this.data).subscribe(
       res => {
         this.module_access = res.data;
@@ -273,7 +277,7 @@ export class PermissionsService {
 
 
   submodule_permissions(id: any) {
-    this.data.userId = id;
+    this.data.user_id = id;
     this.submodulePermission(this.data).subscribe(
       res => {
         this.submodule_access = res.data;
@@ -289,7 +293,7 @@ export class PermissionsService {
 
 
   action_permissions(id: any) {
-    this.data.userId = id;
+    this.data.user_id = id;
     this.actionPermission(this.data).subscribe(
       res => {
         this.action_access = res.data;

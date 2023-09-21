@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+
+<div class="wrapper">
+    <ng-container *ngIf="maximize">
+        <app-sidebar></app-sidebar>
+    </ng-container>
+   
+    <div class="content-page">
+        <ng-container *ngIf="maximizer_show">
+            <a value="home" (click)="minimizeWindow()"> <i class="fa fa-bars"></i> </a>
+        </ng-container>
+        <ng-container *ngIf="maximizer_hide">
+            <a value="home" (click)="maximizeWindow()"><i class="fa fa-bars"></i></a>
+        </ng-container>
+       
+        <div class="content">
+            <div class="row">
+                <div class="card col-12">
+                
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <app-profile-view></app-profile-view>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

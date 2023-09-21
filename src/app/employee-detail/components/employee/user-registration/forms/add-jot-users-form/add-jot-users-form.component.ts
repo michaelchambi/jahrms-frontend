@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
-import { SettingsService } from '../../../../../../services/settings/settings.service';
+
 import { UsersService } from '../../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { RegionService } from '../../../../../../services/region/region.service';
+import {DesignationsService } from '../../../../../../services/designations/designations.service'
 import { DistrictsService } from '../../../../../../services/districts/districts.service';
 import { PermissionsService } from '../../../../../../services/permissions/permissions.service';
 @Component({
@@ -33,22 +34,27 @@ export class AddJotUsersFormComponent implements OnInit {
     email: '',
     phone_number: '',
     created_by: '',
+    roles:[],
+    designation_id:'',
     birth_certificate:'',
     employee_passport:''
   }
+  role_user_data={user_id:'',roles:[],designation_id:'',}
   regionDetails: any;
   districtDetails: any;
+  designationDetails: any;
 
  
 
   constructor(
     public general: GeneralService,
-    public settings: SettingsService,
+    
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
     private districts:DistrictsService,
     private region:RegionService,
+    private designation:DesignationsService,
     public permission: PermissionsService,
     private activeRoute: ActivatedRoute
   ) { }
@@ -56,10 +62,31 @@ export class AddJotUsersFormComponent implements OnInit {
   ngOnInit(): void {
     this.permission.getRole();
     this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
-  
+    this.getdesignation();
     this. getRegions();
   }
 
+  getdesignation() {
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    this.designation.getDesignations().subscribe(
+      res => {
+        this.designationDetails = res;
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+      },
+      err => {
+        
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+        this.script.errorAlert(err.error.sw_message);
+        if (err.error.token == 0) {
+          this.general.encryptUrl(this.route.url);
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
 
   fileBirthCertificateUpload(e: any) {
     this.selectedBirthCertificateFile = e.target.files[0];
@@ -94,7 +121,7 @@ export class AddJotUsersFormComponent implements OnInit {
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.route.navigate(['/user/' + this.submoduleId ]);
-        // this.script.successAlert(res.sw_message);
+        this.script.successAlert(res.sw_message);
         this.general.successMessage(res.sw_message, (e: any) => {
           if (e) {
             window.location.reload();
@@ -116,6 +143,45 @@ export class AddJotUsersFormComponent implements OnInit {
     );
 
   }
+
+
+
+  // rolesRegistration() {
+  //   this.created_by = sessionStorage.getItem('id')
+  //   this.role_user_data.designation_id=this.data.designation_id;
+  //   this.role_user_data.roles.
+  //   this.general.bfrcreating = false;
+  //   this.general.creating = true;
+  //   this.users.addUser(this.data).subscribe(
+  //     res => {
+  //       this.uid = res.data;
+  //       this.general.creating = false;
+  //       this.general.bfrcreating = true;
+  //       this.route.navigate(['/user/' + this.submoduleId ]);
+  //       // this.script.successAlert(res.sw_message);
+  //       this.general.successMessage(res.sw_message, (e: any) => {
+  //         if (e) {
+  //           window.location.reload();
+  //         }
+
+  //       });
+
+  //     },
+  //     err => {
+  //       this.general.creating = false;
+  //       this.general.bfrcreating = true;
+  //       this.script.errorAlert(err.error.sw_message);
+        
+  //       if (err.error.token == 0) {
+  //         this.general.encryptUrl(this.route.url);
+  //         this.route.navigate(['/restore-session']);
+  //       }
+  //     }
+  //   );
+
+  // }
+
+
 
   getDistricts(id:any) {
     this.general.bfrcreating = false;

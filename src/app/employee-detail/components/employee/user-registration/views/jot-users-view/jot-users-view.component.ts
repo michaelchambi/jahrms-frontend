@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
-import { SettingsService } from '../../../../../../services/settings/settings.service';
+
 import { UsersService } from '../../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
@@ -28,11 +28,11 @@ export class JotUsersViewComponent implements OnInit {
   response: boolean = false;
   user_id: any;
   submodule_access: any;
-  this_data={userId:''} 
+  this_data={user_id:''} 
   session_id: any;
   constructor(
     public general: GeneralService,
-    public settings: SettingsService,
+    
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
@@ -42,7 +42,7 @@ export class JotUsersViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.settings.organizationList();
+   
     this.getUsers()
     this.permission.module_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.permission.submodule_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
