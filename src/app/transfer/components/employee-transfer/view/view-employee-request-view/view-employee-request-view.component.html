@@ -1,0 +1,54 @@
+
+    <!-- content  --> 
+    <div class="table-responsive">
+
+
+        <h4>Transfer Employee</h4>
+
+
+        <table class="table table-sm mb-0 " id="dataTables">
+
+            <thead>
+
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Employee Name</th>
+                    <th>Gender</th>
+                    <th>Check Number</th>
+                    <th>Working Station</th>
+                    <th>Phone Nimber</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of all_users_for_transfer; let i = index">
+                    <td>{{1+i}}</td>
+
+                    <td>{{user.name}}</td>
+                    <td>{{user.sex}}</td>
+                    <td>{{user?.check_number?? 'Not Provided'}}</td>
+                    <td>{{user?.working_station?? 'Not Provided'}}</td>
+                    <td>{{user?.phone_number?? 'Not Provided'}}</td>
+                    <td>
+                        <span *ngIf="user?.active =='1'" class="badge badge-primary">active</span>
+                        <span *ngIf="user?.active =='0'" class="badge badge-danger">deactive</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='view-employee-detai-transfer'"
+                                href="/add-employee-transfer/{{user.uid}}" class="action-icon"
+                                title="transfer ndogo"> <i class="mdi mdi-airplane"></i></a>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    <!-- organization initiete end -->
+</div>
+<!-- end content  -->
+
+
+
+

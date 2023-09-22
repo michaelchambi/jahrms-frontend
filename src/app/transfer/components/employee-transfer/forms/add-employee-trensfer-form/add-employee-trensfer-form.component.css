@@ -1,0 +1,35 @@
+.rows{
+    width:100%;
+}
+.profile-picture{
+    width:25%;
+    float:left;
+    margin:0.1;
+}
+.profile-form{
+    width:73%;float:right;
+
+}
+
+.choose-to-open-selectio{
+    width: 100%;
+    background:white;
+    padding: 0.5em;
+    /* margin-left: 2em; */
+    /* margin-bottom: 1em; */
+    /* margin-top: 1em; */
+    border-radius: 0.4em;
+}
+.formview{
+    border: 0.04em solid black;
+    padding: 1.4em;
+    width: 90%;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    border-radius: 0.4em;
+    box-shadow: 1em;
+}
+.button-position{
+    padding: 1em;
+}

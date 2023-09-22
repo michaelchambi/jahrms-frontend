@@ -1,0 +1,503 @@
+
+<div class="responsive mt-3 p-0">
+
+    <div class="row">
+        <div class="col-md-3" (click)="approvedJobList()">
+            <div class="card text-center-dashboard">
+                <div class="card-body">
+                    <h5 class="card-title">Directorate Job List</h5>
+                    <h5 class="card-title">{{dashboard_data?.directorate_job_list}}</h5>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-3" (click)="OutPostJobList()">
+            <div class="card text-center-dashboard">
+                <div class="card-body">
+                    <h5 class="card-title">Submitted Out Post</h5>
+                    <h5 class="card-title">{{dashboard_data?.submitted_out_post}}</h5>
+                </div>
+            </div>
+        </div> 
+       
+    </div>
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-out-post'">
+            <div class="col-md-8">
+                <a href="#cadre_job_list" data-bs-toggle="modal" class="btn btn-outline-dark rounded-pill"><i
+                        class="fal fa-plus fa-lg"></i> Add Job List</a>
+
+            </div>
+        </div>
+    </ng-container>
+
+
+
+
+
+    <!-- addd cadre requirement -->
+    <div id="cadre_job_list" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header modal-colored-header bg-dark">
+                    <h4 class="modal-title" id="dark-header-modalLabel"><i
+                            class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Adding Job
+                        List...!</h4>
+                    <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                </div>
+
+
+                <form *ngIf="general.formart" #userForm="ngForm">
+
+                    <div class="row" style="padding: 2em;">
+                        <div class="col-md-6">
+                            <label for=“icon”>Choose Carder to add job list: </label>
+                            <div class="form-group mb-3">
+                                <select class="choose-to-open-selectio" [(ngModel)]="cadre_Data.cadre_id"
+                                    name="cadre_id" required>
+                                    <option value='' disabled Selected>Choose Cadre</option>
+                                    <ng-container *ngFor="let cadre of cardeList">
+                                        <option value="{{cadre.id}}">
+                                            {{cadre?.name}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for=“icon”>Court Level Name: </label>
+                            <div class="form-group mb-3">
+                                <select class="choose-to-open-selectio" [(ngModel)]="cadre_Data.court_level_id"
+                                    name="court_level_id" required>
+                                    <option value='' disabled Selected>Choose Region</option>
+                                    <ng-container *ngFor="let courtLevels of court_level_list">
+                                        <option value="{{courtLevels.id}}" (click)="getCourts(courtLevels.id)">
+                                            {{courtLevels?.name}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for=“icon”>Court Name: </label>
+                            <div class="form-group mb-3">
+                                <ng-select [(ngModel)]=cadre_Data.court_id name=court_id [clearable]="true"
+                                    [clearOnBackspace]="false" required>
+                                    <ng-option value='' disabled Selected>Choose
+                                        District</ng-option>
+                                    <ng-container *ngFor="let court of court_list">
+                                        <ng-option value="{{court.id}}">{{court.name}}</ng-option>
+                                    </ng-container>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="minimum_number">minimum_number</label>
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" id="minimum_number"
+                                    [(ngModel)]="cadre_Data.minimum_number" name="minimum_number" placeholder="xxxxxxx"
+                                    minimum_number required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="maximum_number">maximum number</label>
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" id="maximum_number"
+                                    [(ngModel)]="cadre_Data.maximum_number" name="maximum_number" placeholder="xxxxxxx"
+                                    maximum_numbaer required />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <br>
+                    <div class="modal-footer d-flex justify-content-center mb-3">
+                        <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill"
+                            data-bs-dismiss="modal" (click)="addJobList()"> Add Job List</button>
+                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button"
+                            disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Inazuia...
+                        </button>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- end add cadre requirement -->
+
+
+
+    <!-- outpos job list -->
+    <div class="col-md-12" *ngIf="approved">
+        <div class="table-responsive">
+
+            <table class="table table-sm mb-0 " id="dataTables">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th>Working station</th>
+                        <th>Cadre Name</th>
+
+                        <th>Current</th>
+                        <th>Minimum</th>
+                        <th>Maximum</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of all_job_list_approved; let i = index">
+                        <td>{{1+i}}</td>
+
+                        <td>{{user?.court?.display_name}}</td>
+                        <td>{{user?.cadre?.name}}</td>
+                        <td>{{user?.current_Number?? 'Updatete Staffing'}}</td>
+                        <td>{{user?.minimum_number?? 'Set Prediction '}}</td>
+                        <td>{{user?.maximum_number?? 'Set Prediction'}}</td>
+                        <td>
+                            <span *ngIf="user?.active" class="badge badge-primary-lighten">Active</span>
+                            <span *ngIf="!user?.active" class="badge badge-danger-lighten">Inactive</span>
+                        </td>
+                        <td class="table-action">
+
+                            <ng-container *ngFor="let access of permission?.action_access">
+                                <a *ngIf="access =='edit-employee-detail'" href="/edit-main-post/{{user?.uid}}"
+                                    class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                                <ng-container *ngIf="user?.status=='directorate'">
+                                    <a *ngIf="!user?.active && access =='activate-employee-detail'"
+                                        href="#activate_user" data-bs-toggle="modal" (click)="showJobLists(user?.uid)"
+                                        class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i>
+                                    </a>
+                                </ng-container>
+
+                            </ng-container>
+
+                        </td>
+
+
+                        <div id="activate_user" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-colored-header bg-dark">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to approve the job list for cadre<br>
+                                            {{job_list_details?.cadre?.name}}?</i><br>
+                                        <b class="text-black">For court{{job_list_details?.court?.display_name}}?</b>
+                                    </div>
+
+
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating"
+                                            (click)="commentJobListImmedietSuppervisor(job_list_details.uid)"
+                                            data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill">
+                                            Ndio Ruhusu</button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill"
+                                            type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            It's Loading...
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="deactivate_user" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-colored-header bg-dark">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to dis-approve the job list for cadre<br>
+                                            {{job_list_details?.cadre?.name}}?</i><br>
+                                        <b class="text-black">For court{{job_list_details?.court?.display_name}}?</b>
+                                    </div>
+
+
+
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill"
+                                            data-bs-dismiss="modal" (click)="deactivate(user_id)"> Ndio Zuia</button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill"
+                                            type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            Inazuia...
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- outpos job list -->
+    <!-- all_job_list_out_post -->
+    <div class="col-md-12" *ngIf="out_post">
+        <div class="table-responsive">
+
+            <table class="table table-sm mb-0 " id="dataTables">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th>Working station</th>
+                        <th>Cadre Name</th>
+
+                        <th>Current</th>
+                        <th>Minimum</th>
+                        <th>Maximum</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of all_job_list_out_post; let i = index">
+                        <td>{{1+i}}</td>
+
+                        <td>{{user.court.display_name}}</td>
+                        <td>{{user.cadre.name}}</td>
+                        <td>{{user.current_Number?? 'Updatete Staffing'}}</td>
+                        <td>{{user.minimum_number?? 'Set Prediction '}}</td>
+                        <td>{{user.maximum_number?? 'Set Prediction'}}</td>
+                        <td>
+                            <span *ngIf="user?.active" class="badge badge-primary-lighten">Active</span>
+                            <span *ngIf="!user?.active" class="badge badge-danger-lighten">Inactive</span>
+                        </td>
+                        <td class="table-action">
+
+                            <ng-container *ngFor="let access of permission?.action_access">
+
+                                <ng-container *ngIf="user.status=='directorate'">
+                                    <a *ngIf="!user?.active && access =='activate-employee-detail'" href="#return"
+                                        data-bs-toggle="modal" (click)="showJobLists(user?.uid)" class="action-icon"
+                                        title="Return"> <i class="mdi mdi-close-circle"></i>
+                                    </a>
+
+                                    <a *ngIf="!user?.active && access =='activate-employee-detail'" href="#approve"
+                                        data-bs-toggle="modal" (click)="showJobLists(user?.uid)" class="action-icon"
+                                        title="Approve"> <i class="mdi mdi-check-circle"></i>
+                                    </a>
+                                </ng-container>
+
+                            </ng-container>
+
+                        </td>
+
+
+                        <div id="activate_user" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-colored-header bg-dark">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to approve the job list for cadre<br>
+                                            {{job_list_details?.cadre?.name}}?</i><br>
+                                        <b class="text-black">For court{{job_list_details?.court?.display_name}}?</b>
+                                    </div>
+
+
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating"
+                                            (click)="approveDirectorateJobList(job_list_details.uid)"
+                                            data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill">
+                                            Approve</button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill"
+                                            type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            It's Loading...
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -----------------------deactivate-------------------- -->
+                        <div id="deactivate_user" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-colored-header bg-dark">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to dis-approve the job list for cadre<br>
+                                            {{job_list_details?.cadre?.name}}?</i><br>
+                                        <b class="text-black">For court{{job_list_details?.court?.display_name}}?</b>
+                                    </div>
+
+
+
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill"
+                                            data-bs-dismiss="modal" (click)="deactivate(user_id)"> Ndio Zuia</button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill"
+                                            type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            Inazuia...
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -----------------------deactivate-------------------- -->
+                        <!-- ----------------return model----------------- -->
+                        <div id="return" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-colored-header badge-danger">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to return the job list for cadre<br>
+                                            {{job_list_details?.cadre?.name}}?</i><br>
+                                        <b class="text-black">For court{{job_list_details?.court?.display_name}}?</b>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
+                                                <textarea type="date" class="form-control" rows="5" id="directorate_return_comment"
+                                                    [(ngModel)]="my_data.directorate_return_comment"
+                                                    name="directorate_return_comment"
+                                                    id="directorate_return_comment"
+                                                    placeholder="Please write your comment here" completion_date
+                                                    required></textarea>
+                                            <div class="col-md-1"></div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating"
+                                            (click)="rejectDirectorateJobList(job_list_details.uid)"
+                                            data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill">
+                                            Return Job List</button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill"
+                                            type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            It's Loading...
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ------------------return model---------------------- -->
+
+                        <!-- ----------------approve model----------------- -->
+                        <div id="approve" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header modal-colored-header bg-dark">
+                                        <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                                        <button type="button" class="btn btn-link text-white ml-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+
+                                    <div class="modal-body text-center" style="margin-top: 5%">
+                                        <i class="text-black">You are about to approve the job list for cadre<br>
+                                            {{job_list_details?.cadre?.name}}?</i><br>
+                                        <b class="text-black">For court{{job_list_details?.court?.display_name}}?</b>
+                                    </div>
+
+
+                                    <div class="modal-footer d-flex justify-content-center mb-3">
+                                        <button *ngIf="general.bfrcreating"
+                                            (click)="approveDirectorateJobList(job_list_details.uid)"
+                                            data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill">
+                                            Approve </button>
+                                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill"
+                                            type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status"
+                                                aria-hidden="true"></span>
+                                            It's Loading...
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ------------------approve model---------------------- -->
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- all_job_list_out_post -->
+
+</div>
+
+
+
+<div class="modal fade" [hidden]="!showModal" id="loading" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Center modal</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

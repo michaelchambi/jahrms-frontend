@@ -1,0 +1,122 @@
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-modules'">
+            <div class="col-md-8">
+                <a routerLink="/add-my-leave/{{submoduleId}}" class="btn btn-outline-dark rounded-pill"><i class="fal fa-plus fa-lg"></i> Appy For Leave</a>
+            </div>
+
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <!-- content  -->
+    <div class="table-responsive">
+
+            <div class="table-responsive">
+        
+                <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Number Of Days</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let module of my_leave_List; let i = index">
+                    <td>{{1+i}}</td>
+                    <td>{{module?.leave_type}}</td>
+                    <td>{{module?.start_date | date:'dd-MM-yyy'}}</td>
+                    <td>{{module?.end_date  | date:'dd-MM-yyy'}}</td>
+                    <td>numberOfDays</td>
+                    <td>
+                        <span *ngIf="module?.leave_status =='default'" class="badge badge-secondary-lighten">inprogress</span>
+                        <span *ngIf="module?.leave_status=='true123'" class="badge badge-primary-lighten">accepted</span>
+                        <span *ngIf="module?.leave_status=='false123'" class="badge badge-danger-lighten">rejected</span>
+                    </td>
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='edit-my-leave' && module.leave_status ==!'default'" routerLink="/edit-my-leave/{{module?.uid}}" class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="access =='show-leave-deteils'" href="/show-leave-deteils/{{module?.uid}}" class="action-icon" title="module ndogo"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- end content  -->
+
+</div>
+
+
+<!-- active   -->
+<div id="activate_module" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">You are about to allow the addition of this module?</i><br>
+                <b class="text-black">{{module_data?.name}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <!-- <button *ngIf="general.bfrcreating" (click)="activate(module_data?.uid)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Ndio Ruhusu</button> -->
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                It's Loading...
+              </button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /active  -->
+
+
+<!-- deactive   -->
+<div id="deactivate_module" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">Una uhakika unataka kuzuia module hii kutumika kwenye mfumo ?</i><br>
+                <b class="text-black">{{module_data?.name}}</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <!-- <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(module_data?.uid)"> Ndio Zuia</button> -->
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inazuia...
+              </button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- /deactive  -->

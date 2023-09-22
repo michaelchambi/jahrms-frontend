@@ -1,0 +1,101 @@
+<div class="rows">
+    <div class="profile-picture">
+        <div class="card shadow-lg text-center">
+            <div class="card-body text-black">
+                <img src="../../../../../../assets//images/users/no_image.jpg" class="rounded-circle"
+                    style="height: 100px;" alt="profile-image">
+
+                <h4 class="mb-0 mt-2">{{userDetails?.data.name}}</h4>
+                <p class=" font-14">{{userDetails?.data.designation}}</p>
+                <p class=" font-14">{{userDetails?.data.current_working_station}}</p>
+                <p class=" font-14">{{userDetails?.data.hire_date}}</p>
+                <span *ngIf="userDetails?.data.active" class="badge badge-outline-success">Ameruhusiwa kutumia
+                    mfumo</span>
+                <span *ngIf="!userDetails?.data.active" class="badge badge-outline-danger">Amezuiliwa kutumia
+                    mfumo</span>
+                <span></span>
+            </div>
+            <!-- end card-body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col-->
+    <div class="profile-form">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <h4 style="margin-left: 5%;">Transfer Employee</h4>
+
+                    <form *ngIf="general.formart" #userForm="ngForm">
+
+                        <div class="rows">
+                            <span class="formview row">
+                                <div class="col-md-6">
+                                    <label for=“icon”>Court Level Name: </label>
+                                    <div class="form-group mb-3">
+                                        <select class="choose-to-open-selectio"
+                                            [(ngModel)]="employee_transfer_data.court_level_id" name="court_level_id"
+                                            required>
+                                            <option value=“” disabled Selected>Choose Region</option>
+                                            <ng-container *ngFor="let courtLevels of court_level_list">
+                                                <option value="{{courtLevels.id}}" (click)="getCourts(courtLevels.id)">
+                                                    {{courtLevels.name}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for=“icon”>Court Name: </label>
+                                    <div class="form-group mb-3">
+                                        <ng-select [(ngModel)]=employee_transfer_data.court_id name=court_id
+                                            [clearable]="true" [clearOnBackspace]="false" required>
+                                            <ng-option value=disabled Selected>Choose
+                                                District</ng-option>
+                                            <ng-container *ngFor="let court of court_list">
+                                                <ng-option value="{{court.id}}">{{court.name}}</ng-option>
+                                            </ng-container>
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for=“icon”>Choose transfer reason: </label>
+                                    <div class="form-group mb-3">
+                                        <select class="choose-to-open-selectio" [(ngModel)]="employee_transfer_data.transfer_reason_id"
+                                            name="transfer_reason_id" required>
+                                            <option value='' disabled Selected>Choose Transfer Reason</option>
+                                            <ng-container *ngFor="let transfer of transfer_reason_List">
+                                                <option value="{{transfer.id}}">
+                                                    {{transfer.description}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="button-position">
+                                    <button (click)="adminEmployeeTransfer(userDetails.data.id)"
+                                        *ngIf="general.bfrcreating"
+                                        class="btn btn-outline-primary rounded-pill w-50 float-end"
+                                        [disabled]="!userForm.valid">Transfer {{userDetails?.data.first_name}}</button>
+                                    <button *ngIf="general.creating"
+                                        class="btn btn-outline-primary rounded-pill w-50 float-end" type="button "
+                                        disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status "
+                                            aria-hidden="true "></span>
+                                        applying...
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- end tab-content -->
+            </div>
+            <!-- end card body -->
+        </div>
+
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row-->

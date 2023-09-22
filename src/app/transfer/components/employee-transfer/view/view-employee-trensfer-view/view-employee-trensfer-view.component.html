@@ -1,0 +1,50 @@
+
+
+    <!-- content  --> 
+    <div class="table-responsive">
+        <!-- Employee Initiete -->
+
+            <h4>Transfer Requests</h4>
+            <table class="table table-sm mb-0 " id="dataTables">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">#</th>
+                        <th>Employee Name</th>
+                        <th>Transfer Types</th>
+                        <th>Working Station</th>
+                        <th>Requested Station</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let transfer of userList; let i = index">
+                        <td>{{1+i}}</td>
+                        <td>{{transfer.user.name}}</td>
+                        <td>{{transfer?.transfer_type?? 'Not Provided'}}</td>
+                        <td>{{transfer?.current_working_station?? 'Not Provided'}}</td>
+                        <td>{{transfer?.court.display_name?? 'Not Provided'}}</td>
+                        <td>
+                            <span *ngIf="transfer?.transfer_status =='transfer_default'"
+                                class="badge badge-secondary-lighten">inprogress</span>
+                            <span *ngIf="transfer?.transfer_status=='true123'"
+                                class="badge badge-primary-lighten">accepted</span>
+                            <span *ngIf="transfer?.transfer_status=='false123'"
+                                class="badge badge-danger-lighten">rejected</span>
+                        </td>
+                        <td class="table-action">
+                            <ng-container *ngFor="let access of permission?.action_access">
+                                <a *ngIf="access =='view-employee-detai-transfer'"
+                                    href="/show-transfer/{{transfer.user.uid}}/{{transfer.uid}}" class="action-icon"
+                                    title="transfer ndogo"> <i class="mdi mdi-eye"></i></a>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <!-- Employee initiete end -->
+
+
+    <!-- end content  -->
+
+</div>

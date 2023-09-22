@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-
+import { SettingsService } from '../../../../../services/settings/settings.service';
 import { UsersService } from '../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
@@ -31,18 +31,18 @@ export class ViewEmployeeLeaveComponent implements OnInit {
   user_id: any;
   constructor(
     public general: GeneralService,
-    
+   
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
     public permission: PermissionsService,
-    public myleave: LeaveService,
+    public leave: LeaveService,
     private activeRoute: ActivatedRoute
   ) { }
 
 
   ngOnInit(): void {
-   
+    
     this.getLeaves()
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
@@ -98,7 +98,7 @@ export class ViewEmployeeLeaveComponent implements OnInit {
   getLeaves() {
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.myleave.getLeaves().subscribe(
+    this.leave.getLeaves().subscribe(
       res => {
         this.userList = res.data;
         console.log('data za watu wangu wa likizo ni hizi tu', this.userList);

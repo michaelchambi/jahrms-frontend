@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../services/auth/auth.guard';
+
 import { CadreLayoutComponent } from '../employee-detail/components/cadre/layout/cadre-layout/cadre-layout.component';
 import { AddCadreLayoutComponent } from '../employee-detail/components/cadre/layout/add-cadre-layout/add-cadre-layout.component';
 import { EditCadreLayoutComponent } from '../employee-detail/components/cadre/layout/edit-cadre-layout/edit-cadre-layout.component';
@@ -78,6 +79,8 @@ import { EditAttachmentLayoutComponent } from './components/attachments/layout/e
 import { MaritalStatusLayoutComponent } from './components/employee/marital-status/layout/marital-status-layout/marital-status-layout.component';
 import { ProfileLayoutComponent } from '../employee-detail/components/profile/layout/profile-layout/profile-layout.component';
 import { EditProfileLayoutComponent } from '../employee-detail/components/profile/layout/edit-profile-layout/edit-profile-layout.component';
+import { MyRetirementLayoutComponent } from './components/retirement/layout/my-retirement-layout/my-retirement-layout.component';
+import { EmployeeRetirementLayoutComponent } from './components/retirement/layout/employee-retirement-layout/employee-retirement-layout.component';
 
 
 
@@ -295,9 +298,14 @@ const routes: Routes = [
   //  MARITAL STATUS  ROUTES
   //======================================================================================
   { path: 'marital-status/:id', component:MaritalStatusLayoutComponent ,title: 'NDOA', canActivate: [AuthGuard]},
-
   { path: 'my-profile',component: ProfileLayoutComponent,title: 'Ukurasa wangu',canActivate: [AuthGuard] },
-  { path: 'edit-my-profile',component: EditProfileLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]}
+  { path: 'edit-my-profile',component: EditProfileLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]},
+
+ //======================================================================================
+  //  MARITAL STATUS  ROUTES
+  //======================================================================================
+  { path: 'my-retirement',component: MyRetirementLayoutComponent,title: 'Ukurasa wangu',canActivate: [AuthGuard] },
+  { path: 'employee-retirement/:id',component: EmployeeRetirementLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]}
 
 
 

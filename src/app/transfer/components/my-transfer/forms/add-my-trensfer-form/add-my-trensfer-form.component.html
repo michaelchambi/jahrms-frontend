@@ -1,0 +1,168 @@
+<div class="rows">
+
+    <!-- end col-->
+    <div class="profile-form">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <h4 style="margin-left: 10em;">Tranfer Application Form</h4>
+
+                    <form class="formwithBorder" *ngIf="general.formart" (ngSubmit)="addTransfer()" #userForm="ngForm">
+
+                        <div class="rows">
+                            <label style="margin-left: 3em;" for="majukumu">Transfer Type:</label>
+                            <div class="col-md-6">
+                                <select class="choose-to-open-selectio" [(ngModel)]="data.transfer_type"
+                                    name="transfer_type" placeholder="Option" required>
+                                    <option value="" disabled Selected>Choose Transfer Type</option>
+                                    <option (click)="ChangeDate()" value="within zone" Selected>Within Zone</option>
+                                    <option (click)="okWithDate()" value="Out of zone" Selected>Out of Zone</option>>
+                                </select>
+                            </div>
+                            <!-- Within a zone -->
+
+                            <ng-container *ngIf="zone">
+                                <h4 style="margin-left: 2em;">Tranfer Application Form Within Zone</h4>
+                                <span class="formview row">
+                                    <div class="col-md-6">
+                                        <label for=“icon”>Court Level Name: </label>
+                                        <div class="form-group mb-3">
+                                            <select class="choose-to-open-selectio" [(ngModel)]="data.court_level_id"
+                                                name="court_level_id" required>
+                                                <option value='' disabled Selected>Choose Court Level</option>
+                                                <ng-container *ngFor="let courtLevels of court_level_list">
+                                                    <option value="{{courtLevels.id}}"
+                                                        (click)="getCourts(courtLevels.id)">
+                                                        {{courtLevels.name}}</option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for=“icon”>Court Name: </label>
+                                        <div class="form-group mb-3">
+                                            <ng-select [(ngModel)]=data.court_id name=court_id [clearable]="true"
+                                                [clearOnBackspace]="false" required>
+                                                <ng-option value='' disabled Selected>Choose
+                                                    Court</ng-option>
+                                                <ng-container *ngFor="let court of court_list">
+                                                    <ng-option value="{{court.id}}">{{court.name}}</ng-option>
+                                                </ng-container>
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for=“icon”>Choose transfer reason: </label>
+                                        <div class="form-group mb-3">
+                                            <select class="choose-to-open-selectio"
+                                                [(ngModel)]="data.transfer_reason_id" name="transfer_reason_id" required>
+                                                <option value='' disabled Selected>Choose Transfer Reason</option>
+                                                <ng-container *ngFor="let transfer of transfer_reason_List">
+                                                    <option value="{{transfer.id}}">
+                                                        {{transfer.description}}</option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label> Attach Documents</label>
+                                        <input type="file" class="form-control" [(ngModel)]="data.fileUrl" name="filUrl"
+                                            (change)="fileUpload($event)" required />
+                                    </div>
+                                    <div class="button-position">
+                                        <button *ngIf="general.bfrcreating" type="submit"
+                                            class="btn btn-outline-primary rounded-pill w-50 float-end"
+                                            [disabled]="!userForm.valid">Apply</button>
+                                        <button *ngIf="general.creating"
+                                            class="btn btn-outline-primary rounded-pill w-50 float-end" type="button "
+                                            disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status "
+                                                aria-hidden="true "></span>
+                                            applying...
+                                        </button>
+                                    </div>
+                                </span>
+                            </ng-container>
+
+                            <!-- end within zone -->
+
+
+                            <ng-container *ngIf="outZone">
+                                <h4 style="margin-left: 2em;">Tranfer Application Form Out Side Zone</h4>
+                                <span class="formview row">
+                                    <div class="col-md-6">
+                                        <label for=“icon”>Court Level Name: </label>
+                                        <div class="form-group mb-3">
+                                            <select class="choose-to-open-selectio" [(ngModel)]="data.court_level_id"
+                                                name="court_level_id" required>
+                                                <option value='' disabled Selected>Choose Region</option>
+                                                <ng-container *ngFor="let courtLevels of court_level_list">
+                                                    <option value="{{courtLevels.id}}"
+                                                        (click)="getCourts(courtLevels.id)">
+                                                        {{courtLevels.name}}</option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for=“icon”>Court Name: </label>
+                                        <div class="form-group mb-3">
+                                            <ng-select [(ngModel)]=data.court_id name=court_id [clearable]="true"
+                                                [clearOnBackspace]="false" required>
+                                                <ng-option value='' disabled Selected>Choose Court</ng-option>
+                                                <ng-container *ngFor="let court of court_list">
+                                                    <ng-option value="{{court.id}}">{{court.name}}</ng-option>
+                                                </ng-container>
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for=“icon”>Choose transfer reason: </label>
+                                        <div class="form-group mb-3">
+                                            <select class="choose-to-open-selectio"
+                                                [(ngModel)]="data.transfer_reason_id" name="transfer_reason_id" required>
+                                                <option value='' disabled Selected>Choose Transfer Reason</option>
+                                                <ng-container *ngFor="let transfer of transfer_reason_List">
+                                                    <option value="{{transfer.id}}">
+                                                        {{transfer.description}}</option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label> Attach Documents</label>
+                                        <input type="file" class="form-control" [(ngModel)]="data.fileUrl" name="filUrl"
+                                            (change)="fileUpload($event)" required />
+                                    </div>
+                                    <div class="button-position">
+                                        <button *ngIf="general.bfrcreating" type="submit"
+                                            class="btn btn-outline-primary rounded-pill w-50 float-end"
+                                            [disabled]="!userForm.valid">Apply</button>
+                                        <button *ngIf="general.creating"
+                                            class="btn btn-outline-primary rounded-pill w-50 float-end" type="button "
+                                            disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status "
+                                                aria-hidden="true "></span>
+                                            applying...
+                                        </button>
+                                    </div>
+                                </span>
+                            </ng-container>
+
+
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- end tab-content -->
+            </div>
+            <!-- end card body -->
+        </div>
+
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row-->

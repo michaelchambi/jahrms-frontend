@@ -1,0 +1,40 @@
+.choose-to-open-selectio{
+    width: 100%;
+    background:white;
+    padding: 0.5em;
+    margin-left: 0em;
+    margin-bottom: 0em;
+    border-radius: 0.4em;
+}
+
+
+.choose-to-open-selectio{
+    width: 100%;
+    background:white;
+    padding: 0.5em;
+    /* margin-left: 2em; */
+    /* margin-bottom: 1em; */
+    /* margin-top: 1em; */
+    border-radius: 0.4em;
+}
+
+.text-center-dashboard{
+    height: 5em;
+    background: #077891;
+    color: aliceblue;
+    text-align: center;
+  
+    }
+    .card-body{
+        overflow-Y: hidden;
+    }
+
+    .text-center-dashboard:hover{
+        height: 5em;
+        background: #41aac2;
+        color: aliceblue; 
+        cursor: pointer;
+    }
+    /* .text_area_model{
+        margin-left: 2em;
+    } */

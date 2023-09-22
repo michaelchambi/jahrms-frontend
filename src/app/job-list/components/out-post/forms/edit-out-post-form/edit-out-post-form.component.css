@@ -1,0 +1,24 @@
+.choose-to-open-selectio{
+    width: 100%;
+    background:white;
+    padding: 0.5em;
+    margin-left: 0em;
+    margin-bottom: 0em;
+    border-radius: 0.4em;
+}
+
+
+.choose-to-open-selectio{
+    width: 100%;
+    background:white;
+    padding: 0.5em;
+    /* margin-left: 2em; */
+    /* margin-bottom: 1em; */
+    /* margin-top: 1em; */
+    border-radius: 0.4em;
+}
+.formwithBorder{
+    padding: 1em;
+    border-radius: 0.4em;
+    border: 0.05em solid rgb(0, 208, 255);
+}

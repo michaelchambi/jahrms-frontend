@@ -1,0 +1,16 @@
+.text-center{
+    height: 7em;
+    background: #077891;
+    color: aliceblue;
+  
+    }
+    .card-body{
+        overflow-Y: hidden;
+    }
+
+    .text-center:hover{
+        height: 7em;
+        background: #41aac2;
+        color: aliceblue; 
+        cursor: pointer;
+    }

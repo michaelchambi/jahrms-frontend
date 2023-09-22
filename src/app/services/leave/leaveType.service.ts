@@ -24,7 +24,7 @@ export class LeaveTypeService {
   userProfiles:any;
   user_profile:any;
   user:any;
-  user_id:any;
+  userId:any;
 
   data:{roles:number[]}={
     roles:[]

@@ -1,0 +1,15 @@
+.btn-action{
+    width: 10em;
+    border: 0.1em #3688fc solid;
+    border-radius: 1em;
+    background-color: white;
+    
+    
+}
+.btn-action:hover{
+    /* width: 10em;
+    border: 0.1em #3688fc solid;
+    border-radius: 1em; */
+    background-color: #3688fc;
+    
+}

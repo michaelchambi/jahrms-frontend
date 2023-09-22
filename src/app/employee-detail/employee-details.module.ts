@@ -219,6 +219,10 @@ import { SelfEmploymentDetailsViewComponent } from './components/self-employee/s
 import { AddSelfEducationDetailsFormComponent } from './components/self-employee/self-education-details/forms/add-self-education-details-form/add-self-education-details-form.component';
 import { EditSelfEducationDetailsFormComponent } from './components/self-employee/self-education-details/forms/edit-self-education-details-form/edit-self-education-details-form.component';
 import { SelfEducationDetailsViewComponent } from './components/self-employee/self-education-details/views/self-education-details-view/self-education-details-view.component';
+import { MyRetirementLayoutComponent } from './components/retirement/layout/my-retirement-layout/my-retirement-layout.component';
+import { EmployeeRetirementLayoutComponent } from './components/retirement/layout/employee-retirement-layout/employee-retirement-layout.component';
+import { EmployeeRetirementViewComponent } from './components/retirement/views/employee-retirement-view/employee-retirement-view.component';
+import { MyRetirementViewComponent } from './components/retirement/views/my-retirement-view/my-retirement-view.component';
 
 
 
@@ -436,6 +440,10 @@ import { SelfEducationDetailsViewComponent } from './components/self-employee/se
     AddSelfEducationDetailsFormComponent,
     EditSelfEducationDetailsFormComponent,
     SelfEducationDetailsViewComponent,
+    MyRetirementLayoutComponent,
+    EmployeeRetirementLayoutComponent,
+    EmployeeRetirementViewComponent,
+    MyRetirementViewComponent,
    
 
   ],
@@ -447,7 +455,6 @@ import { SelfEducationDetailsViewComponent } from './components/self-employee/se
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    FormsModule,
     AngularEditorModule,
     NgxExtendedPdfViewerModule,
     PdfViewerModule 

@@ -1,105 +1,134 @@
 <div class="responsive p-0">
-<div class="row">
-    <div class="col-md-6">
-            <div class="card shadow">
-                        <table class="table table-hover table-sm mb-0" id="dataTables">
-                            <tbody class="text-black">
-                                <tr>
-                                    <td><b>Name</b>:</td>
-                                    <td>{{userDetails.name}}</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Check Namba</b>:</td>
-                                    <td>{{userDetails?.check_number?? 'Not Provided'}}</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Simu</b>:</td>
-                                    <td>+255{{userDetails?.phone_number?? 'Not Provided'}} </td>
-                                </tr>
-    
-                                <tr>
-                                    <td><b>Barua pepe</b>:</td>
-                                    <td>{{userDetails?.email?? 'Not Provided'}}</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Working Station</b>:</td>
-                                    <td>Working Station</td>
-                                </tr>
-                                <tr>
-                                    <td><b>Gender</b>:</td>
-                                    <td>{{userDetails?.sex?? 'Not Provided'}} </td>
-                                </tr>
-                            </tbody>
-                        </table>
-    
-            <!-- end card -->
-            </div>
-    </div>
-    <div class="col-md-6">
-        <form *ngIf="general.formart" (ngSubmit)="addLeave()" #userForm="ngForm">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="formwithBorder" *ngIf="general.formart" (ngSubmit)="addLeave(user_id)" #userForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="icon">Choose Leave: {{user_id }} </label>
+                        <div class="form-group mb-3">
+                            <select class="choose-to-open-selectio" [(ngModel)]="data.leave_id" name="leave_id"
+                                required>
+                                <option value="" disabled Selected>Choose leave</option>
+                                <ng-container *ngFor="let leave of leave_type_list">
+                                    <option value="{{leave.id}}">
+                                        {{leave.name}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="majukumu">Leave Type:</label>
-                    <div class="form-group mb-3">
-                        <ng-select [(ngModel)]="data.leave_type"  name="leave_type" placeholder="" [clearable]="true" [clearOnBackspace]="false" required>
-                            <ng-option value="" disabled Selected>Choose Leave</ng-option>
-                            <ng-option value="Annual Leave"  Selected>Annual Leave</ng-option>
-                        <ng-container  *ngIf="userDetails.sex=='female'">
-                            <ng-option value="Martenity Leave"  Selected>Martenity Leave</ng-option>
-                        </ng-container>
-                        <ng-container  *ngIf="userDetails.sex=='male'">
-                            <ng-option value="Pertenity Leave"  Selected>Pertenity Leave</ng-option>
-                        </ng-container>
-                            <ng-option value="Special Leave"  Selected>Special Leave</ng-option>
-                            <ng-option value="Leave pending to retirement"  Selected>Leave pending to retirement</ng-option>
-                            <ng-option value="Sick Leave"  Selected>Sick Leave</ng-option>
-                            <ng-option value="Leave withought Payment"  Selected>Leave withought Payment</ng-option>
-                            <ng-option value="Sabbatical Leave"  Selected>Sabbatical Leave</ng-option>
-                        </ng-select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="majukumu">Where will yo go:</label>
-                    <div class="form-group mb-3">
-                        <ng-select [(ngModel)]="data.region_id"  name="region_id" placeholder="xxx" [clearable]="true" [clearOnBackspace]="false" required>
-                            <ng-option value="" disabled Selected>Choose Region</ng-option>
-                            <ng-option value="1"  Selected>Dodoma</ng-option>
-                            <ng-option value="2"  Selected>Morogoro</ng-option>
-                        </ng-select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label for="start_date">Start date</label>
-                    <div class="form-group mb-3">
-                        <input type="date" class="form-control"  id="start_date" [(ngModel)]="data.start_date" name="start_date" id="myDatepicker" placeholder="xxxxxxx" start_date required/>
-                    </div>
-                </div>
-              
-                <div class="col-md-6">
-                    <label for="completion_date">Completion Date</label>
-                    <div class="form-group mb-3">
-                        <input type="date" class="form-control"  id="completion_date" [(ngModel)]="data.end_date" name="end_date" id="myDatepicker" placeholder="xxxxxxx" completion_date required>
-                    </div>
-                </div>
-    
-    
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6">
-                    <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Apply</button>
-                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
-              <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
-              applying...
-            </button>
-                </div>
-    
-            </div>
-        </form>
 
+                    <div class="col-md-6">
+                        <label for="majukumu">Where will yo go:</label>
+                        <select class="choose-to-open-selectio" [(ngModel)]="data.place_to_visit" name="place_to_visit"
+                            placeholder="Option" required>
+                            <option value="" disabled Selected>choose visit:</option>
+                            <option (click)="InitietedByInside()" value="inside">Within The Country</option>>
+                            <option (click)="initietedByOutside()" value="outside">Outside the Country</option>
+                        </select>
+                    </div>
+
+
+
+
+
+
+
+                    <ng-container *ngIf="inside">
+
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <label for="icon">Region Name: </label>
+                            <div class="form-group mb-3">
+                                <select class="choose-to-open-selectio" [(ngModel)]="data.region_id" name="region_id"
+                                    required>
+                                    <option value="" disabled Selected>Choose Zone</option>
+                                    <ng-container *ngFor="let region of regionDetails">
+                                        <option value="{{region.id}}" (click)="getDistricts(region.id)">{{region.name}}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 ">
+                            <label for="icon">District Name: </label>
+                            <div class="form-group mb-3">
+                                <select class="choose-to-open-selectio" [(ngModel)]="data.district_id"
+                                    name="district_id" required>
+                                    <option value="" disabled Selected>Choose District</option>
+                                    <ng-container *ngFor="let district of districtDetails">
+                                        <option value="{{district.id}}" (click)="getShowDistrictId(district.id)">
+                                            {{district.name}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+
+                    <!-- end region and district -->
+
+
+                    <ng-container *ngIf="outside">
+
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <label for="icon">Country Name: </label>
+                            <div class="form-group mb-3">
+                                <select class="choose-to-open-selectio" [(ngModel)]="data.coutry_id" name="coutry_id"
+                                    required>
+                                    <option value="" disabled Selected>Choose Zone</option>
+                                    <ng-container *ngFor="let region of regionDetails">
+                                        <option value="{{region.id}}">{{region.name}}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </ng-container>
+
+
+
+
+
+
+
+                    <div class="col-md-6">
+                        <label for="start_date">Start date</label>
+                        <div class="form-group mb-3">
+                            <input type="date" class="form-control" id="start_date" [(ngModel)]="data.start_date"
+                                name="start_date" id="myDatepicker" placeholder="xxxxxxx" start_date required />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="completion_date">Completion Date</label>
+                        <div class="form-group mb-3">
+                            <input type="date" class="form-control" id="completion_date" [(ngModel)]="data.end_date"
+                                name="end_date" id="myDatepicker" placeholder="xxxxxxx" completion_date required>
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <button *ngIf="general.bfrcreating" type="submit"
+                            class="btn btn-outline-primary rounded-pill w-50 float-end"
+                            [disabled]="!userForm.valid">Apply</button>
+                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end"
+                            type="button " disabled>
+                            <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+                            applying...
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
     </div>
-</div>
-   
+
 </div>

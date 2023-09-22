@@ -1,0 +1,26 @@
+<div class="responsive p-0">
+
+    <form (ngSubmit)="addModule()" #Form=ngForm>
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 ">
+                <label for="icon">Discription: </label>
+                <div class="form-group mb-3">
+                    <textarea type="text" class="form-control" [(ngModel)]="data.description" name="description" placeholder=" What this transfer reason is all abaout" aria-label="Icon" aria-describedby="icon-addon" required></textarea>
+                </div>
+
+            </div>
+            
+         
+
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <br>
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-dark rounded-pill w-100" [disabled]="!Form.valid">Add Module</button>
+
+                <button *ngIf="general.creating" class="btn btn-outline-dark rounded-pill w-100" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Inaongeza...
+                  </button>
+            </div>
+        </div>
+    </form>
+</div>

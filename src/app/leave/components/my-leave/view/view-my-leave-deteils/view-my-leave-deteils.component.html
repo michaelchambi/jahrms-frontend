@@ -1,0 +1,188 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow-lg text-center">
+            <div class="card-body text-black">
+                <img src="../../../../../../assets//images/users/no_image.jpg" class="rounded-circle"
+                    style="height: 200px;" alt="profile-image">
+
+                    <h4 class="mb-0 mt-2">{{leave_details.data.user?.name}}</h4>
+                    <p class=" font-14">{{leave_details.data.user?.designation}}</p>
+                    <p class=" font-14">{{leave_details.data.user?.hire_date}}</p>
+                    <span *ngIf="leave_details.data.user?.active" class="badge badge-outline-success">Ameruhusiwa</span>
+                    <span *ngIf="!leave_details.data.user?.active" class="badge badge-outline-danger">Amezuiliwa</span>
+                <span></span>
+            </div>
+            <!-- end card-body -->
+        </div>
+        <!-- end card -->
+
+
+
+    </div>
+    <!-- end col-->
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <h4>Leave Informations</h4>
+                    <table class="table table-hover table-sm mb-0" id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Leave Type</b>:</td>
+                                <td>{{leave_details.data.leave_type}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Start Date</b>:</td>
+                                <td>{{leave_details.data.start_date | date:'dd-MM-yyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Finishing Date</b>:</td>
+                                <td>{{leave_details.data.end_date | date:'dd-MM-yyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Number of Days Requested</b>:</td>
+                                <td>{{leave_details.number_days}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Availlable Days </b>:</td>
+                                <td>Days</td>
+                            </tr>
+                            <tr *ngIf="leave_details?.leave_status =='false123'">
+                                <td><b>Immediet Suppervisor Comment</b>:</td>
+                                <td>{{leave_details.data.immediet_suppervisor_comment}}</td>
+                            </tr>
+                           
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <span *ngIf="leave_details?.data.leave_status =='true123'" class="badge badge-outline-success">Leave approved</span>
+                                    <span *ngIf="leave_details?.data.leave_status =='false123'" class="badge badge-outline-danger">Leave Rejected</span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="leave_details?.data.leave_status =='false123'">
+                                <td><b>Reasons for rejecting this leave</b>:</td>
+                                <td>{{leave_details.data.approver_comment}}</td>
+                            </tr>
+
+
+
+                            
+                            <!-- comment on leave request   -->
+                            <div id="deactivate_user" class="modal fade" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <form *ngIf="general.formart" (ngSubmit)="updateCommentForLeave()" #userForm="ngForm">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header modal-colored-header bg-dark">
+                                            <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                    class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Comment...!</h4>
+                                            <button type="button" class="btn btn-link text-white ml-auto"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+
+
+                                        <div class="modal-body text-center" style="margin-top: 5%">
+                                            <i class="text-black">Your about to comment on {{leave_details.data.user.name}}
+                                                leave request?</i><br>
+                                            <div class="row" style="margin-left: 30%; margin-top:5%">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mb-3">
+                                                        <textarea type="date" class="form-control" rows="5" id="comment"
+                                                            [(ngModel)]="comments_immidiet_supporvisor.immediet_suppervisor_comment"
+                                                            name="end_date" id="myDatepicker"
+                                                            placeholder="Please write your comment here" completion_date
+                                                            required></textarea>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="modal-footer d-flex justify-content-center mb-3">
+                                            <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid"> Comment </button>
+                                            <button *ngIf="general.creating"
+                                                class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                                <span class="spinner-border spinner-border-sm" role="status"
+                                                    aria-hidden="true"></span>
+                                                Inazuia...
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </form>
+                            </div>
+                            <!-- comment on leave request -->
+
+                            <!-- deny on leave request   -->
+                           
+                            <div id="deny_leave_user" class="modal fade" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <form *ngIf="general.formart" (ngSubmit)="rejectLeave()" #userForm="ngForm">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header modal-colored-header bg-dark">
+                                            <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                    class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Comment...!</h4>
+                                            <button type="button" class="btn btn-link text-white ml-auto"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                        <div class="modal-body text-center" style="margin-top: 5%">
+                                            <i class="text-black">Your about to reject on {{leave_details.data.user.name}}
+                                                leave request?</i><br>
+                                            <div class="row" style="margin-left: 30%; margin-top:5%">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mb-3">
+                                                        <textarea type="date" class="form-control" rows="5" id="comment"
+                                                            [(ngModel)]="comments_reject.approver_comment"
+                                                            name="end_date" id="myDatepicker"
+                                                            placeholder="Please write your reasons here........."
+                                                            completion_date required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer d-flex justify-content-center mb-3">
+                                            <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid"> Reject </button>
+                                            <button *ngIf="general.creating"
+                                                class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                                <span class="spinner-border spinner-border-sm" role="status"
+                                                    aria-hidden="true"></span>
+                                                rejecting...
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </form>
+                            </div>
+                        
+                            <!-- comment on leave request -->
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- end tab-content -->
+            </div>
+            <!-- end card body -->
+        </div>
+
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row-->

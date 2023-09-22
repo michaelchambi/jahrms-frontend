@@ -1,0 +1,46 @@
+
+<app-navbar></app-navbar>
+<!-- Start Content-->
+
+    <div class="wrapper">
+        <!-- ========== Left Sidebar Start ========== -->
+        <app-sidebar></app-sidebar>
+        <!-- Left Sidebar End -->
+
+        <div class="content-page">
+            <div class="content">
+                <div class="row">
+                    <!-- chat area -->
+                    <div class="card col-12">
+                        <div class="card-header fw-bold">
+                            <h5>Emlpoyee Transfer Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <ng-container *ngFor="let access of permission?.action_access">
+                                <!-- start content-->
+                                <div class="row">
+                                    <div class="col-md-12" *ngIf="access =='show-leave-deteils'">
+                                        <app-view-employee-trensfe-detailsr-view></app-view-employee-trensfe-detailsr-view>
+                                    </div>
+                                </div>
+
+                                <!-- end content-->
+                            </ng-container>
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    <!-- end card-->
+                    <!-- end card-->
+                </div>
+                <!-- end col -->
+                <!-- end user detail -->
+            </div>
+            <!-- end row-->
+            <!-- Footer Start -->
+            <app-footer></app-footer>
+            <!-- end Footer -->
+
+        </div>
+        <!-- End Content -->
+    </div>
+    <!-- content-page -->

@@ -45,6 +45,10 @@ export class DepartmentsService {
   countDepartments(){
     return this.http.get<any>(`${this.url}/count_received`, { headers: this.general.userAuthorization() });
   }
+  getCourtsByCourtIdNoZone(data:any) {
+    return this.http.post<any>(`${this.url}/bycourtlevel-nozone`, data , { headers: this.general.userAuthorization() });
+  }
+  
 
 
   showDepartment(id:any) {

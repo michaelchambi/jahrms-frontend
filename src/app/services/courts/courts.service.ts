@@ -69,6 +69,9 @@ export class CourtsService {
   }
 
 
+  getCourtsByCourtIdNoZone(data:any) {
+    return this.http.post<any>(`${this.url}/bycourtlevel-nozone`, data , { headers: this.general.userAuthorization() });
+  }
   
 
 

@@ -1,0 +1,72 @@
+/* 
+.option-container{
+    width:30%;
+    position:absolute;
+}
+.my,.employee{
+    padding-left:1em;
+    padding-right:1em;
+    padding-bottom: 0.04em;
+    padding-top: 0.04em;
+    max-width:50%;
+    min-width:50%;
+    border-radius: 0.5em;
+    text-align: center;
+    text-decoration: white;
+}
+.my{
+    float:left;
+background-color: rgb(1, 1, 32);
+
+}
+.employee{
+background-color: brown;
+float:right;
+}
+.my:hover{
+    cursor:pointer;
+    background-color: rgb(3, 3, 59);
+    
+}
+.employee:hover{
+    cursor:pointer;
+    background-color: rgb(186, 64, 64);
+} */
+
+
+
+.rows{
+    width:100%;
+}
+.profile-picture{
+    width:25%;
+    float:left;
+    margin:0.1;
+}
+.profile-form{
+    width:73%;float:right;
+
+}
+
+.choose-to-open-selectio{
+    width: 60%;
+    background:white;
+    padding: 0.5em;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    border-radius: 0.4em;
+}
+.formview{
+    border: 0.04em solid black;
+    padding: 1.4em;
+    width: 90%;
+    margin-left: 2em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    border-radius: 0.4em;
+    box-shadow: 1em;
+}
+.button-position{
+    padding: 1em;
+}

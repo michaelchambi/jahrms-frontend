@@ -46,6 +46,10 @@ export class UsersService {
     return this.http.get<any>(`${this.url}/totalEmployee`,  { headers: this.general.userAuthorization() });
   }
 
+  getAllEmployeeRetirements() {
+    return this.http.get<any>(`${this.url}/get-employee-retirements`,  { headers: this.general.userAuthorization() });
+  }
+
   organizationUsers(data: any) {
     return this.http.post<any>(`${this.url}/institution-users-list`, data, { headers: this.general.userAuthorization() });
   }

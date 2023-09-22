@@ -30,6 +30,7 @@ export class JotUsersViewComponent implements OnInit {
   submodule_access: any;
   this_data={user_id:''} 
   session_id: any;
+  userDetails: any;
   constructor(
     public general: GeneralService,
     
@@ -43,13 +44,14 @@ export class JotUsersViewComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.getUsers()
+    // this.getUsers()
     this.permission.module_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.permission.submodule_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
     this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
     this.user_id=sessionStorage.getItem('id')
     this.showUser(this.user_id);
+    this.getEmployee();
     // this.checkFind(this.user_id)
   }
 
@@ -57,55 +59,13 @@ export class JotUsersViewComponent implements OnInit {
 
   }
 
-
-  checkFind(id: any) {
-    this.data.organization_code = id;
-    this.tableId = id;
-    this.script.destroryDatatable();
-    this.users.userList(this.data).subscribe(
-
-      res => {
-        this.general.sw_message = "Hakuna watumiaji waliopatikana";
-        this.general.en_message = "No user found"
-        if (res.data.length === 0) {
-          this.general.errorMessage(this.general.sw_message);
-          this.response = true;
-          this.userList = res.data;
-          this.script.datatable();
-        }
-        else {
-          this.userList = res.data;
-          this.response = true;
-          this.script.datatable();
-
-        }
-
-
-      },
-      err => {
-        this.general.errorMessage(err.error.sw_message, (e: any) => {
-          if (e) {
-            window.location.reload();
-          }
-
-        });
-        this.script.errorAlert(err.error.sw_message)
-        if (err.error.token == 0) {
-          this.general.encryptUrl(this.route.url);
-          this.route.navigate(['/restore-session']);
-        }
-      }
-    );
-
-
-  }
-
-  getUsers() {
+  getEmployee() {
     this.general.bfrcreating = false;
     this.general.creating = true;
     this.users.getAllUsers().subscribe(
       res => {
-        this.userList = res;
+        this.userDetails = res;
+        // this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
       },
@@ -113,6 +73,7 @@ export class JotUsersViewComponent implements OnInit {
         
         this.general.creating = false;
         this.general.bfrcreating = true;
+        this.script.errorAlert(err.error.sw_message);
         if (err.error.token == 0) {
           this.general.encryptUrl(this.route.url);
           this.route.navigate(['/restore-session']);
@@ -120,6 +81,9 @@ export class JotUsersViewComponent implements OnInit {
       }
     );
   }
+
+
+
 
   showUser(id: any) {
     this.users.showUser(id).subscribe(

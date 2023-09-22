@@ -1,0 +1,51 @@
+<div class="responsive mt-3 p-0">
+                <form (ngSubmit)="editJobList()" class="formwithBorder" *ngIf="general.formart" #userForm="ngForm">
+                    <div class="row" style="padding: 2em;">
+                        <div class="col-md-12">
+                            <label for=“icon”>Immediet Suppervisor Comment for Rectification: 
+                                {{job_list_details.return_comment}} </label>
+                            
+                        </div>
+                        <div class="col-md-12">
+                            <label for=“icon”>Cadre to elaborate in this Job List is :{{job_list_details.cadre.name}} </label>
+                            
+                        </div>
+                     
+                        <div class="col-md-12">
+                            <label for=“icon”>Work Station:{{job_list_details.court.display_name}} </label>
+                         
+                        </div>
+                        <div class="col-md-6">
+                            <label for="minimum_number">minimum_number</label>
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" id="minimum_number"
+                                    [(ngModel)]="job_list_details.minimum_number" name="minimum_number" placeholder="xxxxxxx"
+                                    minimum_number required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="maximum_number">maximum number</label>
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" id="maximum_number"
+                                    [(ngModel)]="job_list_details.maximum_number" name="maximum_number" placeholder="xxxxxxx"
+                                    maximum_numbaer required />
+                            </div>
+                        </div>
+
+                     
+                    </div>
+                    <div class=" row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill"> Edit Job List</button>
+                            <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button"
+                                disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                loading...
+                            </button>
+                        </div>
+                    </div>
+                   
+                    
+                </form>
+</div>

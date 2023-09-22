@@ -1,0 +1,305 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow-lg text-center">
+            <div class="card-body text-black">
+                <img src="../../../../../../assets//images/users/no_image.jpg" class="rounded-circle"
+                    style="height: 100px;" alt="profile-image">
+
+                <h4 class="mb-0 mt-2">{{transfer_details.user?.name}}</h4>
+                <p class=" font-14">{{transfer_details.user?.designation}}</p>
+                <p class=" font-14">{{transfer_details.user?.hire_date}}</p>
+                <span *ngIf="transfer_details.user?.active" class="badge badge-outline-success">Ameruhusiwa</span>
+                <span *ngIf="!transfer_details.user?.active" class="badge badge-outline-danger">Amezuiliwa</span>
+                <span></span>
+            </div>
+            <!-- end card-body -->
+        </div>
+        <!-- end card -->
+
+
+
+    </div>
+    <!-- end col-->
+
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="table-responsive p-0">
+                    <h4>Transfer Informations</h4>
+                    <table class="table table-hover table-sm mb-0" id="dataTables">
+                        <tbody class="text-black">
+                            <tr>
+                                <td><b>Transfer Request Date</b>:</td>
+                                <td>{{transfer_details.tranfer_date | date:'dd-MM-yyy'}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Transfer Type</b>:</td>
+                                <td>{{transfer_details.transfer_type}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Payment</b>:</td>
+                                <td>{{transfer_details.involve_payments}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Transfer Reason</b>:</td>
+                                <td>{{transfer_details.app_transfer_reason.description}}</td>
+                                <!-- <td><img src="{{API_URL}}{{concatenator}}{{items.transfer_folder}}/{{items.transfer_image}}"></td> -->
+                            </tr>
+                            <tr>
+                                <td><b>Requested Sation</b>:</td>
+                                <td>{{transfer_details.court.display_name}}</td>
+                            </tr>
+                            <tr *ngIf="transfer_details?.transfer_immediet_suppervisor_comment !=null">
+                                <td><b>Immediet Suppervisor Comment</b>:</td>
+                                <td>{{transfer_details.transfer_immediet_suppervisor_comment}}</td>
+                            </tr>
+                            <tr *ngIf="transfer_details?.transfer_status =='true123'">
+                                <td><b>Approver Comment</b>:</td>
+                                <td>{{transfer_details.transfer_approver_comment}}</td>
+                            </tr>
+                            <tr *ngIf="transfer_details?.transfer_status =='false123'">
+                                <td><b>Reasons for rejecting this Transfer</b>:</td>
+                                <td>{{transfer_details.transfer_approver_comment}}</td>
+                            </tr>
+                            <tr *ngIf="transfer_details?.transfer_status =='transfer_default' && transfer_details?.transfer_immediet_suppervisor_comment ==null">
+                                <td><b>Immediet Suppervisor </b>:</td>
+                                <td>
+                                    <ng-container *ngFor="let access of permission?.action_access">
+                                        <button *ngIf="!access?.active && access =='comment-employee-transfer'"
+                                            href="#deactivate_user" title="comment Transfer" data-bs-toggle="modal"
+                                            type="submit" class="btn btn-outline-primary rounded-pill btn-action">
+                                            comment </button>
+                                    </ng-container>
+                                </td><br>
+
+                            </tr>
+                            <tr *ngIf="transfer_details?.transfer_immediet_suppervisor_comment !=null">
+                                <td><b>Action to be taken </b>:</td>
+                                <td>
+                                    <ng-container *ngFor="let access of permission?.action_access">
+                                        <button *ngIf="!access?.active && access =='approve-employee-transfer'"
+                                            href="#activate_user" title="approve Transfer" data-bs-toggle="modal"
+                                            type="submit" class="btn btn-outline-primary rounded-pill btn-action">
+                                            approve </button>
+                                    </ng-container>
+                                </td>
+
+                            </tr>
+                            <tr *ngIf="transfer_details?.transfer_immediet_suppervisor_comment !=null">
+                                <td><b>Action to be taken </b>:</td>
+                                <td>
+                                    <ng-container *ngFor="let access of permission?.action_access">
+                                        <button *ngIf="!access?.active && access =='deny-employee-transfer'"
+                                            href="#deny_leave_user" title="reject Transfer" data-bs-toggle="modal"
+                                            type="submit" class="btn btn-outline-primary rounded-pill btn-action">
+                                            reject </button>
+                                    </ng-container>
+                                </td><br>
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <span *ngIf="transfer_details?.transfer_status =='true123'"
+                                        class="badge badge-outline-success">Transfer approved</span>
+                                    <span *ngIf="transfer_details?.transfer_status =='false123'"
+                                        class="badge badge-outline-danger">Transfer Rejected</span>
+                                </td>
+                            </tr>
+                            
+
+
+
+
+                            <!-- comment on Transfer request   -->
+                            <div id="deactivate_user" class="modal fade" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <form *ngIf="general.formart" (ngSubmit)="updateCommentForTransfer()" #userForm="ngForm">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header modal-colored-header bg-dark">
+                                                <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                        class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Comment...!
+                                                </h4>
+                                                <button type="button" class="btn btn-link text-white ml-auto"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+
+
+                                            <div class="modal-body text-center">
+                                                <i class="text-black">Your about to comment on
+                                                    {{transfer_details.user.name}}
+                                                    Transfer request?</i><br>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group mb-3">
+                                                            <textarea type="date" class="form-control" rows="5"
+                                                                id="comment"
+                                                                [(ngModel)]="comments_immidiet_supporvisor.transfer_immediet_suppervisor_comment"
+                                                                name="transfer_immediet_suppervisor_comment" id="transfer_immediet_suppervisor_comment"
+                                                                placeholder="Please write your comment here"
+                                                                completion_date required></textarea>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer d-flex justify-content-center mb-3">
+                                                <button *ngIf="general.bfrcreating" type="submit"
+                                                    class="btn btn-outline-primary rounded-pill w-50 float-end"
+                                                    [disabled]="!userForm.valid"> Comment </button>
+                                                <button *ngIf="general.creating"
+                                                    class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                                    <span class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    Inazuia...
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </form>
+                            </div>
+                            <!-- comment on Transfer request -->
+
+                            <!-- deny on Transfer request   -->
+
+                            <div id="deny_leave_user" class="modal fade" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <form *ngIf="general.formart" (ngSubmit)="rejectTransfer()" #userForm="ngForm">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header modal-colored-header bg-dark">
+                                                <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                        class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Comment...!
+                                                </h4>
+                                                <button type="button" class="btn btn-link text-white ml-auto"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <i class="text-black">Your about to reject on
+                                                    {{transfer_details.user.name}}
+                                                    Transfer request?</i><br>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group mb-3">
+                                                            <textarea type="date" class="form-control" rows="5"
+                                                                id="comment"
+                                                                [(ngModel)]="comments_reject.transfer_approver_comment"
+                                                                name="transfer_approver_comment"
+                                                                placeholder="Please write your comment here"
+                                                                completion_date required></textarea>
+
+                                                        </div>
+                                                    </div>
+                                               
+                                            </div>
+
+                                            <div class="modal-footer d-flex justify-content-center mb-3">
+                                                <button *ngIf="general.bfrcreating" type="submit"
+                                                    class="btn btn-outline-primary rounded-pill w-50 float-end"
+                                                    [disabled]="!userForm.valid"> Reject </button>
+                                                <button *ngIf="general.creating"
+                                                    class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                                    <span class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    rejecting...
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </form>
+                            </div>
+
+                            <!-- comment on Transfer request -->
+
+
+
+
+
+
+
+
+                            <!-- approve on Transfer request   -->
+                            <div id="activate_user" class="modal fade" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <form *ngIf="general.formart" (ngSubmit)="approveTransfer()" #userApproveForm="ngForm">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header modal-colored-header bg-dark">
+                                                <h4 class="modal-title" id="dark-header-modalLabel"><i
+                                                        class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Comment...!
+                                                </h4>
+                                                <button type="button" class="btn btn-link text-white ml-auto"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+
+
+                                            <div class="modal-body text-center">
+                                                <i class="text-black">Your about to approve on
+                                                    {{transfer_details.user.name}}
+                                                    Transfer request?</i><br>
+                                            </div>
+
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group mb-3">
+                                                            <textarea type="date" class="form-control" rows="5"
+                                                                id="comment"
+                                                                [(ngModel)]="approve.transfer_approver_comment"
+                                                                name="transfer_approver_comment" id="transfer_approver_comment"
+                                                                placeholder="Please write your comment here"
+                                                                completion_date required></textarea>
+
+                                                        </div>
+                                                    </div>
+                                                   
+                                            <div class="modal-footer d-flex justify-content-center mb-3">
+                                                <button *ngIf="general.bfrcreating" type="submit"
+                                                    class="btn btn-outline-primary rounded-pill w-50 float-end"
+                                                    [disabled]="!userApproveForm.valid"> Approve </button>
+                                                <button *ngIf="general.creating"
+                                                    class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                                    <span class="spinner-border spinner-border-sm" role="status"
+                                                        aria-hidden="true"></span>
+                                                    Inazuia...
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </form>
+                            </div>
+                            <!-- comment on Transfer request -->
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- end tab-content -->
+            </div>
+            <!-- end card body -->
+        </div>
+
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row-->
