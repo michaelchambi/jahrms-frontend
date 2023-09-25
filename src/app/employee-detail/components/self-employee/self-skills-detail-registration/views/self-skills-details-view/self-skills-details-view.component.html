@@ -1,1 +1,114 @@
-<p>self-skills-details-view works!</p>
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-professional'">
+            <div class="col-md-8">
+                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_kin">Add Personal Skills</button></h5>
+          </div>
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <!-- content  -->
+    <div class="table-responsive">
+        <table class="table table-sm mb-0 table-responsive" id="dataTables">
+            <thead>
+                <tr>
+                    <th style="width: 5%">#</th>
+                    <th>Next of Kin Name</th>
+                    <th>Phone Number</th>
+                    <th>Physical Address</th>
+                    <th>Relation</th>
+                    <th>Gender</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let kin of kinDetails; let i = index">
+                    <td>{{1+i}}</td>
+                    <td>{{kin?.full_name}} </td>
+                    <td>{{kin?.phone_number}} </td>
+                        <td>{{kin?.physical_address}} </td>
+                    <td>{{kin?.relation?.name}} </td>
+                    <td>{{kin?.gender}} </td>
+                   
+                   
+                    <td class="table-action">
+                        <ng-container *ngFor="let access of permission?.action_access">
+                            <a *ngIf="access =='edit-kin'" href="/edit-professional/{{kin?.uid}}/{{submoduleId}}" class="action-icon" title="Change Details"> <i class="mdi mdi-pencil"></i></a>
+                            <a *ngIf="kin?.status =='VERIFIED' && access =='verify-kin'" href="#deactivate_kin" data-bs-toggle="modal" (click)="deactivate(kin?.id)" class="action-icon" title="Inactivate"> <i class="mdi mdi-close-circle"></i></a>
+                            <a *ngIf="kin?.status =='UNVERIFIED' && access =='unverify-kin'" href="#activate_kin" data-bs-toggle="modal" (click)="activate(kin?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
+                            <a *ngIf="access =='view-professional'" href="/kin/{{kin?.id}}/{{kin.id}}" class="action-icon" title="kin ndogo"> <i class="mdi mdi-eye"></i></a>
+                        </ng-container>
+                    </td>
+
+
+
+
+                    <div id="activate_kin" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                    
+                                <div class="modal-footer d-flex justify-content-center mb-3">
+                                    <button *ngIf="general.bfrcreating" (click)="activate(kin_datas.id)" data-bs-dismiss="modal" class="btn btn-outline-primary rounded-pill"> Yes Allow</button>
+                                    <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    It's Loading...
+                                  </button>
+                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="deactivate_kin" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-dark">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <i class="text-black">You are going to deactivate the kin from being viewd to the public?</i><br>
+                <b class="text-black">ttt</b>
+            </div>
+
+
+            <div class="modal-footer d-flex justify-content-center mb-3">
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(data.user_id)"> Yes Deactivate</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Inazuia...
+              </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="add_kin" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg_banner">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-users fa-lg"></i>&nbsp; Personal Skills...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <app-add-self-skills-details-form></app-add-self-skills-details-form>
+            </div>
+        </div>
+    </div>
+</div>
+

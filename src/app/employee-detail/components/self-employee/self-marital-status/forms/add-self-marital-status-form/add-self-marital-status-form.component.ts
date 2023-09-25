@@ -31,6 +31,7 @@ user_id:any;
   data = {
     marriage_status:'',
     spouse_name:'',
+    spouse_nida:'',
     marriage_date:'',
     employee_id:'',
     created_by: '',
@@ -61,10 +62,9 @@ user_id:any;
 
   ngOnInit(): void {
     this.permission.getRole();
-    this.submoduleId = this.activeRoute.snapshot.paramMap.get('id2');
-    this.user_id=this.activeRoute.snapshot.paramMap.get('id');
-    this.my_id=this.general.decryption(this.user_id as any)
-    // this.getMaritalStatus(this.my_id);
+    this.user_id=this.general.decryptionId(sessionStorage.getItem('id') as any);
+  
+    this.getMaritalStatus(this.user_id);
     this.getAttachment();
   }
 
@@ -132,6 +132,7 @@ user_id:any;
     formData.append('proof_attachment', this.selectedPassport_imageFile);
     formData.append('created_by', this.data.created_by);
     formData.append('spouse_name', this.data.spouse_name);
+    formData.append('spouse_nida', this.data.spouse_nida);
     formData.append('employee_id',this.data.created_by);
     formData.append('marriage_date', this.data.marriage_date);
     this.marital_status.addMaritalStatus(formData).subscribe(
@@ -139,7 +140,7 @@ user_id:any;
         this.uid = res.data;
         this.general.creating = false;
         this.general.bfrcreating = true;
-        this.route.navigate(['/user/' +this.user_id+'/'+ this.submoduleId ]);
+        this.route.navigate(['/my-profile']);
         this.script.successAlert(res.sw_message);
         this.general.successMessage(res.sw_message, (e: any) => {
           if (e) {

@@ -1,1 +1,99 @@
-<p>add-self-education-details-form works!</p>
+<div class="responsive p-0">
+    <p class="text-muted ">Education Information.</p>
+
+
+   
+    <form *ngIf="general.formart" (ngSubmit)="userRegistration()" #userForm="ngForm">
+        <div class="row">
+           
+            <!-- <div class="col-md-6">
+                <label for="level_id">Education Level:</label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.level_id" [multiple]="true" name="level_id" placeholder="Choose leve" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Education Level</ng-option>
+                        <ng-container *ngFor="let level of permission.role_list">
+                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div> -->
+            <div class="col-md-6">
+                <label for="index_number">Index Numbers</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="index_number" [(ngModel)]="data.index_number" name="index_number" placeholder="xxxxxxx" index_number required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="specialization">Specialization</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="specialization" [(ngModel)]="data.specialization" name="specialization" placeholder="xxxxx" specialization required />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="institution_name">Institution Name</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="institution_name" [(ngModel)]="data.institution_name" name="institution_name" placeholder="xxxxx" institution_name required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="starting_date">Start date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control"  id="starting_date" [(ngModel)]="data.starting_date" name="starting_date" id="myDatepicker" placeholder="xxxxxxx" starting_date required (change)="calculateAge()"/>
+                </div>
+            </div>
+          
+            <div class="col-md-6">
+                <label for="completion_date">Completion Date</label>
+                <div class="form-group mb-3">
+                    <input type="date" class="form-control"  id="completion_date" [(ngModel)]="data.completion_date" name="completion_date" id="myDatepicker" placeholder="xxxxxxx" completion_date required (change)="calculateAge()"/>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="result">Results</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="result" [(ngModel)]="data.result" name="result" placeholder="xxxxx" result required />
+                </div>
+            </div>
+
+
+           
+
+            <div class="col-md-6">
+               
+                <label> Attach Relating Certificate</label>
+                <input type="file" class="form-control" [(ngModel)]="data.certificate_attachment" name="birth_certificate_attachment"
+                    (change)="fileBirthCertificateUpload($event)" required />
+            </div>
+           
+            <ng-container *ngIf="my_kid">
+
+            </ng-container>
+            <ng-container *ngIf="just_dependant">
+                <div class="col-md-6">
+                    <label for="transcript_attachment">Transcript Attachment</label>
+                    <div class="form-group mb-3">
+                        <input type="file" class="form-control" id="transcript_attachment" [(ngModel)]="data.transcript_attachment" name="transcript_attachment" placeholder="Transcript"  required />
+                    </div>
+                </div>
+            </ng-container>
+            
+
+           
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Registering...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

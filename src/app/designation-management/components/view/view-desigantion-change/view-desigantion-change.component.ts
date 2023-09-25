@@ -20,7 +20,8 @@ export class ViewDesigantionChangeComponent {
   user_id: any;
   designation_change_data = {
     change_designation_reason_name: '',
-    change_designation_reason_abbreviation: ''
+    change_designation_reason_abbreviation: '',
+    created_by: ''
   }
   data = {
     uid: '',user_id:''
@@ -47,15 +48,12 @@ export class ViewDesigantionChangeComponent {
     this.general.creating = true;
     this.designations.getAllDesignationChange().subscribe(
       res => {
-        console.log('HIZI HAPA NI DESIGNATION CAHNGE', res);
-        
         this.designationList = res;
         this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
       },
       err => {
-        
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.script.errorAlert(err.error.sw_message);
@@ -68,7 +66,34 @@ export class ViewDesigantionChangeComponent {
   }
 
   addDesignationChange(){
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    console.log('HIZI HAPA NI DESIGNATION CAHNGE', this.designation_change_data);
+    this.designation_change_data.created_by = this.data.user_id;
+    this.designations.addDesignationChange(this.designation_change_data).subscribe(
+      res => {
+        
+        
+        this.general.bfrcreating = true;
+        this.general.creating = false;
+        this.general.successMessage(res.sw_message, (e: any) => {
+          if (e) {
+            window.location.reload();
+          }
 
+        });
+      },
+      err => {
+        
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+        this.script.errorAlert(err.error.sw_message);
+        if (err.error.token == 0) {
+          this.general.encryptUrl(this.route.url);
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
   }
 
 

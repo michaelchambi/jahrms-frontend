@@ -3,7 +3,7 @@
         <div class="row mb-3" *ngIf="access =='add-out-post'">
             <div class="col-md-8">
                 <a href="#cadre_job_list" data-bs-toggle="modal" class="btn btn-outline-dark rounded-pill"><i
-                        class="fal fa-plus fa-lg"></i> Add Job List</a>
+                        class="fal fa-plus fa-lg"></i>Change Designation</a>
 
             </div>
         </div>
@@ -16,7 +16,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
-                <div class="modal-header modal-colored-header bg-dark">
+                <div class="modal-header modal-colored-header bg-danger">
                     <h4 class="modal-title" id="dark-header-modalLabel"><i
                             class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Adding Job
                         List...!</h4>
@@ -27,18 +27,18 @@
                 <form *ngIf="general.formart" #userForm="ngForm">
 
                     <div class="row" style="padding: 2em;">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="maximum_number">change designation reason</label>
                             <div class="form-group mb-3">
-                                <textarea type="text" class="form-control" id="change_designation_reason_name"
+                                <input type="text" class="form-control" id="change_designation_reason_name"
                                     [(ngModel)]="designation_change_data.change_designation_reason_name" name="change_designation_reason_name" placeholder="xxxxxxx"
-                                    maximum_numbaer required></textarea>
+                                    maximum_numbaer required/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="change_designation_reason_abbreviation">Abbreviation</label>
                             <div class="form-group mb-3">
-                                <text type="text" class="form-control" id="change_designation_reason_abbreviation"
+                                <input type="text" class="form-control" id="change_designation_reason_abbreviation"
                                     [(ngModel)]="designation_change_data.change_designation_reason_abbreviation" name="change_designation_reason_abbreviation" placeholder="xxxxxxx"
                                     maximum_numbaer required />
                             </div>
@@ -51,11 +51,11 @@
                     <br>
                     <div class="modal-footer d-flex justify-content-center mb-3">
                         <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill"
-                            data-bs-dismiss="modal" (click)="addDesignationChange()"> Add Job List</button>
+                            data-bs-dismiss="modal" (click)="addDesignationChange()"> Add Change Designation</button>
                         <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button"
                             disabled>
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            Inazuia...
+                            adding...
                         </button>
 
                     </div>
@@ -76,8 +76,8 @@
                 <thead>
                     <tr>
                         <th style="width: 5%">#</th>
-                        <th>Working station</th>
-                        <th>Cadre Name</th>
+                        <th>Change eason</th>
+                        <th>Abreveation</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -86,8 +86,8 @@
                     <tr *ngFor="let user of designationList; let i = index">
                         <td>{{1+i}}</td>
                        
-                        <td>{{user.court.display_name}}</td>
-                        <td>{{user.cadre.name}}</td>
+                        <td>{{user.reason_change_designation}}</td>
+                        <td>{{user.change_designation_reason_abbreviation}}</td>
                         <td>
                             <span *ngIf="user?.active" class="badge badge-primary-lighten">Active</span>
                             <span *ngIf="!user?.active" class="badge badge-danger-lighten">Inactive</span>
@@ -95,7 +95,7 @@
                         <td class="table-action">
 
                             <ng-container *ngFor="let access of permission?.action_access">
-                                <a *ngIf="access =='edit-employee-detail'" href="/edit-out-post/{{user?.uid}}"
+                                <a *ngIf="access =='edit-designation change'" href="/edit-designation-change/{{user?.uid}}"
                                         class="action-icon" title="Badili Taarifa"> <i class="mdi mdi-pencil"></i></a>
                                 <a *ngIf="!user?.active && access =='activate-employee-detail'" href="#activate_user"
                                     data-bs-toggle="modal" (click)="showdesignation(user?.uid)" class="action-icon"
@@ -111,7 +111,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
-                                    <div class="modal-header modal-colored-header bg-dark">
+                                    <div class="modal-header modal-colored-header bg-danger">
                                         <h4 class="modal-title" id="dark-header-modalLabel"><i
                                                 class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
                                         <button type="button" class="btn btn-link text-white ml-auto"
@@ -145,13 +145,12 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
-                                    <div class="modal-header modal-colored-header bg-dark">
+                                    <div class="modal-header modal-colored-header bg-danger">
                                         <h4 class="modal-title" id="dark-header-modalLabel"><i
                                                 class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
                                         <button type="button" class="btn btn-link text-white ml-auto"
                                             data-bs-dismiss="modal">Close</button>
                                     </div>
-
 
                                     <div class="modal-body text-center" style="margin-top: 5%">
                                         <i class="text-black">You are about to dis-approve the job list for cadre<br> {{designation_data?.cadre?.name}}?</i><br> 

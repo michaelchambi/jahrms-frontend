@@ -1,0 +1,123 @@
+
+<ng-container *ngFor="let access of permission?.action_access">
+    <div class="row mb-3" *ngIf="access =='approve-marital-status'">
+        
+        <div class="col-md-3" >
+            <ng-container *ngIf="userInfoDetails?.data?.id==current_user_id">
+              
+                    <h5><button type="button" class="btn btn-outline-primary rounded-pill "
+                        data-bs-toggle="modal" data-bs-target="#add_bank_details">Add Information
+                        </button></h5>
+               
+          
+            </ng-container>
+        </div>
+       
+    </div>
+</ng-container>
+
+<ng-container *ngFor="let access of permission?.action_access">
+    <div class="employee-form" *ngIf="access =='add-employee-detail'">
+        <!-- <h2 class="mb-0 mt-2">Employee Bank Details</h2> -->
+        <section class="">
+            
+              <div class="row">
+               
+          
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                  <div
+                    class="bg-image hover-overlay ripple shadow-1-strong rounded"
+                    data-ripple-color="light"
+                  >
+                    <img
+                      
+                     src="{{API_URL}}{{concatenator}}{{userInfoDetails?.data?.personal_folder}}/{{BankInfoDetails?.card_copy}}"
+                      class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#bank_card"
+                    />
+                    <a href="#!" data-mdb-toggle="modal" data-mdb-target="#exampleModal3">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-8">
+                    <table class="table table-hover table-sm mb-0">
+                        <tbody class="text-black">
+            
+                            <tr>
+                                <td><b>Bank Name</b>:</td>
+                                <td>
+                                   <span class="badge badge-outline-success">{{BankInfoDetails?.bank?.name??'UN ADDED'}}
+                                       </span>
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Account Name</b>:</td>
+                                <td>{{BankInfoDetails?.account_name}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Account Number</b></td>
+                                <td>{{BankInfoDetails?.account_number}}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            </section>
+       
+    </div>
+</ng-container>
+
+
+
+
+
+
+<div id="add_bank_details" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i
+                        class="fal fa-stroopwafel fa-lg fa-spin"></i>&nbsp;Heearing You...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+            <div class="form-control">
+                <app-add-areas-form></app-add-areas-form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div id="bank_card" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg-primary">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i
+                        class="fal fa-stroopwafel fa-lg fa-spin"></i>&nbsp;Heearing You...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <img
+                        src="{{API_URL}}{{concatenator}}{{userInfoDetails?.data?.personal_folder}}/{{BankInfoDetails?.card_copy}}"
+                              class="img-thumbnail w-100"
+                            />
+                    </div>
+                </div>
+            </div>
+                
+           
+
+        </div>
+    </div>
+
+</div>

@@ -1,1 +1,38 @@
-<p>edit-desigantion-change-form works!</p>
+<div class="responsive p-0">
+            <form *ngIf="general.formart" (ngSubmit)="editDesignationChange()" #userForm="ngForm">
+    
+                <div class="row" style="padding: 2em;">
+                    <div class="col-md-6">
+                        <label for="maximum_number">change designation reason</label>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="change_designation_reason_name"
+                                [(ngModel)]="designation_change_details.change_designation_reason_name" name="change_designation_reason_name" placeholder="xxxxxxx"
+                                maximum_numbaer required/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="change_designation_reason_abbreviation">Abbreviation</label>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="change_designation_reason_abbreviation"
+                                [(ngModel)]="designation_change_details.change_designation_reason_abbreviation" name="change_designation_reason_abbreviation" placeholder="xxxxxxx"
+                                maximum_numbaer required />
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Apply</button>
+                        <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+                  <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+                  applying...
+                </button>
+                    </div>
+        
+                </div>
+            </form>
+       
+    </div>

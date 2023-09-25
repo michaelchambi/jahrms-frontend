@@ -4,7 +4,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import { PdfViewerModule } from 'ng2-pdf-viewer'; // Import `PdfViewerModule`.
+import { PdfViewerModule } from 'ng2-pdf-viewer'; 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeDetailsRoutingModule } from './employee-details-routing.module';

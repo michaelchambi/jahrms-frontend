@@ -3,7 +3,7 @@
     <ng-container *ngFor="let access of permission?.action_access">
         <div class="row mb-3" *ngIf="access =='add-professional'">
             <div class="col-md-8">
-                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_kin">Add NextOfKin</button></h5>
+                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_kin">Add Next Of Kin</button></h5>
           </div>
             <div class="col-md-4"></div>
         </div>
@@ -83,7 +83,7 @@
 
 
             <div class="modal-footer d-flex justify-content-center mb-3">
-                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(kin_datas?.id)"> Yes Deactivate</button>
+                <button *ngIf="general.bfrcreating" class="btn btn-outline-primary rounded-pill" data-bs-dismiss="modal" (click)="deactivate(data.user_id)"> Yes Deactivate</button>
                 <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Inazuia...

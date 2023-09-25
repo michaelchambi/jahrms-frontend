@@ -20,6 +20,7 @@
                     <th style="width: 5%">#</th>
                     <th>Designation Name</th>
                     <th>Designation Code</th>
+                    <th>Designation order</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -30,6 +31,7 @@
 
                     <td>{{designation.name}}</td>
                     <td>{{designation?.abbreviation ?? 'Private'}}</td>
+                    <td>{{designation?.designation_order ?? 'Not Provided'}}</td>
                     <td>
                         <span *ngIf="designation?.active" class="badge badge-primary-lighten">Active</span>
                         <span *ngIf="!designation?.active" class="badge badge-danger-lighten">Inactive</span>

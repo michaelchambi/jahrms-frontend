@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
-
 import { UsersService } from '../../../../../../services/users/users.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { ActivatedRoute, Router } from '@angular/router';

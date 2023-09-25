@@ -1,0 +1,43 @@
+<div class="responsive p-0">
+    <p class="text-muted ">Areas Details.</p>
+
+
+    <form *ngIf="general.formart" (ngSubmit)="addBankDetails()" #userForm="ngForm">
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="account_name">Expected Amount in Tshs.</label>
+
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="expected_amount" [(ngModel)]="data.expected_amount" name="expected_amount" placeholder="xxxxxxx" expected_amount required /> 
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label>Description*:</label>
+                <div class="form-group">
+                    <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
+                    [(ngModel)]="data.description" description required></textarea>
+                </div>
+            </div>
+            
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label> Upload Areas Attachment</label>
+                <input type="file" class="form-control" [(ngModel)]="data.areas_attachment" name="areas_attachment"
+                    (change)="fileCardCopyUpload($event)" required />
+            </div>
+            
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" bank="status " aria-hidden="true "></span>
+          Registering...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

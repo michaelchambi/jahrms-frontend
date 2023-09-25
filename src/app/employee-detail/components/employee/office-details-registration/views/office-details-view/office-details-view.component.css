@@ -6,3 +6,14 @@
 .single_status{
     font-size: 2em;
 }
+.has-hover-bounce {
+    border:0.1em solid rgb(6, 168, 227);
+    border-radius:0em 2em 2em 0em;
+    
+}
+.pr-1,.pl-1{
+    font-size:1.4em;
+}
+.text-dark{
+    font-size:2em;
+}

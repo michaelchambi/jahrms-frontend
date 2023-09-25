@@ -30,18 +30,6 @@
                 </div>
             </div>
 
-            <!-- <div class="col-xl-6 col-lg-6 col-md-12 ">
-                <label for="majukumu">Role:</label>
-                <div class="form-group mb-3">
-                    <ng-select [(ngModel)]="data.roles" [multiple]="true" name="majukumu" placeholder="Chagua System Roles" [clearable]="true" [clearOnBackspace]="false" required>
-                        <ng-option value="" disabled Selected>Choose Roles</ng-option>
-                        <ng-container *ngFor="let roles of permission.role_list">
-                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
-                        </ng-container>
-
-                    </ng-select>
-                </div>
-            </div> -->
 
             <div class="col-xl-6 col-lg-6 col-md-12 ">
                 <label for="icon">Designation Name: </label>
@@ -68,8 +56,19 @@
                     (change)="fileConfirmationUpload($event)" required />
             </div>
 
-            
+            <!-- <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Designation Reason Designation: </label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.change_designation_id" name="change_designation_id" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Designation</ng-option>
+                        <ng-container *ngFor="let designation_chenge of designation_chenge_details">
+                            <ng-option  value="{{designation_chenge.id}}">{{designation_chenge.reason_change_designation}}</ng-option>
+                        </ng-container>
+                    </ng-select>
+                </div>
+            </div> -->
         </div>
+     
 
 
         

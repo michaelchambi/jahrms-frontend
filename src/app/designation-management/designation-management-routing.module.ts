@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'recategorization/:id', component: ViewRecategorizationLayoutComponent,title: 'Matangazo', canActivate: [AuthGuard]},
   { path: 'appointment/:id', component: ViewAppointmentLayoutComponent,title: 'Ongeza Matangazo', canActivate: [AuthGuard]},
   { path: 'first-designation/:id', component: ViewFirstDesignationLayoutComponent,title: 'Ongeza Matangazo', canActivate: [AuthGuard]},
-  { path: 'edit-designatin-change/:id', component: EditDesigantionChangeLayoutComponent,title: 'Mwanzo', canActivate: [AuthGuard]},
+  { path: 'edit-designation-change/:id', component: EditDesigantionChangeLayoutComponent,title: 'Mwanzo', canActivate: [AuthGuard]},
   { path: 'add-designatin-change/:id', component: AddDesigantionChangeLayoutComponent,title: 'Mwanzo', canActivate: [AuthGuard]},
   { path: 'view-designation-change/:id', component: ViewDesigantionChangeLayoutComponent,title: 'Mwanzo', canActivate: [AuthGuard]},
 ];

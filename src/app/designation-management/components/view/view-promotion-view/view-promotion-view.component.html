@@ -43,7 +43,7 @@
         <tbody>
             <tr *ngFor="let user of userList; let i = index">
                 <td>{{1+i}}</td>
-                <td>{{user.details.user.name}}</td>
+                <td>{{user?.details?.user.name}}</td>
                 <td>{{user.details?.check_number?? 'Not Provided'}}</td>
                 <td>{{user.details.api_designation.name?? 'Not Provided'}}</td>
                 <td>{{user.years?? 'Designation date Not Set'}}</td>
@@ -57,7 +57,7 @@
                     <ng-container *ngFor="let access of permission?.action_access">
                         <a *ngIf="user?.active && access =='deactivate-employee-detail'" href="#deactivate_user" data-bs-toggle="modal" (click)="showUser(user?.id)" class="action-icon" title="Deactivate"> <i class="mdi mdi-close-circle"></i></a>
                         <a *ngIf="!user?.active && access =='activate-employee-detail'" href="#activate_user" data-bs-toggle="modal" (click)="showUser(user?.id)" class="action-icon" title="Activate"> <i class="mdi mdi-check-circle"></i></a>
-                        <a *ngIf="access =='view-employee-detail-actions-list'" href="/user/{{user.user?.uid}}/{{submoduleId}}" class="action-icon" title="user ndogo"> <i class="mdi mdi-eye"></i></a>
+                        <a *ngIf="access =='view-employee-detail-actions-list'" href="/user/{{user?.details?.user?.uid}}/{{submoduleId}}" class="action-icon" title="user ndogo"> <i class="mdi mdi-eye"></i>{{user?.details?.user?.uid}}</a>
                     </ng-container>
                   
                 </td>
@@ -67,15 +67,15 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                 
-                            <div class="modal-header modal-colored-header bg-dark">
+                            <div class="modal-header modal-colored-header bg-danger">
                                 <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
                                 <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
                             </div>
                 
                 
-                            <div class="modal-body text-center" style="margin-top: 5%">
-                                <i class="text-black">You are about to allow the addition of this user{{user_data?.id}}?</i><br>
-                                <b class="text-black">{{user_data?.name}}</b>
+                            <div class="modal-body text-centers" style="margin-top: 5%">
+                                <i class="text-black">You are about to allow the addition of this user</i><br>
+                                <b class="text-black">{{user.details.user?.name}}</b>
                             </div>
                 
                 
@@ -94,7 +94,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                 
-                            <div class="modal-header modal-colored-header bg-dark">
+                            <div class="modal-header modal-colored-header bg-danger">
                                 <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-radiation fa-lg fa-spin"></i>&nbsp;Warning...!</h4>
                                 <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
                             </div>

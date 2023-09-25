@@ -66,6 +66,7 @@
       this.designation_change.getAllElligiblePromotions().subscribe(
         res => {
           this.userList = res.employee;
+          this.script.datatable();
           this.general.creating = false;
           this.general.bfrcreating = true;
         },

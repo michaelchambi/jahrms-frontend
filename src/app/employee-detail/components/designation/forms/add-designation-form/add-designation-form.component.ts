@@ -26,7 +26,7 @@ export class AddDesignationFormComponent {
     bfrcreating: boolean = true;
     creating: boolean = false;
   
-    designation_data={cadre_id:'',designation_abbreviation:'',designation:'',user_id:'',description:''}
+    designation_data={cadre_id:'',designation_abbreviation:'',designation:'',user_id:'',description:'',designation_number:''}
     submoduleId: any;
     my_id: any;
     cadreDetails: any;
@@ -88,8 +88,9 @@ export class AddDesignationFormComponent {
       formData.append('name', this.designation_data.designation);
       formData.append('cadre_id', this.designation_data.cadre_id);
       formData.append('description', this.designation_data.description);
-      formData.append('abbreviation', this.designation_data.description);
+      formData.append('abbreviation', this.designation_data.designation_abbreviation);
       formData.append('user_id', this.designation_data.user_id);
+      formData.append('designation_order', this.designation_data.designation_number);
       this.designation.addDesignation(formData).subscribe(
         res => {
           this.appSuccess = true;

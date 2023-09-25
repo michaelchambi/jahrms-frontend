@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
-
+import { DesignationChangesService } from '../../../../../../services/designation-changes/designation-changes.service';
 import { EmploymentInfoService } from '../../../../../../services/employee/employment/employment-info.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
@@ -33,6 +33,7 @@ export class AddEmploymentDetailsFormComponent {
     user_id:'',
     designation_id:'',
     personal_folder:'',
+    change_designation_id:''
   }
   designationDetails: any;
   selectedHiredLatterFile: any;
@@ -40,6 +41,7 @@ export class AddEmploymentDetailsFormComponent {
   user_id: any;
   userInfo: any;
   userInfoDetails: any;
+  designation_chenge_details: any;
 
   fileHiringUpload(e: any) {
     this.selectedHiredLatterFile = e.target.files[0];
@@ -58,6 +60,7 @@ export class AddEmploymentDetailsFormComponent {
     private route: Router,
     private users:UsersService,
     public designation:DesignationsService,
+    public designation_change:DesignationChangesService,
     public permission: PermissionsService,
     private activeRoute: ActivatedRoute
   ) { }
@@ -68,8 +71,32 @@ export class AddEmploymentDetailsFormComponent {
     this.user_id=this.activeRoute.snapshot.paramMap.get('id') 
     this.getdesignation()
     this.userDetails(this.user_id) 
+    this. getDesignationChange();
   }
 
+
+  getDesignationChange() {
+    this.general.bfrcreating = false;
+    this.general.creating = true;
+    this.designation_change.getAllDesignationChange().subscribe(
+      res => {
+        this.designation_chenge_details = res;
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+        
+      },
+      err => {
+        
+        this.general.creating = false;
+        this.general.bfrcreating = true;
+        this.script.errorAlert(err.error.sw_message);
+        if (err.error.token == 0) {
+          this.general.encryptUrl(this.route.url);
+          this.route.navigate(['/restore-session']);
+        }
+      }
+    );
+  }
 
   getdesignation() {
     this.general.bfrcreating = false;
@@ -125,6 +152,7 @@ export class AddEmploymentDetailsFormComponent {
     let formData = new FormData();
     formData.append('personal_folder', this.data.personal_folder);
     formData.append('user_id', this.data.user_id);
+    formData.append('designation_change_id', this.data.change_designation_id);
     formData.append('employee_id', this.data.employee_id);
     formData.append('check_number', this.data.check_number);
     formData.append('pf_number', this.data.pf_number);
@@ -138,8 +166,7 @@ export class AddEmploymentDetailsFormComponent {
         this.uid = res.data;
         this.general.creating = false;
         this.general.bfrcreating = true;
-        this.route.navigate(['/user/' + this.uid.uid+'/'+this.submoduleId ]);
-  
+        this.route.navigate(['/user/' + this.user_id+'/'+this.submoduleId ]);
         this.general.successMessage(res.sw_message, (e: any) => {
           if (e) {
             window.location.reload();

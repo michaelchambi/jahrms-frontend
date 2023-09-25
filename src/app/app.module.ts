@@ -16,6 +16,7 @@ import { DesignationManagementModule } from './designation-management/designatio
 import { LeaveModule } from './leave/leave/leave.module';
 import { NgChartsModule } from 'ng2-charts';
 import { JobModule } from './job-list/job.module'
+import { AreasModule} from './areas/areas.module'
 import { SettingsModule } from './settings/settings.module';
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SettingsModule } from './settings/settings.module';
     ReactiveFormsModule,
     FormsModule,
     JobModule,
+    AreasModule,
     SettingsModule,
 
 

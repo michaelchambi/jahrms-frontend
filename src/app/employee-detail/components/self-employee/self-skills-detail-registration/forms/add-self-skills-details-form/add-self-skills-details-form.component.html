@@ -1,1 +1,43 @@
-<p>add-self-skills-details-form works!</p>
+<div class="responsive p-0">
+   
+
+
+    <form *ngIf="general.formart" (ngSubmit)="dependantRegistration()" #userForm="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="birth_certificate_number">Phone Number</label>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" id="birth_certificate_number" [(ngModel)]="data.phone_number" name="phone_number" placeholder="xxxxx" birth_certificate_number required />
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 ">
+                <label for="icon">Personal Skills: </label>
+                <div class="form-group mb-3">
+                    <ng-select [(ngModel)]="data.relation_id" name="relation_id" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-option value="" disabled Selected>Choose Skills</ng-option>
+                        <ng-container *ngFor="let relation of relationDetails">
+                            <ng-option  value="{{relation.id}}" (click)="myChildren()">{{relation.name}}</ng-option>
+                             <option  value="dependants" (click)="myDependant()">Other Dependants</option>
+                      
+
+                        </ng-container>
+
+                    </ng-select>
+                </div>
+            </div>
+           
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <button *ngIf="general.bfrcreating" type="submit" class="btn btn-outline-primary rounded-pill w-50 float-end" [disabled]="!userForm.valid">Submit</button>
+                <button *ngIf="general.creating" class="btn btn-outline-primary rounded-pill w-50 float-end" type="button " disabled>
+          <span class="spinner-border spinner-border-sm" role="status " aria-hidden="true "></span>
+          Registering...
+        </button>
+            </div>
+
+        </div>
+    </form>
+</div>

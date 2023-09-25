@@ -29,8 +29,7 @@ export class SelfMaritalStatusViewComponent {
     uid: ''
   }
   data = {
-    uid: '',
-    roles: []
+    employee_id: '',
   }
   marital_status_req_data={id:'',approver_id:''}
   data_required={id:''}
@@ -57,14 +56,13 @@ export class SelfMaritalStatusViewComponent {
 
     this.permission.getRole();
     this. getMaritalStatus(this.current_user_id) 
-    // this.userDetails( this.current_user_id);
+    this.userDetails(this.current_user_id)
   
   }
 
 
   getMaritalStatus(id:any) {
     this.data_required.id=id;
-    // this.marital_status_req_data.approver_id=
     this.general.bfrcreating = false;
     this.general.creating = true;
     this.marital_status.getMaritalStatus(this.data_required).subscribe(
@@ -86,11 +84,11 @@ export class SelfMaritalStatusViewComponent {
     );
   }
   userDetails(id: any) {
-    this.data.uid = id
-    this.users.showUser(id).subscribe(
+    this.data.employee_id = id
+    this.users.showUserById(id).subscribe(
       res => {
         this.details = res.data;
-        this.getMaritalStatus(this.details.data.id);
+        // this.getMaritalStatus(this.details.data.id);
       },
       err => {
         this.script.errorAlert(err.error.sw_message)
@@ -102,75 +100,6 @@ export class SelfMaritalStatusViewComponent {
     );
   }
 
-
-
-  activate(id: any) {
-    this.values.uid = id;
-    this.general.bfrcreating = false;
-    this.general.creating = true;
-    this.users.activateUser(this.data).subscribe(
-      res => {
-        this.general.bfrcreating = true;
-        this.general.creating = false;
-        this.closeModal()
-        this.general.successMessage(res.sw_message, (e: any) => {
-          if (e) {
-            window.location.reload();
-          }
-
-        });
-      },
-      err => {
-        this.general.bfrcreating = true;
-        this.general.creating = false;
-        this.closeModal()
-        this.general.errorMessage(err.error.sw_message, (e: any) => {
-          if (e) {
-            window.location.reload();
-          }
-
-        });
-        if (err.error.token == 0) {
-          sessionStorage.setItem('current_url', this.route.url)
-          this.route.navigate(['/restore-session']);
-        }
-      }
-    );
-  }
-
-  deactivate(id: any) {
-    this.values.uid = id;
-    this.general.bfrcreating = false;
-    this.general.creating = true;
-    this.users.deactivateUser(this.data).subscribe(
-      res => {
-        this.general.bfrcreating = true;
-        this.general.creating = false;
-        this.closeModal()
-        this.general.successMessage(res.sw_message, (e: any) => {
-          if (e) {
-            window.location.reload();
-          }
-
-        });
-      },
-      err => {
-        this.general.bfrcreating = true;
-        this.general.creating = false;
-        this.closeModal()
-        this.general.errorMessage(err.error.sw_message, (e: any) => {
-          if (e) {
-            window.location.reload();
-          }
-
-        });
-        if (err.error.token == 0) {
-          sessionStorage.setItem('current_url', this.route.url)
-          this.route.navigate(['/restore-session']);
-        }
-      }
-    );
-  }
 
 
 

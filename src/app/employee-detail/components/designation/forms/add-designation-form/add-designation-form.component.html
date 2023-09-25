@@ -17,18 +17,26 @@
                 </div>
 
                 <div class="col-xl-6 col-lg-6 col-md-12">
-                    <label>Enter Designation*:</label>
+                    <label>Designation Name*:</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" type="text" name="designation" placeholder="Enter  "
+                        <input type="text" class="form-control"  name="designation" placeholder="Enter  "
                         [(ngModel)]="designation_data.designation" designation required>
                     </div>
                     
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12">
-                    <label>Enter Designation Abbreviation*:</label>
+                    <label>Designation Abbreviation*:</label>
                     <div class="form-group">
-                        <input type="text" class="form-control" type="text" name="designation_abbreviation" placeholder="Enter  "
+                        <input type="text" class="form-control"  name="designation_abbreviation" placeholder="Enter  "
                         [(ngModel)]="designation_data.designation_abbreviation" designation_abbreviation required>
+                    </div>
+                    
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <label>Designation Order*:</label>
+                    <div class="form-group">
+                        <input type="number" class="form-control"  name="designation_number" placeholder="Enter  "
+                        [(ngModel)]="designation_data.designation_number" designation_number required>
                     </div>
                     
                 </div>
