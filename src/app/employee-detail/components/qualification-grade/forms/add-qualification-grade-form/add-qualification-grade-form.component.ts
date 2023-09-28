@@ -3,8 +3,8 @@ import { GeneralService } from '../../../../../services/general/general.service'
 import { PermissionsService } from '../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
-import { QualificationGradeService} from '../../../../../services/qualification/qualification-grade.service';
-import { QualificationService} from '../../../../../services/qualification/qualification.service';
+import { EducationLevelGradeService} from '../../../../../services/qualification/qualification-grade.service';
+import { EducationLevelService} from '../../../../../services/qualification/qualification.service';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class AddQualificationGradeFormComponent {
   bfrcreating: boolean = true;
   creating: boolean = false;
 
-  grade_data={qualification_id:'',grade:'',user_id:'',description:''}
+  grade_data={education_level_id:'',grade:'',user_id:'',description:''}
   submoduleId: any;
   my_id: any;
   qualificationDetails: any;
@@ -39,8 +39,8 @@ export class AddQualificationGradeFormComponent {
     public script: ScriptConfigService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private qualification:QualificationService,
-    private grade:QualificationGradeService
+    private qualification:EducationLevelService,
+    private grade:EducationLevelGradeService
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +59,7 @@ export class AddQualificationGradeFormComponent {
   getqualification() {
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.qualification.getQualifications().subscribe(
+    this.qualification.getEducationLevels().subscribe(
       res => {
         this.qualificationDetails = res;
         this.script.datatable();
@@ -88,10 +88,10 @@ export class AddQualificationGradeFormComponent {
     this.my_id=this.general.decryptionId(this.id);
     this.grade_data.user_id=this.my_id;
     formData.append('name', this.grade_data.grade);
-    formData.append('qualification_id', this.grade_data.qualification_id);
+    formData.append('education_level_id', this.grade_data.education_level_id);
     formData.append('description', this.grade_data.description);
     formData.append('user_id', this.grade_data.user_id);
-    this.grade.addQualification_grade(this.grade_data).subscribe(
+    this.grade.addEducationLevel_grade(this.grade_data).subscribe(
       res => {
         this.appSuccess = true;
         this.successMessage = res.message;

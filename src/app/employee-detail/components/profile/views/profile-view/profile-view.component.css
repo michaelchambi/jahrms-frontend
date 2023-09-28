@@ -1,12 +1,12 @@
 .progress-card{
-    background-color:bisque;
+    /* background-color:bisque; */
     border-radius:0.1em;
     height:36em;
     width:24%;
     float:left;
 text-align: center;
     /* margin-right:1%; */
-    box-shadow: 1px 1px 0px 1px rgb(203, 201, 201);
+    /* box-shadow: 1px 1px 0px 1px rgb(203, 201, 201); */
 }
 .badge{
     font-size: 1em;;
@@ -37,3 +37,76 @@ text-align: center;
     min-width:14em;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-right: 16px solid green;
+    border-bottom: 16px solid red;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+
+
+
+
+        
+  ol {
+    counter-reset: li; 
+    list-style: none; 
+    padding: 0;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  }
+  
+  ol a {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    margin: .5em 0;
+    background: #dc143c;;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: .3s ease-out;
+  }
+  
+  ol a:hover { background: #866d6d; color:#fff;cursor:pointer}
+  ol a:hover:before { transform: rotate(360deg); }
+  ol a:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #ba1a0b;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
+  }
+      
+
+
+
+
+  

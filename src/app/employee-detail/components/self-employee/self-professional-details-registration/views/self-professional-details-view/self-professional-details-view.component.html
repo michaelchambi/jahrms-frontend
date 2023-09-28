@@ -1,1 +1,101 @@
-<p>self-professional-details-view works!</p>
+<div class="responsive mt-3 p-0">
+
+    <ng-container *ngFor="let access of permission?.action_access">
+        <div class="row mb-3" *ngIf="access =='add-professional'">
+            <div class="col-md-8">
+                <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal"
+                        data-bs-target="#add_kin">Add Professional Skills</button></h5>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </ng-container>
+    <div class="section-block-grey">
+        <div class="container">
+            <div class="row">
+                <section class="our-blog p-0 m-0 bg-silver">
+                    <ng-container *ngFor="let skills of skillDetails; let i = index">
+                        <div class="row">
+                            <ng-container *ngIf="(1+i)%2!=0">
+                                <div class="col-md-5">
+                                    <div class="process-box process-left" data-aos="fade-right"
+                                        data-aos-duration="1000">
+
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="process-step">
+                                                    <!-- <p class="m-0 p-0">Step</p> -->
+                                                    <h2 class="m-0 p-0">{{1+i}}</h2>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h3>{{skills.skill.name}}</h3>
+                                                <p><b>{{skills.skill.description}}</b></p>
+                                            </div>
+                                        </div>
+                                        <div class="process-line-l">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5">
+                                    <div class="process-point-right"></div>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="(1+i)%2==0">
+                                <div class="col-md-5">
+                                    <div class="process-point-left"></div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5">
+                                    <div class="process-box process-right" data-aos="fade-left"
+                                        data-aos-duration="1000">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="process-step">
+                                                    <h2 class="m-0 p-0">{{1+i}}</h2>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <h3>{{skills.skill.name}}</h3>
+                                                <p><small>{{skills.skill.description}}</small></p>
+                                            </div>
+                                        </div>
+                                        <div class="process-line-r"></div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+<div id="add_kin" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header modal-colored-header bg_banner">
+                <h4 class="modal-title" id="dark-header-modalLabel"><i class="fal fa-users fa-lg"></i>&nbsp; Personal
+                    Skills...!</h4>
+                <button type="button" class="btn btn-link text-white ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+
+
+            <div class="modal-body text-center" style="margin-top: 5%">
+                <app-add-self-professional-details-form></app-add-self-professional-details-form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-import { QualificationGradeService} from '../../../../../services/qualification/qualification-grade.service';
+import { EducationLevelGradeService} from '../../../../../services/qualification/qualification-grade.service';
 import { PermissionsService} from '../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
-import { QualificationService} from '../../../../../services/qualification/qualification.service';
+import { EducationLevelService} from '../../../../../services/qualification/qualification.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { QualificationService} from '../../../../../services/qualification/quali
   templateUrl: './qualification-grade-view.component.html',
   styleUrls: ['./qualification-grade-view.component.css']
 })
-export class QualificationGradeViewComponent {
+export class EducationLevelGradeViewComponent {
 
 
 
@@ -28,7 +28,7 @@ export class QualificationGradeViewComponent {
     qualification_datas={id:''}
     constructor(
       public general: GeneralService,
-      public qualification: QualificationGradeService ,
+      public qualification: EducationLevelGradeService ,
       public permission: PermissionsService ,
       public script: ScriptConfigService,
       private route: Router,
@@ -45,10 +45,9 @@ export class QualificationGradeViewComponent {
     getqualificationGrade() {
       this.general.bfrcreating = false;
       this.general.creating = true;
-      this.qualification.getQualification_grades().subscribe(
+      this.qualification.getEducationLevel_grades().subscribe(
         res => {
           this.qualificationList = res;
-          this.script.datatable();
           this.general.creating = false;
           this.general.bfrcreating = true;
         },
@@ -70,7 +69,7 @@ export class QualificationGradeViewComponent {
   
     showCourt_level(id: any) {
       this.qualification_datas.id = id
-      this.qualification.showQualification_grade(id).subscribe(
+      this.qualification.showEducationLevel_grade(id).subscribe(
         res => {
           this.qualification_data = res;
         },
@@ -88,7 +87,7 @@ export class QualificationGradeViewComponent {
       this.qualification_datas.id = id;
       this.general.bfrcreating = false;
       this.general.creating = true;
-      this.qualification.activateQualification_grade(this.qualification_datas).subscribe(
+      this.qualification.activateEducationLevel_grade(this.qualification_datas).subscribe(
         res => {
           this.general.bfrcreating = true;
           this.general.creating = false;
@@ -120,7 +119,7 @@ export class QualificationGradeViewComponent {
       this.qualification_datas.id = id;
       this.general.bfrcreating = false;
       this.general.creating = true;
-      this.qualification.deactivateQualification_grade(this.qualification_datas).subscribe(
+      this.qualification.deactivateEducationLevel_grade(this.qualification_datas).subscribe(
         res => {
           this.general.bfrcreating = true;
           this.general.creating = false;

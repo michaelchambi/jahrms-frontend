@@ -3,7 +3,7 @@
     <ng-container *ngFor="let access of permission?.action_access">
         <div class="row mb-3" *ngIf="access =='add-qualification-grade'">
             <div class="col-md-8">
-                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_qualification">Add Qualification</button></h5>
+                    <h5><button type="button" class="btn btn-outline-primary rounded-pill " data-bs-toggle="modal" data-bs-target="#add_qualification">Add Education Level Grade</button></h5>
           </div>
             <div class="col-md-4"></div>
         </div>
@@ -14,8 +14,8 @@
             <thead>
                 <tr>
                     <th style="width: 5%">#</th>
-                    <th>Qualification Name</th>
-                    <th>Qualification Grade</th>
+                    <th>Education Level Name</th>
+                    <th>Education Level Grade</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -23,7 +23,7 @@
             <tbody>
                 <tr *ngFor="let qualification of qualificationList; let i = index">
                     <td>{{1+i}}</td>
-                    <td>{{qualification.qualification.name}}</td>
+                    <td>{{qualification.education_level.name}}</td>
                     <td>{{qualification.name}}</td>
                     <td>
                         <span *ngIf="qualification?.active" class="badge badge-primary-lighten">Active</span>

@@ -7,9 +7,9 @@ import { environment } from './../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class QualificationGradeService {
+export class EducationLevelGradeService {
 
-  private url = environment.API_URL + 'qualification_grade';
+  private url = environment.API_URL + 'education_level_grade';
   constructor(
     private http:HttpClient,
     private general: GeneralService,
@@ -27,43 +27,43 @@ export class QualificationGradeService {
   }
 
 
-  addQualification_grade(data:any) {
-    return this.http.post<any>(`${this.url}/addQualificationGrade` , data, { headers: this.general.userAuthorization() });
+  addEducationLevel_grade(data:any) {
+    return this.http.post<any>(`${this.url}/addEducationLevelGrade` , data, { headers: this.general.userAuthorization() });
   }
 
 
-  getQualification_grades(){
+  getEducationLevel_grades(){
     return this.http.get<any>(`${this.url}`, { headers: this.general.userAuthorization() });
   }
-  getfreeQualification_grades(){
+  getfreeEducationLevel_grades(){
     return this.http.get<any>(`${this.url}/free`);
   }
 
 
-  countQualification_grades(){
+  countEducationLevel_grades(){
     return this.http.get<any>(`${this.url}/count_received`, { headers: this.general.userAuthorization() });
   }
 
 
-  showQualification_grade(id:any) {
+  showEducationLevel_grade(id:any) {
     return this.http.get<any>(`${this.url}/show/${id}`,{ headers: this.general.userAuthorization() });
   }
 
-  editQualification_grade(id:any, data:any) {
-    return this.http.post<any>(`${this.url}/editQualificationGrade/${id}`, data , { headers: this.general.userAuthorization() });
+  editEducationLevel_grade(id:any, data:any) {
+    return this.http.post<any>(`${this.url}/editEducationLevelGrade/${id}`, data , { headers: this.general.userAuthorization() });
   }
 
-  deactivateQualification_grade(id:any) {
-    return this.http.post<any>(`${this.url}/deactivateQualificationGrade`,id ,  { headers: this.general.userAuthorization() });
+  deactivateEducationLevel_grade(id:any) {
+    return this.http.post<any>(`${this.url}/deactivateEducationLevelGrade`,id ,  { headers: this.general.userAuthorization() });
   }
 
 
   
-  activateQualification_grade(id:any) {
-    return this.http.post<any>(`${this.url}/activateQualificationGrade`,id ,  { headers: this.general.userAuthorization() });
+  activateEducationLevel_grade(id:any) {
+    return this.http.post<any>(`${this.url}/activateEducationLevelGrade`,id ,  { headers: this.general.userAuthorization() });
   }
 
-  deleteQualification_grade(id:any) {
-    return this.http.post<any>(`${this.url}/deleteQualificationGrade`,id , { headers: this.general.userAuthorization() });
+  deleteEducationLevel_grade(id:any) {
+    return this.http.post<any>(`${this.url}/deleteEducationLevelGrade`,id , { headers: this.general.userAuthorization() });
   }
 }

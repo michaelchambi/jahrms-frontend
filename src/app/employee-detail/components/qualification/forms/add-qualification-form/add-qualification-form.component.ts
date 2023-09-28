@@ -3,7 +3,7 @@ import { GeneralService } from '../../../../../services/general/general.service'
 import { PermissionsService } from '../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
-import { QualificationService } from '../../../../../services/qualification/qualification.service';
+import { EducationLevelService } from '../../../../../services/qualification/qualification.service';
 
 @Component({
   selector: 'app-add-qualification-form',
@@ -35,7 +35,7 @@ export class AddQualificationFormComponent {
     public script: ScriptConfigService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private qualification:QualificationService
+    private qualification:EducationLevelService
   ) { }
 
   ngOnInit(): void {
@@ -54,10 +54,10 @@ export class AddQualificationFormComponent {
     let formData = new FormData();
     this.my_id=this.general.decryptionId(this.id);
     this.qualification_details.user_id=this.my_id;
-    formData.append('qualification_description', this.qualification_details.description);
+    formData.append('description', this.qualification_details.description);
     formData.append('name', this.qualification_details.qualification_name);
     formData.append('user_id', this.qualification_details.user_id);
-    this.qualification.addQualification(formData).subscribe(
+    this.qualification.addEducationLevel(formData).subscribe(
       res => {
         this.appSuccess = true;
         this.successMessage = res.message;

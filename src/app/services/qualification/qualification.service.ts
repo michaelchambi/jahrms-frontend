@@ -8,10 +8,10 @@ import { environment } from './../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class QualificationService {
+export class EducationLevelService {
 
 
-  private url = environment.API_URL + 'qualification';
+  private url = environment.API_URL + 'education_level';
   constructor(
     private http:HttpClient,
     private general: GeneralService,
@@ -29,43 +29,43 @@ export class QualificationService {
   }
 
 
-  addQualification(data:any) {
-    return this.http.post<any>(`${this.url}/addQualification` , data, { headers: this.general.userAuthorization() });
+  addEducationLevel(data:any) {
+    return this.http.post<any>(`${this.url}/addEducationLevel` , data, { headers: this.general.userAuthorization() });
   }
 
 
-  getQualifications(){
+  getEducationLevels(){
     return this.http.get<any>(`${this.url}`, { headers: this.general.userAuthorization() });
   }
-  getfreeQualifications(){
+  getfreeEducationLevels(){
     return this.http.get<any>(`${this.url}/free`);
   }
 
 
-  countQualifications(){
+  countEducationLevels(){
     return this.http.get<any>(`${this.url}/count_received`, { headers: this.general.userAuthorization() });
   }
 
 
-  showQualification(id:any) {
+  showEducationLevel(id:any) {
     return this.http.get<any>(`${this.url}/show/${id}`,{ headers: this.general.userAuthorization() });
   }
 
-  editQualification(id:any, data:any) {
-    return this.http.post<any>(`${this.url}/editQualification/${id}`, data , { headers: this.general.userAuthorization() });
+  editEducationLevel(id:any, data:any) {
+    return this.http.post<any>(`${this.url}/editEducationLevel/${id}`, data , { headers: this.general.userAuthorization() });
   }
 
-  deactivateQualification(id:any) {
-    return this.http.post<any>(`${this.url}/deactivateQualification`,id ,  { headers: this.general.userAuthorization() });
+  deactivateEducationLevel(id:any) {
+    return this.http.post<any>(`${this.url}/deactivateEducationLevel`,id ,  { headers: this.general.userAuthorization() });
   }
 
 
   
-  activateQualification(id:any) {
-    return this.http.post<any>(`${this.url}/activateQualification`,id ,  { headers: this.general.userAuthorization() });
+  activateEducationLevel(id:any) {
+    return this.http.post<any>(`${this.url}/activateEducationLevel`,id ,  { headers: this.general.userAuthorization() });
   }
 
-  deleteQualification(id:any) {
-    return this.http.post<any>(`${this.url}/deleteQualification`,id , { headers: this.general.userAuthorization() });
+  deleteEducationLevel(id:any) {
+    return this.http.post<any>(`${this.url}/deleteEducationLevel`,id , { headers: this.general.userAuthorization() });
   }
 }

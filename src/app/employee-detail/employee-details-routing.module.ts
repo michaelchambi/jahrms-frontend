@@ -81,6 +81,8 @@ import { ProfileLayoutComponent } from '../employee-detail/components/profile/la
 import { EditProfileLayoutComponent } from '../employee-detail/components/profile/layout/edit-profile-layout/edit-profile-layout.component';
 import { MyRetirementLayoutComponent } from './components/retirement/layout/my-retirement-layout/my-retirement-layout.component';
 import { EmployeeRetirementLayoutComponent } from './components/retirement/layout/employee-retirement-layout/employee-retirement-layout.component';
+import { AcademicInstitutionLayoutComponent } from './components/Academic-Institution/Layout/academic-institution-layout/academic-institution-layout.component';
+import { AcademicSpecializationLayoutComponent } from './components/Academic-specialization/layout/academic-specialization-layout/academic-specialization-layout.component';
 
 
 
@@ -305,7 +307,13 @@ const routes: Routes = [
   //  MARITAL STATUS  ROUTES
   //======================================================================================
   { path: 'my-retirement',component: MyRetirementLayoutComponent,title: 'Ukurasa wangu',canActivate: [AuthGuard] },
-  { path: 'employee-retirement/:id',component: EmployeeRetirementLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]}
+  { path: 'employee-retirement/:id',component: EmployeeRetirementLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]},
+
+ //======================================================================================
+  // ACADEMIC INSTITUTION/SPECIALIZATION  ROUTES
+  //======================================================================================
+  { path: 'academic-institution/:id',component: AcademicInstitutionLayoutComponent,title: 'Ukurasa wangu',canActivate: [AuthGuard] },
+  { path: 'academic-specialization/:id',component: AcademicSpecializationLayoutComponent,title: 'Change Details',canActivate: [AuthGuard]}
 
 
 

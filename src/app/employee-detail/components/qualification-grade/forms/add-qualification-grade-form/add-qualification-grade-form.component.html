@@ -6,7 +6,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 ">
                     <label for="icon">Display Option: </label>
                     <div class="form-group mb-3">
-                        <ng-select [(ngModel)]="grade_data.qualification_id" name="qualification_id" [clearable]="true" [clearOnBackspace]="false" required>
+                        <ng-select [(ngModel)]="grade_data.education_level_id" name="education_level_id" [clearable]="true" [clearOnBackspace]="false" required>
                             <ng-option value="" disabled Selected>Choose Option</ng-option>
                             <ng-container *ngFor="let qualification of qualificationDetails">
                                 <ng-option  value="{{qualification.id}}">{{qualification.name}}</ng-option>

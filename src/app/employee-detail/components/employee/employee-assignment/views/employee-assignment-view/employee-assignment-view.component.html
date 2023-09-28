@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-5"><b class="text-black">Employee System Role(S)</b>:</div>
                     <div class="col-md-3">
-                        <span class="badge badge-outline-success">{{details?.data?.role_users[0]?.role?.name??'UN ASSIGNED'}}</span>
+                        <span class="badge badge-outline-success">{{rolesDetails?.data[0]?.role?.name??'UN ASSIGNED'}}</span>
                     </div>
                     
                 </div>
@@ -39,7 +39,7 @@
     </ng-container>
     <div id="update_role" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <div class="modal-header modal-colored-header bg-primary">

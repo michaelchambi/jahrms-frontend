@@ -5,7 +5,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer'; 
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeDetailsRoutingModule } from './employee-details-routing.module';
 import { StructureModule } from '../structure/structure.module';
@@ -73,8 +72,8 @@ import { AddQualificationLayoutComponent } from './components/qualification/layo
 import { EditQualificationLayoutComponent } from './components/qualification/layout/edit-qualification-layout/edit-qualification-layout.component';
 import { EditQualificationFormComponent } from './components/qualification/forms/edit-qualification-form/edit-qualification-form.component';
 import { AddQualificationFormComponent } from './components/qualification/forms/add-qualification-form/add-qualification-form.component';
-import { QualificationViewComponent } from './components/qualification/views/qualification-view/qualification-view.component';
-import { QualificationGradeViewComponent } from './components/qualification-grade/views/qualification-grade-view/qualification-grade-view.component';
+import { EducationLevelViewComponent } from './components/qualification/views/qualification-view/qualification-view.component';
+import { EducationLevelGradeViewComponent } from './components/qualification-grade/views/qualification-grade-view/qualification-grade-view.component';
 import { AddQualificationGradeFormComponent } from './components/qualification-grade/forms/add-qualification-grade-form/add-qualification-grade-form.component';
 import { EditQualificationGradeFormComponent } from './components/qualification-grade/forms/edit-qualification-grade-form/edit-qualification-grade-form.component';
 import { EditQualificationGradeLayoutComponent } from './components/qualification-grade/layout/edit-qualification-grade-layout/edit-qualification-grade-layout.component';
@@ -83,20 +82,14 @@ import { QualificationGradeLayoutComponent } from './components/qualification-gr
 import { BankDetailsLayoutComponent } from './components/bank-details/layout/bank-details-layout/bank-details-layout.component';
 import { AddBankDetailsLayoutComponent } from './components/bank-details/layout/add-bank-details-layout/add-bank-details-layout.component';
 import { EditBankDetailsLayoutComponent } from './components/bank-details/layout/edit-bank-details-layout/edit-bank-details-layout.component';
-//import { EditBankDetailsFormComponent } from './components/bank-details/forms/edit-bank-details-form/edit-bank-details-form.component';
-//import { AddBankDetailsFormComponent } from './components/bank-details/forms/add-bank-details-form/add-bank-details-form.component';
 import { BankDetailsViewComponent } from './components/bank-details/views/bank-details-view/bank-details-view.component';
 import { DependantDetailsLayoutComponent } from './components/dependant-details/layout/dependant-details-layout/dependant-details-layout.component';
 import { AddDependantDetailsLayoutComponent } from './components/dependant-details/layout/add-dependant-details-layout/add-dependant-details-layout.component';
 import { EditDependantDetailsLayoutComponent } from './components/dependant-details/layout/edit-dependant-details-layout/edit-dependant-details-layout.component';
-//import { EditDependantDetailsFormComponent } from './components/dependant-details/forms/edit-dependant-details-form/edit-dependant-details-form.component';
-//import { AddDependantDetailsFormComponent } from './components/dependant-details/forms/add-dependant-details-form/add-dependant-details-form.component';
 import { AddDependantDetailsViewComponent } from './components/dependant-details/views/add-dependant-details-view/add-dependant-details-view.component';
 import { EducationDetailsLayoutComponent } from './components/education-details/layout/education-details-layout/education-details-layout.component';
 import { AddEducationDetailsLayoutComponent } from './components/education-details/layout/add-education-details-layout/add-education-details-layout.component';
 import { EditEducationDetailsLayoutComponent } from './components/education-details/layout/edit-education-details-layout/edit-education-details-layout.component';
-//import { EditEducationDetailsFormComponent } from './components/education-details/forms/edit-education-details-form/edit-education-details-form.component';
-//import { AddEducationDetailsFormComponent } from './components/education-details/forms/add-education-details-form/add-education-details-form.component';
 import { EducationDetailsViewComponent } from './components/education-details/views/education-details-view/education-details-view.component';
 import { ProfessionalSkillsLayoutComponent } from './components/professional-skills/layout/professional-skills-layout/professional-skills-layout.component';
 import { AddProfessionalSkillsLayoutComponent } from './components/professional-skills/layout/add-professional-skills-layout/add-professional-skills-layout.component';
@@ -146,7 +139,6 @@ import { EditLeaveTypeLayoutComponent } from './components/leave-type/layout/edi
 import { AddLeaveTypeFormComponent } from './components/leave-type/forms/add-leave-type-form/add-leave-type-form.component';
 import { EditLeaveTypeFormComponent } from './components/leave-type/forms/edit-leave-type-form/edit-leave-type-form.component';
 import { LeaveTypeViewComponent } from './components/leave-type/views/leave-type-view/leave-type-view.component';
-
 import { JotUsersLayoutComponent } from './components/employee/user-registration/layout/jot-users-layout/jot-users-layout.component';
 import { AddJotUsersLayoutComponent } from './components/employee/user-registration/layout/add-jot-users-layout/add-jot-users-layout.component';
 import { EditJotUsersLayoutComponent } from './components/employee/user-registration/layout/edit-jot-users-layout/edit-jot-users-layout.component';
@@ -155,7 +147,6 @@ import { EditJotUsersFormComponent } from './components/employee/user-registrati
 import { JotUsersViewComponent } from './components/employee/user-registration/views/jot-users-view/jot-users-view.component';
 import { JotUsersDetailsViewComponent } from './components/employee/user-registration/views/jot-users-details-view/jot-users-details-view.component';
 import { JotUsersDetailsLayoutComponent } from './components/employee/user-registration/layout/jot-users-details-layout/jot-users-details-layout.component';
-
 import { AddEmploymentDetailsFormComponent } from './components/employee/employment-details-registration/forms/add-employment-details-form/add-employment-details-form.component';
 import { EditEmploymentDetailsFormComponent } from './components/employee/employment-details-registration/forms/edit-employment-details-form/edit-employment-details-form.component';
 import { AddOfficeDetailsFormComponent } from './components/employee/office-details-registration/forms/add-office-details-form/add-office-details-form.component';
@@ -171,7 +162,6 @@ import { AddProfessionalDetailsFormComponent } from './components/employee/profe
 import { AddSkillsDetailsFormComponent } from './components/employee/skills-details-registration/forms/add-skills-details-form/add-skills-details-form.component';
 import { EditSkillsDetailsFormComponent } from './components/employee/skills-details-registration/forms/edit-skills-details-form/edit-skills-details-form.component';
 import { EmployeeDetailsRegistrationViewComponent } from './components/employee/employment-details-registration/views/employee-details-registration-view/employee-details-registration-view.component';
-
 import { AttachmentLayoutComponent } from './components/attachments/layout/attachment-layout/attachment-layout.component';
 import { EditAttachmentLayoutComponent } from './components/attachments/layout/edit-attachment-layout/edit-attachment-layout.component';
 import { AttachmentViewComponent } from './components/attachments/views/attachment-view/attachment-view.component';
@@ -200,7 +190,6 @@ import { AddSelfBankDetailsFormComponent } from './components/self-employee/self
 import { EditSelfBankDetailsFormComponent } from './components/self-employee/self-bank-details-registration/forms/edit-self-bank-details-form/edit-self-bank-details-form.component';
 import { SelfDependantDetailsViewComponent } from './components/self-employee/self-dependant-details-registration/views/self-dependant-details-view/self-dependant-details-view.component';
 import { AddSelfDependantDetailsFormComponent } from './components/self-employee/self-dependant-details-registration/forms/add-self-dependant-details-form/add-self-dependant-details-form.component';
-
 import { SelfEmploymentAsignmentViewComponent } from './components/self-employee/self-assignment-details/views/self-employment-asignment-view/self-employment-asignment-view.component';
 import { SelfMaritalStatusViewComponent } from './components/self-employee/self-marital-status/views/self-marital-status-view/self-marital-status-view.component';
 import { AddSelfMaritalStatusFormComponent } from './components/self-employee/self-marital-status/forms/add-self-marital-status-form/add-self-marital-status-form.component';
@@ -223,6 +212,14 @@ import { MyRetirementLayoutComponent } from './components/retirement/layout/my-r
 import { EmployeeRetirementLayoutComponent } from './components/retirement/layout/employee-retirement-layout/employee-retirement-layout.component';
 import { EmployeeRetirementViewComponent } from './components/retirement/views/employee-retirement-view/employee-retirement-view.component';
 import { MyRetirementViewComponent } from './components/retirement/views/my-retirement-view/my-retirement-view.component';
+import { AcademicInstitutionLayoutComponent } from './components/Academic-Institution/Layout/academic-institution-layout/academic-institution-layout.component';
+import { AcademicInstitutionViewComponent } from './components/Academic-Institution/views/academic-institution-view/academic-institution-view.component';
+import { AcademicSpecializationViewComponent } from './components/Academic-specialization/views/academic-specialization-view/academic-specialization-view.component';
+import { AddAcademicInstitutionFormComponent } from './components/Academic-Institution/forms/add-academic-institution-form/add-academic-institution-form.component';
+import { EditAcademicInstitutionFormComponent } from './components/Academic-Institution/forms/edit-academic-institution-form/edit-academic-institution-form.component';
+import { EditAcademicSpecializationFormComponent } from './components/Academic-specialization/forms/edit-academic-specialization-form/edit-academic-specialization-form.component';
+import { AddAcademicSpecializationFormComponent } from './components/Academic-specialization/forms/add-academic-specialization-form/add-academic-specialization-form.component';
+import { AcademicSpecializationLayoutComponent } from './components/Academic-specialization/layout/academic-specialization-layout/academic-specialization-layout.component';
 
 
 
@@ -297,8 +294,8 @@ import { MyRetirementViewComponent } from './components/retirement/views/my-reti
     EditQualificationLayoutComponent,
     EditQualificationFormComponent,
     AddQualificationFormComponent,
-    QualificationViewComponent,
-    QualificationGradeViewComponent,
+    EducationLevelViewComponent,
+    EducationLevelGradeViewComponent,
     AddQualificationGradeFormComponent,
     EditQualificationGradeFormComponent,
     EditQualificationGradeLayoutComponent,
@@ -376,8 +373,7 @@ import { MyRetirementViewComponent } from './components/retirement/views/my-reti
     JotUsersViewComponent,
     JotUsersDetailsViewComponent,
     JotUsersDetailsLayoutComponent,
-
-
+    AcademicSpecializationViewComponent ,
     AddEmploymentDetailsFormComponent,
     EditEmploymentDetailsFormComponent,
     AddOfficeDetailsFormComponent,
@@ -444,6 +440,13 @@ import { MyRetirementViewComponent } from './components/retirement/views/my-reti
     EmployeeRetirementLayoutComponent,
     EmployeeRetirementViewComponent,
     MyRetirementViewComponent,
+    AcademicInstitutionLayoutComponent,
+    AcademicInstitutionViewComponent,
+    AddAcademicInstitutionFormComponent,
+    EditAcademicInstitutionFormComponent,
+    EditAcademicSpecializationFormComponent,
+    AddAcademicSpecializationFormComponent,
+    AcademicSpecializationLayoutComponent,
    
 
   ],

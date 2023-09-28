@@ -3,7 +3,7 @@ import { GeneralService } from '../../../../../../services/general/general.servi
 import { PermissionsService} from '../../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
-import { NextOfKinInfoService } from '../../../../../../services/employee/next-of-kin/next-of-kin-info.service';
+import { PersonalSkillInfoService } from '../../../../../../services/employee/personal-skill/personal-skill-info.service';
 
 @Component({
   selector: 'app-self-skills-details-view',
@@ -14,8 +14,8 @@ export class SelfSkillsDetailsViewComponent {
 
 
 
-      kinDetails: any;
-      next_of_kin_type_data: any;
+      skillDetails: any;
+      personal_skills_type_data: any;
       submoduleId: any;
       
       data = {
@@ -24,7 +24,7 @@ export class SelfSkillsDetailsViewComponent {
       kin_datas={id:''}
       constructor(
         public general: GeneralService,
-        public next_of_kin:NextOfKinInfoService ,
+        public personal_skills:PersonalSkillInfoService ,
         public permission: PermissionsService ,
         public script: ScriptConfigService,
         private route: Router,
@@ -36,15 +36,15 @@ export class SelfSkillsDetailsViewComponent {
         this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
         this.permission.action_permissions(this.general.decryptionId(sessionStorage.getItem('id') as any));
         this.data.user_id=this.general.decryptionId(sessionStorage.getItem('id') as any)
-        this.getNextOfKins() ;
+        this.getskillDetails() ;
       }
     
-      getNextOfKins() {
+      getskillDetails() {
         this.general.bfrcreating = false;
         this.general.creating = true;
-        this.next_of_kin.getNextOfKins().subscribe(
+        this.personal_skills.getPersonnalSkills().subscribe(
           res => {
-            this.kinDetails = res;
+            this.skillDetails = res;
             this.general.creating = false;
             this.general.bfrcreating = true;
           },
@@ -61,72 +61,5 @@ export class SelfSkillsDetailsViewComponent {
         );
       }
     
-    
-    
-   
-    
-      activate(id: any) {
-        this.kin_datas.id = id;
-        this.general.bfrcreating = false;
-        this.general.creating = true;
-        this.next_of_kin.activateNextOfKin(this.kin_datas).subscribe(
-          res => {
-            this.general.bfrcreating = true;
-            this.general.creating = false;
-            this.general.successMessage(res.sw_message, (e: any) => {
-              if (e) {
-                window.location.reload();
-              }
-    
-            });
-          },
-          err => {
-            this.general.bfrcreating = true;
-            this.general.creating = false;
-            this.general.errorMessage(err.error.sw_message, (e: any) => {
-              if (e) {
-                window.location.reload();
-              }
-    
-            });
-            if (err.error.token == 0) {
-              sessionStorage.setItem('current_url', this.route.url)
-              this.route.navigate(['/restore-session']);
-            }
-          }
-        );
-      }
-    
-      deactivate(id: any) {
-        this.kin_datas.id = id;
-        this.general.bfrcreating = false;
-        this.general.creating = true;
-        this.next_of_kin.deactivateNextOfKin(this.kin_datas).subscribe(
-          res => {
-            this.general.bfrcreating = true;
-            this.general.creating = false;
-            this.general.successMessage(res.sw_message, (e: any) => {
-              if (e) {
-                window.location.reload();
-              }
-    
-            });
-          },
-          err => {
-            this.general.bfrcreating = true;
-            this.general.creating = false;
-            this.general.errorMessage(err.error.sw_message, (e: any) => {
-              if (e) {
-                window.location.reload();
-              }
-    
-            });
-            if (err.error.token == 0) {
-              sessionStorage.setItem('current_url', this.route.url)
-              this.route.navigate(['/restore-session']);
-            }
-          }
-        );
-      }
-    }
+}
     

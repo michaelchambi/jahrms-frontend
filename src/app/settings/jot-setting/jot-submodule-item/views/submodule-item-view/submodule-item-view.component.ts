@@ -46,7 +46,7 @@ export class SubmoduleItemViewComponent {
         this.general.bfrcreating = true;
       },
       err => {
-        console.log("mafanikoa yangu", err);
+       
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.script.errorAlert(err.error.sw_message);

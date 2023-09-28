@@ -197,6 +197,10 @@ export class PermissionsService {
     return this.http.post<any>(`${this.url_roles}/role/show`, data, { headers: this.general.userAuthorization() });
   }
 
+  showRolesByEmployeeId(data: any) {
+    return this.http.post<any>(`${this.url_roles}/role/show/byEmployeeId`, data, { headers: this.general.userAuthorization() });
+  }
+
   getRoles() {
     return this.http.get<any>(`${this.url_roles}/roles`, { headers: this.general.userAuthorization() });
   }

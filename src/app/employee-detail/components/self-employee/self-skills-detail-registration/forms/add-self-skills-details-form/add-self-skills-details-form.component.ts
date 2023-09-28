@@ -3,11 +3,11 @@ import { Component } from '@angular/core';
 import { GeneralService } from '../../../../../../services/general/general.service';
 import { NextOfKinInfoService } from '../../../../../../services/employee/next-of-kin/next-of-kin-info.service';
 import { UsersService } from '../../../../../../services/users/users.service';
-import { DependantTypeService } from '../../../../../../services/dependant-type/dependant-type.service';
 import { ScriptConfigService } from '../../../../../../services/script-config/script-config.service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { PermissionsService } from '../../../../../../services/permissions/permissions.service';
-
+import { SkillService } from '../../../../../../services/skill/skill.service';
+import { PersonalSkillInfoService } from '../../../../../../services/employee/personal-skill/personal-skill-info.service'
 @Component({
   selector: 'app-add-self-skills-details-form',
   templateUrl: './add-self-skills-details-form.component.html',
@@ -25,12 +25,8 @@ just_dependant:boolean=false;
   submoduleId: any;
   uid: any;
   data = {
-    full_name:'',
-    relation_id:'',
-    phone_number :'',
-    gender:'',
+    skills_id:[],
     employee_id:'',
-    physical_address:'',
   }
 
   
@@ -42,7 +38,7 @@ just_dependant:boolean=false;
   my_date:any;
   age: any;
   difference: any;
-  relationDetails: any;
+  skillsDetails: any;
   fileBirthCertificateUpload(e: any) {
     this.selectedFile = e.target.files[0];
   }
@@ -63,7 +59,8 @@ just_dependant:boolean=false;
     public users: UsersService,
     public script: ScriptConfigService,
     private route: Router,
-    private relation:DependantTypeService,
+    private skills:SkillService,
+    private skills_registration:PersonalSkillInfoService,
     public permission: PermissionsService,
     private activeRoute: ActivatedRoute
   ) { }
@@ -74,16 +71,12 @@ just_dependant:boolean=false;
     this.submoduleId = this.activeRoute.snapshot.paramMap.get('id');
   }
 
-  dependantRegistration() {
+addSkills() {
     this.created_by = sessionStorage.getItem('id')
     this.data.employee_id = this.general.decryptionId(this.created_by);
-
-    // return console.log(this.data);
-
-
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.dependant.addNextOfKin(this.data).subscribe(
+    this.skills_registration.addPersonnalSkill(this.data).subscribe(
       res => {
         this.uid = res.data;
         this.general.creating = false;
@@ -116,9 +109,9 @@ just_dependant:boolean=false;
   getDependantType() {
     this.general.bfrcreating = false;
     this.general.creating = true;
-    this.relation.getDependantTypes().subscribe(
+    this.skills.getSkills().subscribe(
       res => {
-        this.relationDetails = res;
+        this.skillsDetails = res;
         this.script.datatable();
         this.general.creating = false;
         this.general.bfrcreating = true;
@@ -137,14 +130,6 @@ just_dependant:boolean=false;
   }
 
 
-  myChildren(){
-    this.my_kid=true;
-    this.just_dependant=false;
-  }
-  myDependant(){
-    this.just_dependant=true;
-    this.my_kid=false;
 
-  }
 
 }

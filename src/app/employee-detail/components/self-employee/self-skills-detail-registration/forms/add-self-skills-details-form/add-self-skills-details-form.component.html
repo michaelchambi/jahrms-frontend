@@ -2,22 +2,17 @@
    
 
 
-    <form *ngIf="general.formart" (ngSubmit)="dependantRegistration()" #userForm="ngForm">
+    <form *ngIf="general.formart" (ngSubmit)="addSkills()" #userForm="ngForm">
         <div class="row">
-            <div class="col-md-6">
-                <label for="birth_certificate_number">Phone Number</label>
+         
+            <div class="col-xl-12 col-lg-12 col-md-12 ">
+                <label for="icon">Personal Skill(s): </label>
                 <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="birth_certificate_number" [(ngModel)]="data.phone_number" name="phone_number" placeholder="xxxxx" birth_certificate_number required />
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-12 ">
-                <label for="icon">Personal Skills: </label>
-                <div class="form-group mb-3">
-                    <ng-select [(ngModel)]="data.relation_id" name="relation_id" [clearable]="true" [clearOnBackspace]="false" required>
+                    <ng-select [(ngModel)]="data.skills_id" name="skills_id" [multiple]="true" [clearable]="true" [clearOnBackspace]="false" required>
                         <ng-option value="" disabled Selected>Choose Skills</ng-option>
-                        <ng-container *ngFor="let relation of relationDetails">
-                            <ng-option  value="{{relation.id}}" (click)="myChildren()">{{relation.name}}</ng-option>
-                             <option  value="dependants" (click)="myDependant()">Other Dependants</option>
+                        <ng-container *ngFor="let skills of skillsDetails">
+                            <ng-option  value="{{skills.id}}" >{{skills.name}}</ng-option>
+                             <option  value="dependants" >Other Dependants</option>
                       
 
                         </ng-container>

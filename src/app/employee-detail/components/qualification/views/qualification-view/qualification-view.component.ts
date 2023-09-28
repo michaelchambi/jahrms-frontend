@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../../../../services/general/general.service';
-import { QualificationService} from '../../../../../services/qualification/qualification.service';
+import { EducationLevelService} from '../../../../../services/qualification/qualification.service';
 import { PermissionsService} from '../../../../../services/permissions/permissions.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ScriptConfigService } from '../../../../../services/script-config/script-config.service'
@@ -10,7 +10,7 @@ import { ScriptConfigService } from '../../../../../services/script-config/scrip
   templateUrl: './qualification-view.component.html',
   styleUrls: ['./qualification-view.component.css']
 })
-export class QualificationViewComponent {
+export class EducationLevelViewComponent {
 
 
   
@@ -24,7 +24,7 @@ export class QualificationViewComponent {
     qualification_datas={id:''}
     constructor(
       public general: GeneralService,
-      public qualification: QualificationService ,
+      public qualification: EducationLevelService ,
       public permission: PermissionsService ,
       public script: ScriptConfigService,
       private route: Router,
@@ -41,7 +41,7 @@ export class QualificationViewComponent {
     getqualification() {
       this.general.bfrcreating = false;
       this.general.creating = true;
-      this.qualification.getQualifications().subscribe(
+      this.qualification.getEducationLevels().subscribe(
         res => {
           this.qualificationList = res;
           this.script.datatable();
@@ -66,7 +66,7 @@ export class QualificationViewComponent {
   
     showCourt_level(id: any) {
       this.qualification_datas.id = id
-      this.qualification.showQualification(id).subscribe(
+      this.qualification.showEducationLevel(id).subscribe(
         res => {
           this.qualification_data = res;
         },
@@ -84,7 +84,7 @@ export class QualificationViewComponent {
       this.qualification_datas.id = id;
       this.general.bfrcreating = false;
       this.general.creating = true;
-      this.qualification.activateQualification(this.qualification_datas).subscribe(
+      this.qualification.activateEducationLevel(this.qualification_datas).subscribe(
         res => {
           this.general.bfrcreating = true;
           this.general.creating = false;
@@ -116,7 +116,7 @@ export class QualificationViewComponent {
       this.qualification_datas.id = id;
       this.general.bfrcreating = false;
       this.general.creating = true;
-      this.qualification.deactivateQualification(this.qualification_datas).subscribe(
+      this.qualification.deactivateEducationLevel(this.qualification_datas).subscribe(
         res => {
           this.general.bfrcreating = true;
           this.general.creating = false;

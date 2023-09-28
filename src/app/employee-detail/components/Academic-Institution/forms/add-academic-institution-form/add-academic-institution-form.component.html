@@ -1,0 +1,61 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerInstitution()" #announcementForm=ngForm>
+            <!-- {{announcementForm.value|json}} -->
+            <div class="row">
+
+                <div class="col-md-9">
+                    <label> Institution Name*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="institution_name" placeholder="Enter Institution Name"
+                        [(ngModel)]="institution_data.institution_name" institution_name required>
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-3">
+                    <label> Institution Abreviation:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="institution_abbreviation" placeholder="Enter Institution Abreviation"
+                        [(ngModel)]="institution_data.institution_abbreviation" institution_abbreviation required>
+                    </div>
+                    
+                </div>
+
+               
+                <div class="col-md-12">
+                    <label>Description*:</label>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
+                        [(ngModel)]="institution_data.description"></textarea>
+                    </div>
+                    
+                </div>
+
+                
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
+                        Add Institution</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Institution Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>
+
+
+

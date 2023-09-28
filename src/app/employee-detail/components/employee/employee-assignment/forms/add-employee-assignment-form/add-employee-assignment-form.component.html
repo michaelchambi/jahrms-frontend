@@ -3,13 +3,13 @@
         <!-- {{userForm.value|json}} -->
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 ">
-                <label for="majukumu">Role:</label>
+                <label for="roles">Role:</label>
                 <div class="form-group mb-3">
-                    <ng-select [(ngModel)]="data.roles" [multiple]="true" name="majukumu"
+                    <ng-select [(ngModel)]="data.roles" [multiple]="true" name="roles"
                         placeholder="Chagua System Roles" [clearable]="true" [clearOnBackspace]="false" required>
                         <ng-option value="" disabled Selected>Choose Roles</ng-option>
                         <ng-container *ngFor="let roles of permission.role_list">
-                            <ng-option *ngIf="roles.active" value="{{roles.id}}">{{roles.name}}</ng-option>
+                            <ng-option *ngIf="roles?.active" value="{{roles?.id}}">{{roles?.name}}</ng-option>
                         </ng-container>
 
                     </ng-select>

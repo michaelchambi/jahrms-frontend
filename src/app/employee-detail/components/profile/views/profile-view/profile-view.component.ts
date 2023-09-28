@@ -13,6 +13,7 @@ import { environment } from '../../../../../../environments/environment';
   styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit {
+
 submoduleItemList: any;
 personal_info:boolean=false;
 employment_details:boolean=false;
@@ -103,13 +104,14 @@ this.userDetails(this.user_id);
   }
 
   userDetails(id: any) {
+  
     this.new_data.id = id
     // console.log('data received are ', this.data.id)
     this.users.getUser(this.new_data).subscribe(
       res => {
         this.details = res;
         this.script.successAlert(res.sw_message)
-
+        
       },
       err => {
         this.script.errorAlert(err.error.sw_message)
@@ -398,4 +400,15 @@ this.userDetails(this.user_id);
     );
   }
 
+
+
+
+
+ 
+  // activateLoader(){
+  //   this.allowed_to_exit=true;
+  // }
+  // deactivateLoader(){
+  //   this.allowed_to_exit=false;
+  // }
 }

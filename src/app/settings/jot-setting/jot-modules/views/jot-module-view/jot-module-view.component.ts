@@ -36,7 +36,7 @@ export class JotModuleViewComponent implements OnInit {
     this.permission.getModules().subscribe(
       res => {
         this.moduleList = res.data;
-        console.log("mafanikoa yangu", res);
+        
         
         
         this.script.datatable();
@@ -44,7 +44,7 @@ export class JotModuleViewComponent implements OnInit {
         this.general.bfrcreating = true;
       },
       err => {
-        console.log("mafanikoa yangu", err);
+        
         this.general.creating = false;
         this.general.bfrcreating = true;
         this.script.errorAlert(err.error.sw_message);

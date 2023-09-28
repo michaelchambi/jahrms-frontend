@@ -1,0 +1,61 @@
+<div class="responsive p-0">
+    <div class="advertisement-form">
+        <form (ngSubmit)="registerSpecialization()" #announcementForm=ngForm>
+            <!-- {{announcementForm.value|json}} -->
+            <div class="row">
+
+                <div class="col-md-9">
+                    <label> Specialization Name*:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="specialization_name" placeholder="Enter Specialization Name"
+                        [(ngModel)]="specialization_data.specialization_name" specialization_name required>
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-3">
+                    <label> Specialization Abreviation:</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="specialization_abbreviation" placeholder="Enter Specialization Abreviation"
+                        [(ngModel)]="specialization_data.specialization_abbreviation" specialization_abbreviation required>
+                    </div>
+                    
+                </div>
+
+               
+                <div class="col-md-12">
+                    <label>Description*:</label>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" type="text" name="description" placeholder="Enter  "
+                        [(ngModel)]="specialization_data.description"></textarea>
+                    </div>
+                    
+                </div>
+
+                
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <button *ngIf="bfrcreating" type="submit"
+                        class="btn btn-primary btn-lg w-100 exit" [disabled]="!announcementForm.valid">
+                        Add Specialization</button>
+                    <button *ngIf="creating" class="btn bg-gradient-primary btn-lg w-100"
+                        type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status"
+                            aria-hidden="true"></span>
+                        Specialization Creating...
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+   
+</div>
+
+
+
